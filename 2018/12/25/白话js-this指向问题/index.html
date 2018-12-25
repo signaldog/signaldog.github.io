@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="白话js this指向问题前言 通过本文，你大概能了解this基础指向的问题，抛开例子去说this太虚幻，这里还是结合几篇博文做个整理，算是个人的记录了。 先说概念，this指向与申明无关，永远指向距离自己最近的最终调用者。我们从几种调用情况去理解，下面看看例子理解下： 1.函数的直接调用 function a() {     var age = &amp;apos;25&amp;apos;;     conso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白话js_this指向问题">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/白话js-this指向问题/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="白话js this指向问题前言 通过本文，你大概能了解this基础指向的问题，抛开例子去说this太虚幻，这里还是结合几篇博文做个整理，算是个人的记录了。 先说概念，this指向与申明无关，永远指向距离自己最近的最终调用者。我们从几种调用情况去理解，下面看看例子理解下： 1.函数的直接调用 function a() {     var age = &amp;apos;25&amp;apos;;     conso">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T06:42:00.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="白话js_this指向问题">
+<meta name="twitter:description" content="白话js this指向问题前言 通过本文，你大概能了解this基础指向的问题，抛开例子去说this太虚幻，这里还是结合几篇博文做个整理，算是个人的记录了。 先说概念，this指向与申明无关，永远指向距离自己最近的最终调用者。我们从几种调用情况去理解，下面看看例子理解下： 1.函数的直接调用 function a() {     var age = &amp;apos;25&amp;apos;;     conso">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/白话js-this指向问题/"/>
+
+
+
+
+
+  <title>白话js_this指向问题 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/白话js-this指向问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">白话js_this指向问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:41:46+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="白话js-this指向问题"><a href="#白话js-this指向问题" class="headerlink" title="白话js this指向问题"></a>白话js this指向问题</h2><p><strong>前言</strong></p>
+<p>通过本文，你大概能了解this基础指向的问题，抛开例子去说this太虚幻，这里还是结合几篇博文做个整理，算是个人的记录了。</p>
+<p>先说概念，this指向与申明无关，永远指向距离自己<strong>最近的最终调用者</strong>。我们从几种调用情况去理解，下面看看例子理解下：</p>
+<p><strong>1.函数的直接调用</strong></p>
+<pre><code>function a() {
+    var age = &apos;25&apos;;
+    console.log(this.age); //undefined
+    console.log(this); // window
+}
+a();
+</code></pre><p>如上，我们申明一个函数，然后直接调用，a()前面没任何调用它的对象，这时候我们一般理解为被全局window对象调用，那我们就得去window去找age属性，很明显window没有，这里输出undefined。</p>
+<p>我们改改代码，用window去调用函数a，同时定义a的age属性，如下：</p>
+<pre><code>window.age = &apos;26&apos;;
+function a() {
+    var age = &apos;25&apos;;
+    console.log(this.age); //26
+    console.log(this);//window
+}
+window.a();
+</code></pre><p>那我们可以这样理解，<strong>针对函数调用</strong>，我们在一个函数内申明this，我们去看它最终是被谁调用，如果最终的调用前啥都没有，this就会指向window，这里只是针对js非严格模式。</p>
+<pre><code>function a() {
+    var age = &apos;25&apos;;
+    console.log(this.age); //undefined
+    console.log(this); //window
+}
+function b() {
+    a();
+}
+b();
+</code></pre><p>你以为我说到这，函数调用的this问题就说完了？不存在的，死记硬背难啊，情况多变，<strong>为什么函数直接调用，前面啥都没有就指向window，为什么？</strong></p>
+<p><strong>我再知乎看到一篇从函数调用原理讲this的文章，这里就引入下，</strong></p>
+<p>函数一般常见三种调用方式，其实对于我是两种</p>
+<p><strong>1.func(a,b)</strong> — 普通函数调用</p>
+<p><strong>2.obj.child.method(context,a,b)</strong> — 调用对象内的某个方法，这个方法相当于对象的子属性</p>
+<p><strong>3.func.call(context,a,b)</strong> — 这个我确实在调用中没怎么用过。</p>
+<p>对于前两种，普通调用，对象属性的函数调用我们都常见，而第三种其实才是我们原本函数该有的调用，那我们这个this的讲解就偏偏与第三种有关系了。我们将前两者改写为第三种调用。</p>
+<pre><code>func(a,b) ==&gt; func.call(undefined,a,b)
+obj.child.method ==&gt; obj.child.method.call(obj.child,a,b)
+//因为不确定obj里面的method是属于obj的属性还是obj child的属
+性，再加个
+obj.method ==&gt; obj.method.call(obj,a,b)
+</code></pre><p>那我们就可以将所有的函数调用统一为 <strong>func.call(context,a,b)这一种</strong>，<strong>如果不是这一种，按照上面去改写，**</strong>其中context就是我们一直苦苦寻找的this**.</p>
+<p>OK,上面是函数的普通调用，咱们来改写上面的例子。</p>
+<pre><code>function a() {
+    var age = &apos;25&apos;;
+    console.log(this.age); //undefined
+    console.log(this); // window
+}
+a(); //等价于a.call(undefined);
+</code></pre><p>那按照我们上面说的，this应该是undefined啊，为毛是Window，这里又插入一个小规则</p>
+<p><strong>如果你传的context为null或者undefined，那么window对象就是默认的context（严格模式下默认context是undefined）</strong></p>
+<p>那这里我们就明白为啥普通函数直接调用，this指向window了。</p>
+<p><strong>2.函数作为对象属性方法被调用</strong></p>
+<p>怎么去解释，我们还是用上面函数调用的改写去理解，先看一个例子。</p>
+<pre><code>var a = {
+    age: &quot;29&quot;,
+    fn:function() {
+        console.log(this.age); // 29
+    }
+}
+a.fn(); //等价于a.fn.call(a)
+//参照obj.method ==&gt; obj.method.call(obj,a,b)来看
+</code></pre><p>method fn是对象a的一个属性，照着上面的对等公式，最终this指向就是对象a自己，也验证了上面我们说的，this指向它最终的调用者。</p>
+<p>再来看一个例子：</p>
+<pre><code>var a = {
+    age: 10,
+    func:{
+        age:12,
+        fn:function() {
+            console.log(this.age); //12
+        }
+    }
+}
+a.func.fn(); //等价于 a.method.fn.call(a.method)    
+// 参照obj.child.method ==&gt; obj.child.method.call
+(obj.child,a,b)来看
+</code></pre><p>func是对象a的一个child属性，而方法fn包含在func内，所以参照这个例子，this指向了a.func，而a.func提供了age属性，这里就输出12了，问题不大吧？</p>
+<p>那我们现在来融合函数调用与对象调用来看个例子：</p>
+<pre><code>var a = {
+    age: 10,
+    func: {
+        age: 12,
+        fn: function() {
+            console.log(this.age); // undefined
+            console.log(this); // window
+        }
+    }
+}
+var j = a.func.fn;
+j(); // 等价于window.j()或者j.call(undefined)
+</code></pre><p>跟我读，this指向最终，且离自己最近的调用者，最终调用的是方法j()，按照改写说的通，按照我们说的方法前面啥都没有就是window也说的通，就是这个意思了。</p>
+<h2 id="3-构造函数的调用"><a href="#3-构造函数的调用" class="headerlink" title="3.构造函数的调用"></a>3.构造函数的调用</h2><p>我们先来看个例子，当我们输出a.user，this指向了谁？</p>
+<pre><code>function Fn() {
+    this.age = 25;
+}
+var a = new Fn();
+console.log(a.age); //25
+</code></pre><p>先明白this指向谁，我们要弄懂什么是构造函数，new干嘛了？var a = new Fn()干嘛了？</p>
+<p>构造函数就是初始化一个实例对象，当我们new Fn()其实就是将Fn()复制了一份，并作为对象返回，赋值给了变量a。</p>
+<p>我们可以console a，得到的就是Fn()函数的实例，而且继承了Fn里面的age属性，所以此时this指向a，a里面有age属性。</p>
+<p>我们来白话一遍，这样说，当我们用构造函数方法，this指向我们new出来返回的对象，就是复制Fn得到了一个Fn副本，this指向了Fn副本，而这个Fn副本被赋予给了变量a，于是this指向了a，这个Fn副本继承了原函数的属性，所以这里顺利的输出了25.(并不是复制了整个函数，这句话有问题，我暂时不理解)</p>
+<h2 id="构造函数与return"><a href="#构造函数与return" class="headerlink" title="构造函数与return"></a>构造函数与return</h2><p><strong>我在上面说，构造函数this会指向new之后的实例（复制出来的副本），但如果在函数里有return，this指向可能会发生变化。</strong></p>
+<pre><code>function Fn() {
+    this.age = 17;
+    return {age:18};
+}
+var a = new Fn();
+console.log(a); // {age:18}
+console.log(a.age); //18
+</code></pre><p>很明显，return的对象赋值给了变量a，这里输出了18.再来看看这段代码：</p>
+<pre><code>function Fn() {
+    this.age = &apos;25&apos;;
+    return function() {};
+}
+var a = new Fn();
+console.log(a.age); // undefined
+</code></pre><p>再来一段代码：</p>
+<pre><code>function Fn() {
+    this.age = 11;
+    return 1;
+}
+var a = new Fn();
+console.log(a.age); //11
+</code></pre><p>我们可以做个大致判断，当在构造函数中return 一个对象时，this会指向这个对象，如上面的第一，第二段代码，但如果return的不是一个对象，那就不会改变this指向，还是指向new出来的实例。</p>
+<p><strong>构造函数通常不使用return关键字，它们通常初始化新对象，当构造函数的函数体执行完毕后，它会显式返回。在这种情况下，构造函数调用表达式的计算结果就是这个新对象的值。然而如果构造函数显式地使用return语句返回一个对象，那么调用表达式的值就是这个对象。如果构造函数使用return语句但没有指定返回值，或者返回一个原始值，那么这时将忽略返回值，同时使用这个新对象作为调用结果。</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/安全限制/" rel="next" title="安全限制">
+                <i class="fa fa-chevron-left"></i> 安全限制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/高性能JavaScript编程/" rel="prev" title="高性能JavaScript编程">
+                高性能JavaScript编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#白话js-this指向问题"><span class="nav-number">1.</span> <span class="nav-text">白话js this指向问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-构造函数的调用"><span class="nav-number">2.</span> <span class="nav-text">3.构造函数的调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数与return"><span class="nav-number">3.</span> <span class="nav-text">构造函数与return</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

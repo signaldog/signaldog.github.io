@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Javascript面向对象编程（三）：非构造函数的继承介绍不使用构造函数实现”继承”。 一、什么是”非构造函数”的继承？比如，现在有一个对象，叫做”中国人”。 　　var Chinese = { 　　　　nation:&amp;apos;中国&amp;apos; 　　}; 还有一个对象，叫做”医生”。 　　var Doctor ={ 　　　　career:&amp;apos;医生&amp;apos; 　　} 请问怎样才能让”医">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript面向对象编程（三）：非构造函数的继承">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/Javascript面向对象编程（三）：非构造函数的继承/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Javascript面向对象编程（三）：非构造函数的继承介绍不使用构造函数实现”继承”。 一、什么是”非构造函数”的继承？比如，现在有一个对象，叫做”中国人”。 　　var Chinese = { 　　　　nation:&amp;apos;中国&amp;apos; 　　}; 还有一个对象，叫做”医生”。 　　var Doctor ={ 　　　　career:&amp;apos;医生&amp;apos; 　　} 请问怎样才能让”医">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T06:33:14.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript面向对象编程（三）：非构造函数的继承">
+<meta name="twitter:description" content="Javascript面向对象编程（三）：非构造函数的继承介绍不使用构造函数实现”继承”。 一、什么是”非构造函数”的继承？比如，现在有一个对象，叫做”中国人”。 　　var Chinese = { 　　　　nation:&amp;apos;中国&amp;apos; 　　}; 还有一个对象，叫做”医生”。 　　var Doctor ={ 　　　　career:&amp;apos;医生&amp;apos; 　　} 请问怎样才能让”医">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/Javascript面向对象编程（三）：非构造函数的继承/"/>
+
+
+
+
+
+  <title>Javascript面向对象编程（三）：非构造函数的继承 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/Javascript面向对象编程（三）：非构造函数的继承/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript面向对象编程（三）：非构造函数的继承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:33:00+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Javascript面向对象编程（三）：非构造函数的继承"><a href="#Javascript面向对象编程（三）：非构造函数的继承" class="headerlink" title="Javascript面向对象编程（三）：非构造函数的继承"></a>Javascript面向对象编程（三）：非构造函数的继承</h1><p>介绍不使用构造函数实现”继承”。</p>
+<h2 id="一、什么是”非构造函数”的继承？"><a href="#一、什么是”非构造函数”的继承？" class="headerlink" title="一、什么是”非构造函数”的继承？"></a>一、什么是”非构造函数”的继承？</h2><p>比如，现在有一个对象，叫做”中国人”。</p>
+<pre><code>　　var Chinese = {
+　　　　nation:&apos;中国&apos;
+　　};
+</code></pre><p>还有一个对象，叫做”医生”。</p>
+<pre><code>　　var Doctor ={
+　　　　career:&apos;医生&apos;
+　　}
+</code></pre><p>请问怎样才能让”医生”去继承”中国人”，也就是说，我怎样才能生成一个”中国医生”的对象？</p>
+<p>这里要注意，这两个对象都是普通对象，不是构造函数，无法使用构造函数方法实现”继承”。</p>
+<h2 id="二、object-方法"><a href="#二、object-方法" class="headerlink" title="二、object()方法"></a>二、object()方法</h2><p>json格式的发明人Douglas Crockford，提出了一个object()函数，可以做到这一点。</p>
+<pre><code>　　function object(o) {    
+　　　　function F() {}    
+　　　　F.prototype = o;    
+　　　　return new F();    
+　　}
+</code></pre><p>这个object()函数，其实只做一件事，就是把子对象的prototype属性，指向父对象，从而使得子对象与父对象连在一起。</p>
+<p>使用的时候，第一步先在父对象的基础上，生成子对象：</p>
+<pre><code>var Doctor = object(Chinese);
+</code></pre><p>然后，再加上子对象本身的属性：</p>
+<pre><code>Doctor.career = &apos;医生&apos;;
+</code></pre><p>这时，子对象已经继承了父对象的属性了。</p>
+<pre><code>alert(Doctor.nation); //中国
+</code></pre><h2 id="三、浅拷贝"><a href="#三、浅拷贝" class="headerlink" title="三、浅拷贝"></a>三、浅拷贝</h2><p>除了使用”prototype链”以外，还有另一种思路：把父对象的属性，全部拷贝给子对象，也能实现继承。</p>
+<p>下面这个函数，就是在做拷贝：</p>
+<pre><code>　　function extendCopy(p) {    
+　　　　var c = {};    
+　　　　for (var i in p) { 
+　　　　　　c[i] = p[i];
+　　　　}    
+　　　　c.uber = p;    
+　　　　return c;
+　　}
+</code></pre><p>使用的时候，这样写：</p>
+<pre><code>　　var Doctor = extendCopy(Chinese);
+
+　　Doctor.career = &apos;医生&apos;;
+
+　　alert(Doctor.nation); // 中国
+</code></pre><p>但是，这样的拷贝有一个问题。那就是，如果父对象的属性等于数组或另一个对象，那么实际上，子对象获得的只是一个内存地址，而不是真正拷贝，因此存在父对象被篡改的可能。</p>
+<p>请看，现在给Chinese添加一个”出生地”属性，它的值是一个数组。</p>
+<pre><code>Chinese.birthPlaces = [&apos;北京&apos;,&apos;上海&apos;,&apos;香港&apos;];
+</code></pre><p>通过extendCopy()函数，Doctor继承了Chinese。</p>
+<pre><code>var Doctor = extendCopy(Chinese);
+</code></pre><p>然后，我们为Doctor的”出生地”添加一个城市：</p>
+<pre><code>Doctor.birthPlaces.push(&apos;厦门&apos;);
+</code></pre><p>发生了什么事？Chinese的”出生地”也被改掉了！</p>
+<pre><code>　　alert(Doctor.birthPlaces); //北京, 上海, 香港, 厦门
+
+　　alert(Chinese.birthPlaces); //北京, 上海, 香港, 厦门
+</code></pre><p>所以，extendCopy()只是拷贝基本类型的数据，我们把这种拷贝叫做”浅拷贝”。这是早期jQuery实现继承的方式。</p>
+<h2 id="四、深拷贝"><a href="#四、深拷贝" class="headerlink" title="四、深拷贝"></a>四、深拷贝</h2><p>所谓”深拷贝”，就是能够实现真正意义上的数组和对象的拷贝。它的实现并不难，只要递归调用”浅拷贝”就行了。</p>
+<pre><code>　　function deepCopy(p, c) {    
+　　　　var c = c || {};    
+　　　　for (var i in p) {    
+　　　　　　if (typeof p[i] === &apos;object&apos;) {    
+　　　　　　　　c[i] = (p[i].constructor === Array) ? [] : {};    
+　　　　　　　　deepCopy(p[i], c[i]);    
+　　　　　　} else {    
+　　　　　　　　　c[i] = p[i];    
+　　　　　　}
+　　　　}    
+　　　　return c;
+　　}
+</code></pre><p>使用的时候这样写：</p>
+<pre><code>var Doctor = deepCopy(Chinese);
+</code></pre><p>现在，给父对象加一个属性，值为数组。然后，在子对象上修改这个属性：</p>
+<pre><code>　　Chinese.birthPlaces = [&apos;北京&apos;,&apos;上海&apos;,&apos;香港&apos;];
+
+　　Doctor.birthPlaces.push(&apos;厦门&apos;);
+</code></pre><p>这时，父对象就不会受到影响了。</p>
+<pre><code>　　alert(Doctor.birthPlaces); //北京, 上海, 香港, 厦门
+
+　　alert(Chinese.birthPlaces); //北京, 上海, 香港
+</code></pre><p>目前，jQuery库使用的就是这种继承方法。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/Javascript面向对象编程（二）：构造函数的继承/" rel="next" title="Javascript面向对象编程（二）：构造函数的继承">
+                <i class="fa fa-chevron-left"></i> Javascript面向对象编程（二）：构造函数的继承
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/JavaScript执行机制/" rel="prev" title="JavaScript执行机制">
+                JavaScript执行机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript面向对象编程（三）：非构造函数的继承"><span class="nav-number">1.</span> <span class="nav-text">Javascript面向对象编程（三）：非构造函数的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是”非构造函数”的继承？"><span class="nav-number">1.1.</span> <span class="nav-text">一、什么是”非构造函数”的继承？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、object-方法"><span class="nav-number">1.2.</span> <span class="nav-text">二、object()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、浅拷贝"><span class="nav-number">1.3.</span> <span class="nav-text">三、浅拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、深拷贝"><span class="nav-number">1.4.</span> <span class="nav-text">四、深拷贝</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

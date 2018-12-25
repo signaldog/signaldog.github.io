@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaScript DOM1.JavaScript的组成完整的JavaScript是由ECMAScript（语法）、Browser Objects(DOM、BOM)(特性)组成的。 2.DOM查找方法语法：document.getElementById(“id”) 功能：返回对拥有指定ID的第一个对象的引用 返回值：DOM对象 说明：id为DOM元素上id属性的值 3.DOM查找方法（2）语法：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript_Learn_2">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/JavaScript-Learn-2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JavaScript DOM1.JavaScript的组成完整的JavaScript是由ECMAScript（语法）、Browser Objects(DOM、BOM)(特性)组成的。 2.DOM查找方法语法：document.getElementById(“id”) 功能：返回对拥有指定ID的第一个对象的引用 返回值：DOM对象 说明：id为DOM元素上id属性的值 3.DOM查找方法（2）语法：">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T06:28:58.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript_Learn_2">
+<meta name="twitter:description" content="JavaScript DOM1.JavaScript的组成完整的JavaScript是由ECMAScript（语法）、Browser Objects(DOM、BOM)(特性)组成的。 2.DOM查找方法语法：document.getElementById(“id”) 功能：返回对拥有指定ID的第一个对象的引用 返回值：DOM对象 说明：id为DOM元素上id属性的值 3.DOM查找方法（2）语法：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/JavaScript-Learn-2/"/>
+
+
+
+
+
+  <title>JavaScript_Learn_2 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/JavaScript-Learn-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript_Learn_2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:28:46+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript-DOM"><a href="#JavaScript-DOM" class="headerlink" title="JavaScript DOM"></a>JavaScript DOM</h1><h2 id="1-JavaScript的组成"><a href="#1-JavaScript的组成" class="headerlink" title="1.JavaScript的组成"></a>1.JavaScript的组成</h2><p>完整的JavaScript是由ECMAScript（语法）、Browser Objects(DOM、BOM)(特性)组成的。</p>
+<h2 id="2-DOM查找方法"><a href="#2-DOM查找方法" class="headerlink" title="2.DOM查找方法"></a>2.DOM查找方法</h2><p>语法：document.getElementById(“id”)</p>
+<p>功能：返回对拥有指定ID的第一个对象的引用</p>
+<p>返回值：DOM对象</p>
+<p>说明：id为DOM元素上id属性的值</p>
+<h2 id="3-DOM查找方法（2）"><a href="#3-DOM查找方法（2）" class="headerlink" title="3.DOM查找方法（2）"></a>3.DOM查找方法（2）</h2><p>语法：document.getElementsByTagName(“tag”)</p>
+<p>功能：返回一个对所有tag标签引用的集合</p>
+<p>返回值：数组</p>
+<p>说明：tag为要获取的标签名称</p>
+<h2 id="4-设置元素样式"><a href="#4-设置元素样式" class="headerlink" title="4.设置元素样式"></a>4.设置元素样式</h2><p>语法：ele.style.styleName=styleValue</p>
+<p>功能：设置ele元素的CSS样式</p>
+<p>说明：</p>
+<ol>
+<li>ele为要设置样式的DOM对象</li>
+<li>styleName为要设置的样式名称</li>
+<li>styleValue为设置的样式值</li>
+<li>styleName 不能使用”-“连字符形式font-size<br> 使用驼峰命名形式fontSize</li>
+</ol>
+<h2 id="5-innerHTML"><a href="#5-innerHTML" class="headerlink" title="5.innerHTML"></a>5.innerHTML</h2><p>语法：ele.innerHTML</p>
+<p>功能：返回ele元素开始和结束标签之间的HTML</p>
+<p>语法：ele.innerHTML=”html”</p>
+<p>功能：设置ele元素开始和结束标签之间的HTML内容为html</p>
+<p>innerHTML:获取和设置标签之间的文本和html内容</p>
+<h2 id="6-className"><a href="#6-className" class="headerlink" title="6.className"></a>6.className</h2><p>语法：ele.className</p>
+<p>功能：返回ele元素的class属性</p>
+<p>语法：ele.className=”cls”</p>
+<p>功能：设置ele元素的class属性为cls</p>
+<p>ele.className是重新设置类，替换元素本身的class</p>
+<h2 id="7-获取属性"><a href="#7-获取属性" class="headerlink" title="7.获取属性"></a>7.获取属性</h2><p>语法：ele.getAttribute(“attribute”)</p>
+<p>功能：获取ele元素的attribute属性</p>
+<p>说明：</p>
+<ol>
+<li>ele是要操作的dom对象</li>
+<li><p>attribute是要获取的html属性（如：id、type）</p>
+<p> 获取标签属性语法：</p>
+<p> DOM对象.属性，如p.id</p>
+</li>
+</ol>
+<h2 id="8-删除属性"><a href="#8-删除属性" class="headerlink" title="8.删除属性"></a>8.删除属性</h2><p>语法：ele.removeAttribute(“attribute”)</p>
+<p>功能：删除ele上的attribute</p>
+<p>说明：</p>
+<ol>
+<li>ele是要删除的dom对象</li>
+<li>attribute是要删除的属性名称</li>
+</ol>
+<h2 id="9-什么是事件"><a href="#9-什么是事件" class="headerlink" title="9.什么是事件"></a>9.什么是事件</h2><p>事件就是文档或浏览器窗口中发生的一些特定的交互瞬间。</p>
+<h2 id="10-HTML事件"><a href="#10-HTML事件" class="headerlink" title="10.HTML事件"></a>10.HTML事件</h2><p>直接在HTML元素标签内添加事件，执行脚本。</p>
+<p>语法：<tag 事件="执行脚本"></tag></p>
+<p>功能：在HTML元素上绑定事件。</p>
+<p>说明：执行脚本可以是一个函数的调用。</p>
+<h2 id="11-鼠标事件"><a href="#11-鼠标事件" class="headerlink" title="11.鼠标事件"></a>11.鼠标事件</h2><ul>
+<li>onload：页面加载时触发</li>
+<li>onclick：鼠标点击时触发</li>
+<li>onmouseover：鼠标滑过时触发</li>
+<li>onmouseout：鼠标离开时触发</li>
+<li>onfoucs：获得焦点时触发</li>
+<li>onblur：失去焦点时触发</li>
+<li>onchange：域的内容改变时发生</li>
+</ul>
+<h2 id="12-关于this指向"><a href="#12-关于this指向" class="headerlink" title="12.关于this指向"></a>12.关于this指向</h2><p>在事件触发的函数中，this是对该DOM对象的引用。</p>
+<h2 id="13-DOM0级事件"><a href="#13-DOM0级事件" class="headerlink" title="13.DOM0级事件"></a>13.DOM0级事件</h2><p>语法：ele.事件=执行脚本</p>
+<p>功能：在DOM对象上绑定事件</p>
+<p>说明：执行脚本可以是一个匿名函数，也可以是一个函数的调用。</p>
+<p><strong>不建议使用HTML事件原因</strong></p>
+<ol>
+<li>多元素绑定相同事件时，效率低。</li>
+<li>不建议在HTML元素中写JavaScript代码。</li>
+</ol>
+<p>onfocus事件用于：</p>
+<p>-input标签type为text、password</p>
+<h2 id="14-鼠标事件"><a href="#14-鼠标事件" class="headerlink" title="14.鼠标事件"></a>14.鼠标事件</h2><ul>
+<li>onsubmit：表单中的确认按钮被点击时发生</li>
+<li>onmousedown：鼠标按钮在元素上按下时触发</li>
+<li>onmouseover：在鼠标指针移动时发生</li>
+<li>onmouseup：在元素上松开鼠标按钮时触发</li>
+<li>onresize：当调整浏览器窗口的大小时触发</li>
+<li>onscroll：拖动滚动条滚动时触发</li>
+</ul>
+<h2 id="15-键盘事件与keyCode属性"><a href="#15-键盘事件与keyCode属性" class="headerlink" title="15.键盘事件与keyCode属性"></a>15.键盘事件与keyCode属性</h2><p>onkeydown：在用户按下一个键盘按键时发生</p>
+<p>onkeypress：在键盘按键被按下并释放一个键时发生</p>
+<p>onkeyup：在键盘按键被松开时发生</p>
+<p>keyCode：返回onkeypress、onkeydown或onkeyup事件触发的键的值的字符代码，或键的代码。</p>
+<pre><code>event代表事件的状态，如触发event对象的元素、鼠标的位置及状态等
+</code></pre><h2 id="16-什么是bom"><a href="#16-什么是bom" class="headerlink" title="16.什么是bom"></a>16.什么是bom</h2><pre><code>BOM(browser object model)浏览器对象模型
+    浏览器    对象        模型
+</code></pre><p>BOM对象有{window, navigator, screen, history, location, document, event}</p>
+<h2 id="17-window"><a href="#17-window" class="headerlink" title="17.window"></a>17.window</h2><p>window是浏览器的一个实例，在浏览器中，window对象有双重角色，它既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。</p>
+<pre><code>Global --&gt;  全局对象
+
+全局方法--- 脚本的任何一个地方都能调用的方法
+
+所有的全局变量和全局方法都被归在window上    
+</code></pre><h2 id="18-Window对象的方法"><a href="#18-Window对象的方法" class="headerlink" title="18.Window对象的方法"></a>18.Window对象的方法</h2><p>语法：window.alert(“content”)</p>
+<p>功能：显示带有一段消息和一个确认按钮的警告框</p>
+<p>语法：window.confirm(“message”)</p>
+<p>功能：显示一个带有指定消息和OK及取消按钮的对话框</p>
+<p>返回值(布尔值)：如果用户点击确定按钮，则confirm()返回true</p>
+<p>如果用户点击取消按钮，则confirm()返回false</p>
+<p>语法：window.prompt(“text,defaultText”)</p>
+<p>参数说明：</p>
+<p>text：要在对话框中显示的纯文本（而不是HTML格式的文本）</p>
+<p>defaultText：默认的输入文本</p>
+<p>返回值：如果用户单击提示框的取消按钮，则返回null</p>
+<p>如果用户单击确认按钮，则返回输入字段当前显示的文本</p>
+<h2 id="19-window对象"><a href="#19-window对象" class="headerlink" title="19.window对象"></a>19.window对象</h2><p>语法：window.open(pageURL,name,parameters)</p>
+<p>功能：打开一个新的浏览器窗口或查找一个已命名的窗口</p>
+<p>参数说明：</p>
+<p>pageURL：子窗口路径</p>
+<p>name：子窗口句柄（name声明了新窗口的名称，方便后期通过name对子窗口进行引用）</p>
+<p>parameters：窗口参数(各参数用逗号分隔)</p>
+<pre><code>width:窗口宽度    height:窗口高度
+left:窗口X轴坐标        top:窗口Y轴坐标
+toolbar:是否显示浏览器的工具栏
+menubar:是否显示菜单栏
+scrollbars:是否显示滚动条
+location:是否显示地址字段
+status:是否添加状态栏
+</code></pre><p>语法：window.close()</p>
+<p>功能：关闭浏览器窗口</p>
+<p><strong>JavaScript是单线程语言，单线程就是所执行的代码必须按照顺序。</strong></p>
+<h2 id="20-超时调用"><a href="#20-超时调用" class="headerlink" title="20.超时调用"></a>20.超时调用</h2><p>语法：setTimeout(code,millisec)</p>
+<p>功能：在指定的毫秒数后调用函数或计算表达式</p>
+<p>参数说明：</p>
+<ol>
+<li>code：要调用的函数或要执行的JavaScript代码串</li>
+<li>millisec：在执行代码前需等待的毫秒数</li>
+</ol>
+<p>说明：setTimeout()只执行code一次。如果要多次调用，可以让code自身再次调用setTimeout()</p>
+<p><strong>SetTimeout方法返回一个ID值通过它取消超时调用</strong></p>
+<h2 id="21-清除超时调用"><a href="#21-清除超时调用" class="headerlink" title="21.清除超时调用"></a>21.清除超时调用</h2><p>语法：clearTimeout(id_of_settimeout)</p>
+<p>功能：取消由setTimeout()方法设置的timeout</p>
+<p>参数说明：</p>
+<ol>
+<li>id_of_settimeout：由setTimeout()返回的ID值，该值标识要取消的延迟执行代码块</li>
+</ol>
+<h2 id="22-间歇调用"><a href="#22-间歇调用" class="headerlink" title="22.间歇调用"></a>22.间歇调用</h2><p>语法：setTnterval(code,millisec)</p>
+<p>功能：每隔指定的时间执行一次代码</p>
+<p>参数说明：</p>
+<ol>
+<li>code：要调用的函数或要执行的代码串</li>
+<li>millisec：周期性执行或调用code之间的时间间隔，以毫秒计</li>
+</ol>
+<h2 id="23-清除间歇调用"><a href="#23-清除间歇调用" class="headerlink" title="23.清除间歇调用"></a>23.清除间歇调用</h2><p>语法：clearInterval(id_of_setinterval)</p>
+<p>功能：取消由setTnterval()方法设置的interval</p>
+<p>参数说明：</p>
+<ol>
+<li>id_of_setinterval：由setInterval()返回的ID值</li>
+</ol>
+<h2 id="24-location对象"><a href="#24-location对象" class="headerlink" title="24.location对象"></a>24.location对象</h2><p>location对象提供了与当前窗口中加载的文档有关的信息，还提供了一些导航的功能，它既是window对象的属性，也是document对象的属性。</p>
+<h2 id="25-location对象的常用属性"><a href="#25-location对象的常用属性" class="headerlink" title="25.location对象的常用属性"></a>25.location对象的常用属性</h2><p>语法：location.href</p>
+<p>功能：返回当前加载页面的完整URL</p>
+<p>说明：location.href与window.location.href等价</p>
+<p>语法：location.hash</p>
+<p>功能：返回URL中的hash(#号后跟零或多个字符)，如果不包含则返回空字符串。</p>
+<p>语法：location.host</p>
+<p>功能：返回服务器名称和端口号（如果有）</p>
+<p>语法：location.hostname</p>
+<p>功能：返回不带端口号的服务器名称。</p>
+<p>语法：location.pathname</p>
+<p>功能：返回URL中的目录和（或）文件名。</p>
+<p>语法：location.port</p>
+<p>功能：返回URL中指定的端口号，如果没有，返回空字符串。</p>
+<p>语法：location.protocol</p>
+<p>功能：返回页面使用的协议。</p>
+<p>语法：location.search</p>
+<p>功能：返回URL的查询字符串。这个空字符以问好开头。</p>
+<h2 id="26-位置操作"><a href="#26-位置操作" class="headerlink" title="26.位置操作"></a>26.位置操作</h2><p>改变浏览器位置的方法：</p>
+<pre><code>location.href属性
+</code></pre><p>location对象其他属性也可改变URL：</p>
+<pre><code>location.hash
+
+location.search
+</code></pre><h2 id="27-location-replace"><a href="#27-location-replace" class="headerlink" title="27.location.replace()"></a>27.location.replace()</h2><p>语法：location.replace(url)</p>
+<p>功能：重新定向URL。</p>
+<p>说明：使用location.replace不会再历史记录中生成新纪录。</p>
+<h2 id="28-location-reload"><a href="#28-location-reload" class="headerlink" title="28.location.reload()"></a>28.location.reload()</h2><p>语法：location.reload()</p>
+<p>功能：重新加载当前显示的页面。</p>
+<p>说明：</p>
+<ul>
+<li>location.reload()有可能从缓存中加载</li>
+<li>location.reload(true)从服务器重新加载</li>
+</ul>
+<p><strong>history对象保存了用户在浏览器中访问页面的历史记录</strong></p>
+<h2 id="29-History历史对象"><a href="#29-History历史对象" class="headerlink" title="29.History历史对象"></a>29.History历史对象</h2><ul>
+<li>语法：history.back()</li>
+<li>功能：回到历史记录的上一步</li>
+<li><p>说明：相当于使用了history.go(-1)</p>
+</li>
+<li><p>语法：location.forward()</p>
+</li>
+<li>功能：回到历史记录的下一步</li>
+<li><p>说明：相当于使用了history.go(1)</p>
+</li>
+<li><p>语法：history.go(-n)</p>
+</li>
+<li>功能：回到历史记录的前n步</li>
+<li>语法：history.go(n)</li>
+<li>功能：回到历史记录的后n步</li>
+</ul>
+<p><strong>Screen对象包含有关客户端显示屏幕的信息</strong></p>
+<h2 id="30-Screen对象属性"><a href="#30-Screen对象属性" class="headerlink" title="30.Screen对象属性"></a>30.Screen对象属性</h2><p>语法：screen.availWidth</p>
+<p>功能：返回可用的屏幕宽度</p>
+<p>语法：screen.availHeight</p>
+<p>功能：返回可用的屏幕高度</p>
+<ul>
+<li>获取窗口文档显示区的高度和宽度，可以使用innerHeight和innerWidth</li>
+<li>获取显示屏幕的高度和宽度，可以使用availHeight和availWidth</li>
+</ul>
+<h2 id="31-Navigator"><a href="#31-Navigator" class="headerlink" title="31.Navigator"></a>31.Navigator</h2><p>UserAgent：用来识别浏览器名称、版本、引擎以及操作系统等信息的内容。</p>
+<p><strong>indexOf()方法返回某个指定的字符串值在字符串中首次出现的位置，如果没有出现过，返回-1</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/JavaScript-Learn/" rel="next" title="JavaScript_Learn">
+                <i class="fa fa-chevron-left"></i> JavaScript_Learn
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/JavaScript的this原理/" rel="prev" title="JavaScript的this原理">
+                JavaScript的this原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-DOM"><span class="nav-number">1.</span> <span class="nav-text">JavaScript DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JavaScript的组成"><span class="nav-number">1.1.</span> <span class="nav-text">1.JavaScript的组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DOM查找方法"><span class="nav-number">1.2.</span> <span class="nav-text">2.DOM查找方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DOM查找方法（2）"><span class="nav-number">1.3.</span> <span class="nav-text">3.DOM查找方法（2）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-设置元素样式"><span class="nav-number">1.4.</span> <span class="nav-text">4.设置元素样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-innerHTML"><span class="nav-number">1.5.</span> <span class="nav-text">5.innerHTML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-className"><span class="nav-number">1.6.</span> <span class="nav-text">6.className</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-获取属性"><span class="nav-number">1.7.</span> <span class="nav-text">7.获取属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-删除属性"><span class="nav-number">1.8.</span> <span class="nav-text">8.删除属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-什么是事件"><span class="nav-number">1.9.</span> <span class="nav-text">9.什么是事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-HTML事件"><span class="nav-number">1.10.</span> <span class="nav-text">10.HTML事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-鼠标事件"><span class="nav-number">1.11.</span> <span class="nav-text">11.鼠标事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-关于this指向"><span class="nav-number">1.12.</span> <span class="nav-text">12.关于this指向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-DOM0级事件"><span class="nav-number">1.13.</span> <span class="nav-text">13.DOM0级事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-鼠标事件"><span class="nav-number">1.14.</span> <span class="nav-text">14.鼠标事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-键盘事件与keyCode属性"><span class="nav-number">1.15.</span> <span class="nav-text">15.键盘事件与keyCode属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-什么是bom"><span class="nav-number">1.16.</span> <span class="nav-text">16.什么是bom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-window"><span class="nav-number">1.17.</span> <span class="nav-text">17.window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-Window对象的方法"><span class="nav-number">1.18.</span> <span class="nav-text">18.Window对象的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-window对象"><span class="nav-number">1.19.</span> <span class="nav-text">19.window对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-超时调用"><span class="nav-number">1.20.</span> <span class="nav-text">20.超时调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-清除超时调用"><span class="nav-number">1.21.</span> <span class="nav-text">21.清除超时调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-间歇调用"><span class="nav-number">1.22.</span> <span class="nav-text">22.间歇调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-清除间歇调用"><span class="nav-number">1.23.</span> <span class="nav-text">23.清除间歇调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-location对象"><span class="nav-number">1.24.</span> <span class="nav-text">24.location对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-location对象的常用属性"><span class="nav-number">1.25.</span> <span class="nav-text">25.location对象的常用属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-位置操作"><span class="nav-number">1.26.</span> <span class="nav-text">26.位置操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-location-replace"><span class="nav-number">1.27.</span> <span class="nav-text">27.location.replace()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-location-reload"><span class="nav-number">1.28.</span> <span class="nav-text">28.location.reload()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-History历史对象"><span class="nav-number">1.29.</span> <span class="nav-text">29.History历史对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-Screen对象属性"><span class="nav-number">1.30.</span> <span class="nav-text">30.Screen对象属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-Navigator"><span class="nav-number">1.31.</span> <span class="nav-text">31.Navigator</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在js中，大部分东西都是对象，数组是对象，函数是对象，对象更加是对象。不管我们给数组和函数定义什么内容，它们总是有一些相同的方法和属性。比如说hasOwnProperty()，toString()等： chrome控制台可看出 这说明一个对象所拥有的属性不仅仅是它本身拥有的属性，它还会从其他对象中继承一些属性。当js在一个对象中找不到需要的属性时，它会到这个对象的父对象上去找，以此类推，这就构成了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js的原型链">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/js的原型链/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在js中，大部分东西都是对象，数组是对象，函数是对象，对象更加是对象。不管我们给数组和函数定义什么内容，它们总是有一些相同的方法和属性。比如说hasOwnProperty()，toString()等： chrome控制台可看出 这说明一个对象所拥有的属性不仅仅是它本身拥有的属性，它还会从其他对象中继承一些属性。当js在一个对象中找不到需要的属性时，它会到这个对象的父对象上去找，以此类推，这就构成了">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T06:35:36.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js的原型链">
+<meta name="twitter:description" content="在js中，大部分东西都是对象，数组是对象，函数是对象，对象更加是对象。不管我们给数组和函数定义什么内容，它们总是有一些相同的方法和属性。比如说hasOwnProperty()，toString()等： chrome控制台可看出 这说明一个对象所拥有的属性不仅仅是它本身拥有的属性，它还会从其他对象中继承一些属性。当js在一个对象中找不到需要的属性时，它会到这个对象的父对象上去找，以此类推，这就构成了">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/js的原型链/"/>
+
+
+
+
+
+  <title>js的原型链 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/js的原型链/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js的原型链</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:35:23+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在js中，大部分东西都是对象，数组是对象，函数是对象，对象更加是对象。<strong>不管我们给数组和函数定义什么内容，它们总是有一些相同的方法和属性。</strong>比如说hasOwnProperty()，toString()等：</p>
+<pre><code>chrome控制台可看出
+</code></pre><p><strong>这说明一个对象所拥有的属性不仅仅是它本身拥有的属性，它还会从其他对象中继承一些属性。当js在一个对象中找不到需要的属性时，它会到这个对象的父对象上去找，以此类推，这就构成了对象的原型链。</strong>理解js的原型链对使用js的对象非常有帮助。</p>
+<p>chrome强大的控制台可以显示出每一个对象所有的属性！包括prototype、<em>proto</em>、constructor等，你可以自己试试！</p>
+<p>让我们通过一个例子由浅入深地理解原型链：</p>
+<p>function Foo(_name) {<br>    this.name = _name;<br>}<br>Foo.prototype.show = function() {<br>    console.log(‘I am’, this.name);<br>};<br>var f1 = new Foo(‘obj1’);<br>var f2 = new Foo(‘obj2’);</p>
+<p>f1.show(); // I am obj1<br>f2.show(); // I am obj2</p>
+<p>这是我们经常使用的创建对象的方式，将共同的方法放到Foo.prototype中，所有实例都共有这个方法了。</p>
+<hr>
+<p>我们定义的show函数在Foo.prototype中，当我们执行f1.show()时，js发现f1本身没有show这个属性，所以它就到f1的原型（也就是<em>proto</em>指向的对象）去找，找到了就可以调用。</p>
+<pre><code>注：每个对象都有一个方法hasOwnProperty()来检查对象本身是否有
+某个属性，如果有则返回true;如果这个属性在它的原型链上或原型链
+上都没有，则返回false；
+</code></pre><p>总结为四点：</p>
+<p>1.所有函数都有一个prototype指针，指向原型对象，如图中的Foo的prototype指针。prototype指针的意义是，当我们使用这个构造函数new出新对象的时候，新对象的原型是谁。</p>
+<p>2.构造函数的prototype所指向的原型对象有一个constructor指针，指回构造函数。如图中Foo.prototype的constructor指针指向Foo。constructor指针有助于我们找到一个对象的构造函数是谁。</p>
+<p>3.<em>proto</em>每个对象都有，js在new一个对象的时候，会将它的<em>proto</em>指向构造函数的prototype指向的那个对象。f1、f2这些实例对象的<em>proto</em>都指向了Foo.prototype。</p>
+<p>4.如果一个对象的<em>proto</em>指向了另一个对象，那么前者就继承了后者的所有属性。</p>
+<pre><code>请注意_poto_与prototype的区别！_proto_才是真正连接原型链的
+东西，而prototype只是构造函数的一个指针属性而已。
+</code></pre><p><strong>以下展示了js原生对象的继承关系是怎么样的。</strong></p>
+<p>我们先看看Foo的原型吧！Foo是一个函数，它的构造函数是js内部的function Function()，Function的prototype指向了一个对象Function.prototype，因此Foo的<em>proto</em>就指向了Function.prototype，如图。</p>
+<pre><code>所有的函数都以function Function()为构造函数，因此，所有函数
+（包括function Function()和function Object()）的_proto_
+都指向Function.prototype这个对象，这个对象中定义了所有函数
+都共有的方法，比如call()、apply()等。
+</code></pre><p>我们继续深入下去，Function.prototype这个对象，它就是一个普通的对象，它的构造函数是js内置的function Object()，function Object()的prototype指向Object.prototype，因此Function.prototype.<em>proto</em>就指向Object.prototype，这个对象中定义了所有对象共有的属性，比如我们之前说的hasOwnPrototype()和toString()等。</p>
+<pre><code>同理，Foo.prototype和其他自定义的对象也是_proto_指向
+Object.prototype对象，就不需要说明了。
+</code></pre><p>Object.prototype就是原型链的终点了，它的<em>proto</em>是null，js查找属性时，如果到这里还没有找到，那就是undefined了。</p>
+<p>到这里就不难理解为什么我们说在js中，函数也是对象了，它就是继承自对象的！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/JS-pop-push-unshift-shift的作用与区别/" rel="next" title="JS_pop_push_unshift_shift的作用与区别">
+                <i class="fa fa-chevron-left"></i> JS_pop_push_unshift_shift的作用与区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/MVC-MVP和MVVM的图示/" rel="prev" title="MVC,MVP和MVVM的图示">
+                MVC,MVP和MVVM的图示 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

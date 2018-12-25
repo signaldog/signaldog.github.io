@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第一章 Loading and Execution    加载和运行Script Positioning    脚本位置 Grouping Scripts    成组脚本 Nonvlocking Scripts 非阻塞脚本 Deferred Scripts 延期脚本 &amp;lt;scripts type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;file1.js&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高性能JavaScript编程">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/高性能JavaScript编程/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章 Loading and Execution    加载和运行Script Positioning    脚本位置 Grouping Scripts    成组脚本 Nonvlocking Scripts 非阻塞脚本 Deferred Scripts 延期脚本 &amp;lt;scripts type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;file1.js&amp;qu">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T06:42:35.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高性能JavaScript编程">
+<meta name="twitter:description" content="第一章 Loading and Execution    加载和运行Script Positioning    脚本位置 Grouping Scripts    成组脚本 Nonvlocking Scripts 非阻塞脚本 Deferred Scripts 延期脚本 &amp;lt;scripts type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;file1.js&amp;qu">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/高性能JavaScript编程/"/>
+
+
+
+
+
+  <title>高性能JavaScript编程 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/高性能JavaScript编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">高性能JavaScript编程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:42:23+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第一章-Loading-and-Execution-加载和运行"><a href="#第一章-Loading-and-Execution-加载和运行" class="headerlink" title="第一章 Loading and Execution    加载和运行"></a>第一章 Loading and Execution    加载和运行</h2><p><strong>Script Positioning    脚本位置</strong></p>
+<p><strong>Grouping Scripts    成组脚本</strong></p>
+<p><strong>Nonvlocking Scripts 非阻塞脚本</strong></p>
+<p>Deferred Scripts 延期脚本</p>
+<pre><code>&lt;scripts type=&quot;text/javascript&quot; src=&quot;file1.js&quot; 
+defer&gt;&lt;/script&gt;
+</code></pre><p>Dynamic Script Elements 动态脚本元素</p>
+<pre><code>var script = document.createElement(&quot;script&quot;);
+script.type = &quot;text/javascript&quot;;
+script.src = &quot;file1.js&quot;;
+document.getElementByTagName_r(&quot;head&quot;)
+[0].appendChild(script);
+</code></pre><p>XMLHttpRequest Script Injection XHR 脚本注入</p>
+<pre><code>var xhr = new XMLHttpRequest();
+xhr.open(&quot;get&quot;, &quot;file1.js&quot;, true);
+xhr.onreadstatechange = function() {
+    if(xhr.readState === 4) {
+        if(xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300 ||
+             xhr.status == 304){
+            var script = document.createElement
+            (&quot;script&quot;);
+            script.type = &quot;text/javascript&quot;;
+            script.text = xhr.responseText;
+            document.body.appendChild(script);
+        }
+    }
+};
+xhr.send(null);
+</code></pre><p>Recommended Nonblocking Pattern 推荐的非阻塞模式</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;loader.js&quot;&gt;&lt;/
+script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    loadScript(&quot;the-rest.js&quot;, function(){    
+        Application.init();
+    });
+&lt;/script&gt;
+</code></pre><p><strong>Summary    总结</strong></p>
+<p>管理浏览器中的JavaScript代码是个棘手的问题，因为代码执行阻塞了其他浏览器处理过程，诸如用户界面绘制。每次遇到script标签，页面必须停下来等待代码下载（如果是外部的）并执行，然后再继续处理页面其他部分。但是，有几种方法可以减少JavaScript对性能的影响：</p>
+<ul>
+<li><p>将所有script标签放置在页面的底部，紧靠body关闭标签的上方。此法可以保证页面在脚本运行之前完成解析。</p>
+</li>
+<li><p>将脚本成组打包。页面的script标签越少，页面的加载速度就越快，响应也更加迅速。不论外部脚本文件还是内联代码都是如此。</p>
+</li>
+<li><p>有几种方法可以使用非阻塞方式下载JavaScript：</p>
+</li>
+</ul>
+<ol>
+<li><p>为script标签添加defer属性（只适用于Internet Explorer和Firefox 3.5 以上版本）</p>
+</li>
+<li><p>动态创建script元素，用它下载并执行代码</p>
+</li>
+<li><p>用XHR对象下载代码，并注入到页面中</p>
+</li>
+</ol>
+<p>通过使用上述策略，你可以极大提高哪些大量使用JavaScript代码的网页应用的实际性能。</p>
+<h2 id="第二章Data-Access-数据访问"><a href="#第二章Data-Access-数据访问" class="headerlink" title="第二章Data Access 数据访问"></a>第二章Data Access 数据访问</h2><p><strong>Managing Scope 管理作用域</strong></p>
+<p>Scope Chains and Identifier Resolution 作用域链和标识符解析</p>
+<p>每一个JavaScript函数都被表示为对象。进一步说，它是一个函数实例。函数对象正如其他对象那样，拥有你可以编程访问的属性，和一系列不能被程序访问，仅供JavaScript引擎使用的内部属性。其中一个内部属性是[[Scope]]，由ECMA-262标准第三版定义。</p>
+<p><strong>Identifier Resolution Performance 标识符识别性能</strong></p>
+<p><strong>Scope Chain Augmentation改变作用域链</strong></p>
+<p><strong>Dynamic Scopes 动态作用域</strong></p>
+<p><strong>Closures，Scope，and Memory 闭包，作用域，和内存</strong></p>
+<p>闭包是JavaScript最强大的一个方面，它允许函数访问局部范围之外的数据。闭包的使用通过Douglas Crockford的著作流行起来，当今在最复杂的网页应用中无处不在。不过，有一种性能影响与闭包有关。</p>
+<p><strong>Object Members 对象成员</strong></p>
+<p>大多数JavaScript代码以面向对象的形式编写。无论通过创建自定义对象还是使用内置的对象，诸如文档对象模型（DOM）和浏览器对象模型（BOM）之中的对象。因此，存在很多对象成员访问。</p>
+<p><strong>Prototypes 原形</strong></p>
+<p>JavaScript中的对象是基于原形得到。原形是其他对象的基础，定义并实现了一个新对象所必须具有的成员。这一概念完全不同于传统面向对象编程中“类”的概念，它定义了创建新对象的过程。原形对象为所有给定类型的对象实例所共享，因此所有实例共享原形对象的成员。</p>
+<p><strong>Prototype Chains 原型链</strong></p>
+<p>对象的原形决定了一个实例的类型。默认情况下，所有对象都是Object的实例，并继承了所有基本方法，如toString()。你可以用“构造器”创建另外一种类型的原形。</p>
+<p><strong>Nested Members 嵌套成员</strong></p>
+<p><strong>Caching Object Member Values 缓存对象成员的值</strong></p>
+<p><strong>Summary 总结</strong></p>
+<p>在JavaScript中，数据存储位置可以对代码整体性能产生重要影响。有四种数据访问类型：直接量，变量，数据项，对象成员。它们有不同的性能考虑。</p>
+<ul>
+<li>直接量和局部变量访问速度非常快，数组项和对象成员需要更长时间。</li>
+<li>局部变量比域外变量快，因为它位于作用域链的第一个对象中。变量在作用域链中的位置越深，访问所需的时间就越长。全局变量总是最慢的，因为它们总是位于作用域链的最后一环。</li>
+<li>避免使用with表达式，因为它改变了运行期上下文的作用域链。而且应当小心对待try-catch表达式的catch子句，因为它具有同样效果。</li>
+<li>嵌套对象成员会造成重大性能影响，尽量少用。</li>
+<li>一个属性或方法在原型链中的位置越深，访问它的速度就越慢。</li>
+<li>一般来说，你可以通过这种方法提高JavaScript代码的性能：将经常使用的对象成员，数组项，和域外变量存入局部变量中。然后，访问局部变量的速度会快于那些原始变量。</li>
+</ul>
+<p>通过使用这些策略，你可以极大地提高哪些需要大量JavaScript代码的网页应用的实际性能。</p>
+<h2 id="第三章-DOM-Scripting-DOM编程"><a href="#第三章-DOM-Scripting-DOM编程" class="headerlink" title="第三章    DOM Scripting DOM编程"></a>第三章    DOM Scripting DOM编程</h2><p><strong>DOM in the Browser World 浏览器世界中的DOM</strong></p>
+<p><strong>Inherently Slow 天生就慢</strong></p>
+<p><strong>DOM Access and Modification DOM访问和修改</strong></p>
+<p><strong>innerHTML Versus DOM methods innerHTML 与DOM方法比较</strong></p>
+<p><strong>Cloning Nodes 节点克隆</strong></p>
+<p><strong>HTML Collections HTML集合</strong></p>
+<p><strong>Expensive collections 昂贵的集合</strong></p>
+<p><strong>Local variables when accessing collection elements 访问集合元素时使用局部变量</strong></p>
+<p><strong>Walking the DOM DOM漫谈</strong></p>
+<p>Crawling the DOM 抓取DOM</p>
+<p>Element nodes 元素节点</p>
+<p>The Selectors API 选择器API</p>
+<p><strong>Repaints and Reflows 重绘和重排版</strong></p>
+<p><strong>When Does a Reflow Happen? 重排版时会发生什么？</strong></p>
+<p><strong>Queuing and Flushing Render Tree Changes 查询并刷新渲染树改变</strong></p>
+<p><strong>Minimizing Repaints and Reflows 最小化重绘和重排版</strong></p>
+<p><strong>Style changes 改变风格</strong></p>
+<p><strong>Batching DOM changes 批量修改DOM</strong></p>
+<p><strong>Caching Layout Information 缓冲布局信息</strong></p>
+<p><strong>Take Elements Out of the Flow for Animations 将元素提出动画流</strong></p>
+<p><strong>IE和:hover</strong></p>
+<p><strong>Event Delegation 事件托管</strong></p>
+<p><strong>Summary 总结</strong></p>
+<p>DOM访问和操作是现代网页应用中很重要的一部分。但每次你通过桥梁从ECMAScript岛到达DOM岛时，都会被收取“过桥费”。为减少DOM编程中的性能损失，请牢记以下几点：</p>
+<ul>
+<li>最小化DOM访问，在JavaScript端做尽可能多的事情。</li>
+<li>在反复访问的地方使用局部变量存放DOM引用</li>
+<li>小心地处理HTML集合，因为他们表现出“存在性”，总是对底层文档重新查询。将集合的length属性缓存到一个变量中，在迭代中使用这个变量。如果经常操作这个集合，可以将集合拷贝到数组中。</li>
+<li>如果可能的话，使用速度更快的API，诸如querySelectorAll()和firstElementChild。</li>
+<li>注意重绘和重排版；批量修改风格，离线操作DOM树，缓存并减少对布局信息的访问。</li>
+<li>动画中使用绝对坐标，使用拖放代理。</li>
+<li>使用事件托管技术最小化事件句柄数量。</li>
+</ul>
+<h2 id="第四章-Algorithms-and-Flow-Control-算法和流程控制"><a href="#第四章-Algorithms-and-Flow-Control-算法和流程控制" class="headerlink" title="第四章 Algorithms and Flow Control 算法和流程控制"></a>第四章 Algorithms and Flow Control 算法和流程控制</h2><p><strong>Loops 循环</strong></p>
+<p><strong>Types of Loops 循环的类型</strong></p>
+<p><strong>Loop Performance 循环性能</strong></p>
+<p><strong>Decreasing the work per iteration 减少迭代的工作量</strong></p>
+<p><strong>Decreasing the number of iterations 减少迭代次数</strong></p>
+<p><strong>Function-Based Iteration 基于函数的迭代</strong></p>
+<p><strong>Conditionals 条件表达式</strong></p>
+<p>if-else Versus switch     if-else与switch比较</p>
+<p><strong>Optimizing if-else 优化if-else</strong></p>
+<p><strong>Lookup Tables 查表法</strong></p>
+<p><strong>Resursion 递归</strong></p>
+<p>Call Stack Limits 调用栈限制</p>
+<p><strong>Recursion Patterns 递归模式</strong></p>
+<p><strong>Iteration 迭代</strong></p>
+<p><strong>Memoization 制表</strong></p>
+<p><strong>Summary 总结</strong></p>
+<p>正如其他编程语言，代码的写法和算法选用影响JavaScript的运行时间。与其他编程语言不同的是，JavaScript可用资源有限，所以优化技术更为重要。</p>
+<ul>
+<li>for，while，do-while循环的性能特性相似，谁也不比谁更快或更慢。</li>
+<li>除非你要迭代遍历一个属性未知的对象，否则不要使用for-in循环。</li>
+<li>改善循环性能的更好办法是减少每次迭代中的运算量，并减少循环迭代次数。</li>
+<li>一般来说，switch总是比if-else更快，但并不总是最好的解决方法。</li>
+<li>当判断条件较多时，查表法比if-else或者switch更快。</li>
+<li>浏览器的调用栈尺寸限制了递归算法在JavaScript中的应用；栈溢出错误导致其他代码也不能正常执行。</li>
+<li>如果你遇到一个栈溢出错误，将方法修改为一个迭代算法或者使用制表法可以避免重复工作。</li>
+</ul>
+<p>运行的代码总量越大，使用这些策略所带来的性能提升就越明显。</p>
+<h2 id="第五章-Strings-and-Regular-Expressions-字符串和正则表达式"><a href="#第五章-Strings-and-Regular-Expressions-字符串和正则表达式" class="headerlink" title="第五章 Strings and Regular Expressions 字符串和正则表达式"></a>第五章 Strings and Regular Expressions 字符串和正则表达式</h2><p><strong>String Concatenation 字符串连接</strong></p>
+<p>Plus(+) and Plus-Equals (+=) Operators 加和加等于操作</p>
+<p>Firefox and compile-time folding Firefox和编译期合并</p>
+<p>Array Joining 数组联结</p>
+<p>String.prototype.concat</p>
+<p><strong>Regular Expression Optimization 正则表达式优化</strong></p>
+<p>How Regular Expression Work 正则表达式工作原理</p>
+<p>Understanding Backtrack 理解回溯</p>
+<p>Repetiton and backtracking 重复与回溯</p>
+<p>Runaway Backtracking 回溯失控</p>
+<p>The solution：Be specific    解决方法：具体化</p>
+<p>Emulating atomic groups using lookahead and backreferences 使用前瞻和后向引用列举原子组</p>
+<p>Nested quantifiers and runaway backtracking 嵌套量词和回溯失控</p>
+<p>From bad to worse 从坏到更坏</p>
+<p>A Note on Benchmarking 测试基准说明</p>
+<p><strong>More Ways to Improve Regular Expression Efficiency 提高正则表达式效率的更多方法</strong></p>
+<p><strong>When Not to Use Regular Expressions 什么时候不应该使用正则表达式</strong></p>
+<p><strong>String Trimming 字符串修剪</strong></p>
+<p><strong>Trimming with Regular Expressions 用正则表达式修剪</strong></p>
+<p><strong>A Hybrid Solution 混合解决方案</strong></p>
+<p><strong>Summary 总结</strong></p>
+<ul>
+<li>密集的字符串操作和粗浅地编写正则表达式可能是主要性能障碍，但本章中的建议可帮助您避免常见缺陷。</li>
+<li>当连接数量巨大或尺寸巨大的字符串时，数组联合是IE7和它的早期版本上唯一具有合理性能的方法。</li>
+<li>如果你不关心IE7和它的早期版本，数组联合是连接字符串最慢的方法之一。使用简单的+和+=取而代之，可避免(产生)不必要的中间字符串。</li>
+<li>回溯即是正则表达式匹配功能基本的组成部分，又是正则表达式影响效率的常见原因。</li>
+<li>回溯失控发生在正则表达式本应很快发现匹配的地方，因为某些特殊的匹配字符串动作，导致运行缓慢甚至浏览器崩溃。避免此问题的技术包括：使相邻字元互斥，避免嵌套量词对一个字符串的相同部分多次匹配，通过重复利用前瞻操作的原子特性去除不必要的回溯。</li>
+<li>提高正则表达式效率的各种技术手段，帮助正则表达式更快地找到匹配，以及在非匹配位置上花费更少时间（见《更多提高正则表达式效率的方法》）。</li>
+<li>正则表达式并不总是完成工作的最佳工具，尤其当你只是搜索一个文本字符串时。</li>
+<li>虽然有很多方法来修整一个字符串，使用两个简单的正则表达式（一个用于去除头部空格，另一个用于去除尾部空格）提供了一个简洁、跨浏览器的方法，适用于不同内容和长度的字符串。从字符串末尾开始循环查找第一个非空格字符，或者在一个混合应用中将此技术与正则表达式结合起来，提供了一个很好的替代方案，它很少受到字符串整体长度的影响。</li>
+</ul>
+<h2 id="第六章-Responsive-Interfaces-响应接口"><a href="#第六章-Responsive-Interfaces-响应接口" class="headerlink" title="第六章    Responsive Interfaces 响应接口"></a>第六章    Responsive Interfaces 响应接口</h2><p><strong>The Browser UI Thread    浏览器UI线程</strong></p>
+<p><strong>Browser Limits    浏览器限制</strong></p>
+<p><strong>How Long Is Too Long?    多久才算“太久”?</strong></p>
+<p>更复杂的是有些浏览器在JavaScript 运行时不将UI 更新放入队列。例如，如果你在某些JavaScript 代码运行时点击按钮，浏览器可能不会将重绘按钮按下的UI 更新任务放入队列，也不会放入由这个按钮启动的JavaScript 任务。其结果是一个无响应的UI，表现为“挂起”或“冻结”。</p>
+<p><strong>Yielding with Timers 用定时器让出时间片</strong></p>
+<p>Timer Basics 定时器基础</p>
+<p>Timer Precision 定时器精度</p>
+<p><strong>Array Processing with Timers 在数组处理中使用定时器</strong></p>
+<p><strong>Splitting Up Tasks 分解任务</strong></p>
+<p>Timed Code 限时运行代码</p>
+<p>Timers and Performance 定时器与性能</p>
+<p><strong>Web Workers 网页工人线程</strong></p>
+<p>Worker Environment 工人线程运行环境</p>
+<p>Worker Communication 工人线程交互</p>
+<p>Loading External Files 加载外部文件</p>
+<p>Practical Users 实际用途</p>
+<p><strong>Summary    总结</strong></p>
+<p>JavaScript和用户界面更新在同一个进程内运行，同一时刻只有其中一个可以运行。这意味着当JavaScript代码正在运行时，用户界面不能响应输入，反之亦然。有效地管理UI线程就是要确保JavaScript不能运行太长时间，以免影响用户体验。最后，请牢记如下几点：</p>
+<ul>
+<li>JavaScript运行时间不应该超过100毫秒。过长的运行时间导致UI更新出现可察觉的延迟，从而对整体用户体验产生负面影响。</li>
+<li>JavaScript运行期间，浏览器响应用户交互的行为存在差异。无论如何，JavaScript长时间运行将导致用户体验混乱和脱节。</li>
+<li>定时器可用于安排代码推迟执行，它使得你可以将长运行脚本分解成一系列较小的任务。</li>
+<li>网页工人线程是新式浏览器才支持的特性，它允许你在UI线程之外运行JavaScript代码而避免锁定UI。</li>
+</ul>
+<p>网页应用程序越复杂，积极主动地管理UI线程就越显得重要。没有什么JavaScript代码可以重要到允许影响用户体验的程度。</p>
+<h2 id="第七章-Ajax-异步JavaScript和XML"><a href="#第七章-Ajax-异步JavaScript和XML" class="headerlink" title="第七章    Ajax 异步JavaScript和XML"></a>第七章    Ajax 异步JavaScript和XML</h2><p>Ajax是高性能JavaScript的基石。它可以通过延迟下载大量资源使页面加载更快。它通过在客户端和服务器端之间异步传送数据，避免页面集体加载。它还用于在一次HTTP请求中获取整个页面的资源。通过选择正确的传输技术和最有效的数据格式，你可以显著改善用户与网站之间的互动。</p>
+<p>本章考察从服务器收发数据最快的技术，以及最有效的数据编码格式。</p>
+<p><strong>Data Transmission    数据传输</strong></p>
+<p>Requesting Data 请求数据</p>
+<p>XMLHttpRequest</p>
+<p>POST versus GET when using XHR. 使用XHR时，应使用POST还是GET</p>
+<p>Dynamic script tag insertion 动态脚本标签插入</p>
+<p>Multipart XHR 多部分 XHR</p>
+<p><strong>Sending Data 发送数据</strong></p>
+<p>XMLHttpRequest</p>
+<p>Beacons 灯标</p>
+<p><strong>Data Formats 数据格式</strong></p>
+<p>XML</p>
+<p>XPath</p>
+<p>Response sizes and parse times 响应报文大小和解析时间</p>
+<p>JSON</p>
+<p>JSON-P</p>
+<p>Should you use JSON? 你应该使用JSON吗？</p>
+<p>HTML</p>
+<p>Custom Formatting 自定义格式</p>
+<p><strong>Data Format Conclusions 数据格式总结</strong></p>
+<p><strong>Ajax Performance Guidelines Ajax性能导向</strong></p>
+<p>Cache Data 缓存数据</p>
+<p>Setting HTTP headers 设置HTTP头</p>
+<p>Storing data locally 本地存储数据</p>
+<p><strong>Know the Limitations of Your Ajax Library 了解Ajax库的限制</strong></p>
+<p><strong>Summary 总结</strong></p>
+<p>高性能Ajax包括：知道你项目的具体需求，选择正确的数据格式和与之相配的传输技术。</p>
+<p>作为数据格式，纯文本和HTML是高度限制的，但它们可节省客户端的CPU周期。XML被广泛应用普遍支持，但它非常冗长且解析缓慢。JSON是轻量级的，解析迅速（作为本地代码而不是字符串），交互性与XML相当。字符分隔的自定义格式非常轻量，在大量数据集解析时速度最快，但需要编写额外的程序在服务器端构造格式，并在客户端解析。</p>
+<p>当从页面域请求数据时，XHR提供最完善的控制和灵活性，尽管它将所有传入数据视为一个字符串，这有可能降低解析速度。另一方面，动态脚本标签插入技术允许跨域请求和本地运行JavaScript和JSON，虽然它的接口不够安全，而且不能读取信息头或响应报文代码。多部分XHR可减少请求的数量，可在一次响应中处理不同的文件类型，尽管它不能缓存收到的响应报文。当发送数据时，图像灯标是最简单和最有效的方法。XHR也可用POST方法发送大量数据。</p>
+<p>除这些格式和传输技术之外，还有一些准则有助于进一步提高Ajax的速度：</p>
+<ul>
+<li>减少请求数量，可通过JavaScript和CSS文件打包，或者使用MXHR。</li>
+<li>缩短页面的加载时间，在页面其他内容加载之后，使用Ajax获取少量重要文件。</li>
+<li>确保代码错误不要直接显示给用户，并在服务器端处理错误。</li>
+<li>学会何时使用一个健壮的Ajax库，何时编写自己的底层Ajax代码。</li>
+</ul>
+<p>Ajax是提升你网站潜在性能之最大的改进区域之一，因为很多网站大量使用异步请求，又因为它提供了许多不相关问题的解决方案，这些问题诸如，需要加载太多资源。对XHR的创造性应用是如此的与众不同，它不是呆滞不友好的界面，而是响应迅速且高效的代名词；它不会引起用户的憎恨，谁见了它都会爱上它。</p>
+<h2 id="第八章-Programming-Practics-编程实践"><a href="#第八章-Programming-Practics-编程实践" class="headerlink" title="第八章     Programming Practics    编程实践"></a>第八章     Programming Practics    编程实践</h2><p>每种编程语言都有痛点，而且低效模式随着时间的推移不断发展。其原因在于，越来越多的人们开始使用这种语言，不断扩种它的边界。自2005年以来，当术语“Ajax”出现时，网页开发者对JavaScript和浏览器的推动作用远超过以往。其结果是出现了一些非常具体的模式，既有优秀的做法也有糟糕的做法。这些模式的出现，是因为网络上JavaScript的性质决定的。</p>
+<p><strong>Avoid Double Evaluation 避免二次评估</strong></p>
+<p><strong>Use Object/Array Literals 使用对象/数组直接量</strong></p>
+<p><strong>Don’t Repeat Work 不要重复工作</strong></p>
+<p><strong>Lazy Loading 延迟加载</strong></p>
+<p><strong>Conditional Advance Loading 条件预加载</strong></p>
+<p><strong>Use the Fast Parts 使用速度快的部分</strong></p>
+<p><strong>Bitwise Operators 位操作运算符</strong></p>
+<p><strong>Native Methods 原生方法</strong></p>
+<p><strong>Summary 总结</strong></p>
+<p>JavaScript提出了一些独特的性能挑战，关系到你组织代码的方法。网页应用变得越来越高级，包含的JavaScript代码越来越多，出现了一些模式和反模式。请牢记以下编程经验：</p>
+<ul>
+<li>通过避免使用eval_r()和Function()构造器避免二次评估。此外，给setTimeout()和setInterval()传递函数参数而不是字符串参数。</li>
+<li>创建新对象和数组时使用对象直接量和数组直接量。它们比非直接量形式创建和初始化更快。</li>
+<li>避免重复进行相同工作。当需要检测浏览器时，使用延迟加载或条件预加载。</li>
+<li>当执行数学运算时，考虑使用位操作，它直接在数学底层进行操作。</li>
+<li>原生方法总是比JavaScript写的东西要快。尽量使用原生方法。</li>
+</ul>
+<p>本书涵盖了很多技术和方法，如果将这些优化应用在哪些经常运行的代码上，你将会看到巨大的性能提升。</p>
+<h2 id="第九章-Building-and-Deploying-High-Performance-JavaScript-Applications-创建并部署高性能JavaScript应用程序"><a href="#第九章-Building-and-Deploying-High-Performance-JavaScript-Applications-创建并部署高性能JavaScript应用程序" class="headerlink" title="第九章    Building and Deploying High-Performance JavaScript Applications    创建并部署高性能JavaScript应用程序"></a>第九章    Building and Deploying High-Performance JavaScript Applications    创建并部署高性能JavaScript应用程序</h2><p>根据Yahoo!卓越性能团队在2007年进行的研究，40%-60%的Yahoo!用户没有使用缓存的经验，大约20%页面视图不使用缓存（<a href="https://yuiblog.com/blog/2007/01/04/performance-research-part-2/）。另外，由Yahoo!研究小组发现，并由Google的Steve" target="_blank" rel="noopener">https://yuiblog.com/blog/2007/01/04/performance-research-part-2/）。另外，由Yahoo!研究小组发现，并由Google的Steve</a> Souders所证实的一项最新研究表明，大约15%的美国大型网站所提供的内容没有压缩。</p>
+<p>这些事实强调有必要确保哪些基于JavaScript的网页应用尽量高效地发布。虽然部分工作在设计开发过程中已经完成，但构建和部署过程也很重要且往往被忽视。如果在这个关键过程中不够小心，你应用程序的性能将受到影响，无论你怎么努力使它更快。</p>
+<p>本章的目的是给你必要的知识，有效地组织并部署基于JavaScript的Web应用程序。一些概念使用Apache Ant进行说明，它是一个基于Java的构建工具，并很快成为开发网页应用程序的工业标准，在本章末尾，给出了一个用PHP5写的定制灵活的开发工具的例子。</p>
+<p><strong>Apache Ant</strong></p>
+<p><strong>Combining JavaScript Files 合并JavaScript文件</strong></p>
+<p><strong>Preprocessing JavaScript Files 预处理JavaScript文件</strong></p>
+<p><strong>JavaScript Minification    JavaScript紧凑</strong></p>
+<p><strong>Buildtime Versus Runtime Build Process 开发过程中的编译时和运行时</strong></p>
+<p><strong>JavaScript Compression JavaScript压缩</strong></p>
+<p><strong>Caching JavaScript Files 缓存JavaScript文件</strong></p>
+<p><strong>Working Around Caching Issues 关于缓存问题</strong></p>
+<p><strong>Using a Content Delivery Network 使用内容传递网</strong></p>
+<p><strong>Deploying JavaScript Resources 部署JavaScript资源</strong></p>
+<p><strong>Agile JavaScript Build Process 灵巧的JavaScript开发过程</strong></p>
+<p><strong>Summary 总结</strong></p>
+<p>开发和部署过程对基于JavaScript的应用程序可以产生巨大影响，最重要的几个步骤如下：</p>
+<ul>
+<li>合并JavaScript文件，减少HTTP请求的数量</li>
+<li>使用YUI压缩器紧凑处理JavaScript文件</li>
+<li>以压缩形式提供JavaScript文件（gzip编码）</li>
+<li>通过设置HTTP响应报文头使JavaScript文件可缓存，通过向文件名附加时间戳解决缓存问题</li>
+<li>使用内容传递网络（CDN）提供JavaScript文件，CDN不仅可以提高性能，它还可以为你管理压缩和缓存</li>
+</ul>
+<p>所有这些步骤应当自动完成，不论是使用公开的开发工具诸如Apache Ant，还是使用自定义的开发工具以实现特定需求。如果你使这些开发工具为你服务，你可以极大改善哪些大量使用JavaScript代码的网页应用或网站的性能。</p>
+<h2 id="第十章-Tools-工具"><a href="#第十章-Tools-工具" class="headerlink" title="第十章    Tools    工具"></a>第十章    Tools    工具</h2><p>当确定脚本加载和运行时的瓶颈所在时，合手的工具是必不可少的。许多浏览器厂商和大型网站分享了一些技术和工具，帮助开发者使网页更快，效率更高。本章关注于这些免费工具：</p>
+<p><strong>Profiling 性能分析</strong></p>
+<p><strong>Network analysis 网络分析</strong></p>
+<p><strong>JavaScript Profiling JavaScript 性能分析</strong></p>
+<p><strong>YUI Profiler YUI分析器</strong></p>
+<p><strong>Anonymous Functions 匿名函数</strong></p>
+<p><strong>Firebug</strong></p>
+<p><strong>Console Panel Profiler 控制台面板分析器</strong></p>
+<p><strong>Console API 终端API</strong></p>
+<p><strong>Net Panel 网络面板</strong></p>
+<p><strong>Internet Explorer Developer Tools IE开发人员工具</strong></p>
+<p><strong>Safari Web Inspector Safari 网页监察器</strong></p>
+<p><strong>Profiles Panel 分析面板</strong></p>
+<p><strong>Resources Panel 资源面板</strong></p>
+<p><strong>Chrome Developers Tools    Chrome开发人员工具</strong></p>
+<p><strong>Script Blocking 脚本阻塞</strong></p>
+<p><strong>Page Speed</strong></p>
+<p><strong>Fiddler</strong></p>
+<p><strong>YSlow</strong></p>
+<p><strong>dynaTrace Ajax Edition Ajax版的dynaTrace</strong></p>
+<p><strong>Summary 总结</strong></p>
+<p>当网页或应用程序变慢时，分析网上传来的资源，分析脚本的运行性能，使你能够集中精力在那些需要努力优化的地方。</p>
+<ul>
+<li>使用网络分析器找出加载脚本和其他页面资源的瓶颈所在，这有助于决定哪些脚本需要延迟加载，或者进行进一步分析。</li>
+<li>传统的智慧告诉我们应尽量减少HTTP请求的数量，尽量延迟加载脚本以使页面渲染速度更快，向用户提供更好的整体体验。</li>
+<li>使用性能分析器找出脚本运行时速度慢的部分，检查每个函数所花费的时间，以及函数被调用的次数，通过调用栈自身提供的一些线索来找出哪些地方应当努力优化。</li>
+<li>虽然花费时间和调用次数通常是数据中最有价值的点，还是应当仔细查看函数的调用过程，可能发现其它优化方法。</li>
+</ul>
+<p>这些工具在那些现代代码所要运行的编程环境中不再神秘。在开始优化工作之前使用它们，确保开发时间用在解决问题的刀刃上。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/白话js-this指向问题/" rel="next" title="白话js_this指向问题">
+                <i class="fa fa-chevron-left"></i> 白话js_this指向问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/继承与原型链/" rel="prev" title="继承与原型链">
+                继承与原型链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-Loading-and-Execution-加载和运行"><span class="nav-number">1.</span> <span class="nav-text">第一章 Loading and Execution    加载和运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章Data-Access-数据访问"><span class="nav-number">2.</span> <span class="nav-text">第二章Data Access 数据访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-DOM-Scripting-DOM编程"><span class="nav-number">3.</span> <span class="nav-text">第三章    DOM Scripting DOM编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-Algorithms-and-Flow-Control-算法和流程控制"><span class="nav-number">4.</span> <span class="nav-text">第四章 Algorithms and Flow Control 算法和流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章-Strings-and-Regular-Expressions-字符串和正则表达式"><span class="nav-number">5.</span> <span class="nav-text">第五章 Strings and Regular Expressions 字符串和正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六章-Responsive-Interfaces-响应接口"><span class="nav-number">6.</span> <span class="nav-text">第六章    Responsive Interfaces 响应接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七章-Ajax-异步JavaScript和XML"><span class="nav-number">7.</span> <span class="nav-text">第七章    Ajax 异步JavaScript和XML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第八章-Programming-Practics-编程实践"><span class="nav-number">8.</span> <span class="nav-text">第八章     Programming Practics    编程实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第九章-Building-and-Deploying-High-Performance-JavaScript-Applications-创建并部署高性能JavaScript应用程序"><span class="nav-number">9.</span> <span class="nav-text">第九章    Building and Deploying High-Performance JavaScript Applications    创建并部署高性能JavaScript应用程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十章-Tools-工具"><span class="nav-number">10.</span> <span class="nav-text">第十章    Tools    工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

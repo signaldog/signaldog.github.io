@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="css中两个类选择器之间没有空格形成多类选择器， 有空格形成后代选择器  。  CSS hover，没有延迟              &amp;lt;span title=”“&amp;gt;      css3修改滚动条样式1.滚动条组成 ::-webkit-scrollbar 滚动条整体部分 ::-webkit-scrollbar-thumb  滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杂记">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/杂记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="css中两个类选择器之间没有空格形成多类选择器， 有空格形成后代选择器  。  CSS hover，没有延迟              &amp;lt;span title=”“&amp;gt;      css3修改滚动条样式1.滚动条组成 ::-webkit-scrollbar 滚动条整体部分 ::-webkit-scrollbar-thumb  滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T06:48:28.066Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="杂记">
+<meta name="twitter:description" content="css中两个类选择器之间没有空格形成多类选择器， 有空格形成后代选择器  。  CSS hover，没有延迟              &amp;lt;span title=”“&amp;gt;      css3修改滚动条样式1.滚动条组成 ::-webkit-scrollbar 滚动条整体部分 ::-webkit-scrollbar-thumb  滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/杂记/"/>
+
+
+
+
+
+  <title>杂记 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/杂记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">杂记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:48:12+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>css中两个类选择器之间没有空格形成多类选择器， 有空格形成后代选择器  。</strong></p>
+<hr>
+<p><strong>CSS hover，没有延迟</strong></p>
+<hr>
+<p><p-column styleclass="txt-center overline" field="stationName" header="配电站"><br>      <ng-template let-unit="" let-row="rowData" ptemplate="body"><br>      &lt;span <strong>title=”“</strong>&gt;<br>    </ng-template><br></p-column></p>
+<hr>
+<h2 id="css3修改滚动条样式"><a href="#css3修改滚动条样式" class="headerlink" title="css3修改滚动条样式"></a>css3修改滚动条样式</h2><p><strong>1.滚动条组成</strong></p>
+<p>::-webkit-scrollbar 滚动条整体部分</p>
+<p>::-webkit-scrollbar-thumb  滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）</p>
+<p>::-webkit-scrollbar-track  滚动条的轨道（里面装有Thumb）</p>
+<p>::-webkit-scrollbar-button 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。</p>
+<p>::-webkit-scrollbar-track-piece 内层轨道，滚动条中间部分（除去）</p>
+<p>::-webkit-scrollbar-corner 边角，即两个滚动条的交汇处</p>
+<p>::-webkit-resizer 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件</p>
+<p><strong>2.简洁版demo</strong></p>
+<p>/<em>定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸</em>/ </p>
+<pre><code>::-webkit-scrollbar 
+{ 
+    width: 16px;     
+    height: 16px;     
+    background-color: #F5F5F5; 
+} 
+</code></pre><p>/<em>定义滚动条轨道 内阴影+圆角</em>/ </p>
+<pre><code>::-webkit-scrollbar-track 
+{ 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px; 
+    background-color: #F5F5F5; 
+} 
+</code></pre><p>/<em>定义滑块 内阴影+圆角</em>/ </p>
+<pre><code>::-webkit-scrollbar-thumb 
+{ 
+    border-radius: 10px; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); 
+    background-color: #555; 
+} 
+</code></pre><hr>
+<h1 id="惰性求值"><a href="#惰性求值" class="headerlink" title="惰性求值"></a>惰性求值</h1><p>惰性求值（Lazy evaluation）是在需要时才进行求值的计算方式。惰性求值自然地在数据结构中包含递归，可以以简单的方式表示无限的概念，这种方式有利于程序的模块化。</p>
+<p>Haskell语言以采用惰性求值而广为人熟知。Scheme也部分采用了惰性求值。</p>
+<hr>
+<p><strong>0.1 + 0.2 - 0.3</strong></p>
+<p>// 5.551115123125783e-17</p>
+<p>0.1 + 0.2 === 0.3 // false</p>
+<hr>
+<h2 id="Array-prototype-slice-call-方法详解"><a href="#Array-prototype-slice-call-方法详解" class="headerlink" title="Array.prototype.slice.call()方法详解"></a>Array.prototype.slice.call()方法详解</h2><p>多次用到 Array.prototype.slice.call(arguments, 1)，不就是等于 arguments.slice(1) 吗？像前者那样写具体的好处是什么？这个很多js新手最疑惑的地方。那为什么呢？</p>
+<p>因为arguments并不是真正的数组对象，只是与数组类似而已，所以它并没有slice这个方法，而Array.prototype.slice.call(arguments, 1)可以理解成是让arguments转换成一个数组对象，让arguments具有slice()方法。要是直接写arguments.slice(1)会报错。</p>
+<p>typeof arguments===”object” //而不是 “Array”</p>
+<hr>
+<p>arguments对象不是数组，而是一个类似数组的对象。所以为了使用数组的方法，必须使用Array.prototype.slice.call先将其转为数组。rest 参数就不存在这个问题，它就是一个真正的数组，数组特有的方法都可以使用。</p>
+<hr>
+<p>在JavaScript中，如果你在一个函数体内又用到了function关键字，那么你将会生成一个闭包(Closure)。</p>
+<p>闭包含有当前作用域内的所有变量接入。</p>
+<p>每一次对外部函数的调用都会产生一个独立的包含本地变量的闭包。</p>
+<p><strong>闭包到底什么用</strong></p>
+<p>可以在函数外部读取函数内部的变量<br>可以将这些变量的值在内存中持久化</p>
+<hr>
+<h1 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h1><p>IIFE（立即调用函数表达式）是一个在定义时就会立即执行的JavaScript函数。</p>
+<p>这是一个被称为<strong>自执行匿名函数</strong>的设计模式，主要包含两部分。第一部分是包围在<strong>圆括号运算符</strong>（）里的一个匿名函数，这个匿名函数拥有独立的词法作用域，这不仅避免了外界访问此IIFE中的变量，而且又不会污染全局作用域。</p>
+<p>第二部分再使用()创建了一个立即执行函数表达式，JavaScript引擎到此将直接执行函数。</p>
+<hr>
+<p>箭头函数导致this总是指向函数定义生效时所在的对象</p>
+<hr>
+<p>then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行</p>
+<hr>
+<p>Promise.all方法接受一个数组作为参数，p1、p2、p3都是 Promise 实例，如果不是，就会先调用下面讲到的Promise.resolve方法，将参数转为 Promise 实例，再进一步处理。（Promise.all方法的参数可以不是数组，但必须具有 Iterator 接口，且返回的每个成员都是 Promise 实例。）</p>
+<hr>
+<p>then方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为resolved时调用，第二个回调函数是Promise对象的状态变为rejected时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。</p>
+<hr>
+<p>创建XMLHttpRequest对象的语法：</p>
+<p>xmlhttp = new XMLHttpRequest();</p>
+<p>老版本的Internet Explorer（IE5和IE6）使用ActiveX对象：</p>
+<p>xmlhttp = new ActiveXObject(“Microsoft.XMLHTTP”);</p>
+<hr>
+<p>echarts: itemStyle属性要加normal属性</p>
+<hr>
+<h1 id=""><a href="#" class="headerlink" title=""></a><ng-container></ng-container></h1><p>使用<ng-container>把一些兄弟元素归为一组</ng-container></p>
+<p>Angular的<ng-container>是一个分组元素，但它不会污染样式或元素布局，因为Angular压根不会把它放进DOM中。</ng-container></p>
+<p><ng-container>是一个由Angular解析器负责识别处理的语法元素。它不是一个指令、组件、类或接口，更像是JavaScript中if块中的花括号。</ng-container></p>
+<p>没有这些花括号，JavaScript只会执行第一句，而你原本的意图是把其中的所有语句都视为一体来根据条件执行。而<ng-container>满足了Angular模板中类似的需求。</ng-container></p>
+<hr>
+<p><a href="https://www.chungold.com/" target="_blank" rel="noopener">https://www.chungold.com/</a></p>
+<p>账号 <a href="mailto:hon_ghuan1688@126.com" target="_blank" rel="noopener">hon_ghuan1688@126.com</a></p>
+<p>密码  zhnyfw@001</p>
+<hr>
+<p>background-clip 属性<br>background-clip属性指定背景绘制区域</p>
+<p>语法<br>background-clip:</p>
+<pre><code>border-box // 背景到border
+padding-box // 背景到padding
+content-box // 背景到content
+</code></pre><hr>
+<p>background-origin属性</p>
+<p>background-origin属性指定background-position属性应该是相对位置</p>
+<hr>
+<p>background-size</p>
+<p>第二个值，不写默认为auto</p>
+<hr>
+<p>background:linear-gradient(angle …);</p>
+<p>角度说明</p>
+<p>0deg将创建一个从上到下的渐变，90deg将创建一个从左到右的渐变。</p>
+<hr>
+<p>Internet Explorer 渐变</p>
+<pre><code>语法    
+filter:progid:DXImageTransform.Microsoft.gradient
+(startColorstr=&apos;startColor&apos;, 
+endColorstr=&apos;endColor&apos;,GradientType(类型)=(0,1,2));
+</code></pre><hr>
+<p>常见的闭包：</p>
+<pre><code>function wait(message) {
+    setTimeout(function timer() {
+        console.log(message);
+    }, 1000);
+}
+wait(&apos;Hello closure&apos;);
+</code></pre><p>只要使用了回调函数，实际上就是在使用闭包！</p>
+<hr>
+<p>模块有两个主要特征：</p>
+<p>1.为创建内部作用域而调用了一个包装函数；</p>
+<p>2.包装函数的返回值必须至少包括一个对内部函数的引用，这样就会创建涵盖整个包装函数内部作用域的闭包。</p>
+<hr>
+<p>CommonJS // module.exports  require 同步</p>
+<p>cmd  // define (module.exports) require 异步</p>
+<hr>
+<pre><code>&lt;script&gt;标签
+CommonJS
+AMD(Asynchronous Module Definition)
+CMD(Common Module Definition)
+UMD(Universal Module Definition)
+ES6模块
+</code></pre><hr>
+<pre><code>var request;
+if (window.XMLHttpRequest) {
+    request = new XMLHttpRequest();
+} else {
+    request = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);
+}
+</code></pre><p>通过检测window对象是否有XMLHttpRequest属性来确定浏览器是否支持标准的XMLHttpRequest。注意，不要根据浏览器的navigator.userAgent来检测浏览器是否支持某个JavaScript特性，一是因为这个字符串本身可以伪造，二是通过IE版本判断JavaScript特性将非常复杂。</p>
+<hr>
+<p>字符串方法</p>
+<p>ES7提案</p>
+<p>要安装补丁库</p>
+<pre><code>npm install babel-polyfill --save-dev
+</code></pre><hr>
+<p>es6标签模板</p>
+<p>常用场景：防止XS攻击</p>
+<p>多语言转换</p>
+<pre><code>{
+    let user={
+        name: &apos;list&apos;,
+        info: &apos;hello world&apos;
+    };
+    console.log(abc`i am ${user.name},${user.info}`);
+    function abc(s,v1,v2){
+        console.log(s,v1,v2);
+        return s+v1+v2
+    }
+}
+</code></pre><hr>
+<p>ES6遍历字符串</p>
+<p>let of</p>
+<p>可以遍历字节大于两位的字符串</p>
+<p>padStart</p>
+<p>padEnd</p>
+<p>可以用来在1前后加零</p>
+<hr>
+<pre><code>Array.from([1,3,5],function(item){return item*2});
+
+function(item){return item*2} 相当于map映射
+</code></pre><hr>
+<p>includes对比find和findIndex对NaN处理不会报错</p>
+<p>并且能找NaN</p>
+<pre><code>[1,2,NaN].includes(NaN) ===&gt; true
+</code></pre><hr>
+<pre><code>{
+    let x=&apos;test&apos;;
+    function test2(x,y=x){
+        console.log(&apos;作用域&apos;，x,y);
+        //  kill kill
+    }
+    test2(&apos;kill&apos;);
+}
+</code></pre><hr>
+<p>es6尾调用：函数的最后是不是一个函数</p>
+<pre><code>function tail(x){
+    console.log(&apos;tail&apos;,x);
+}
+function fx(x){
+    return tail(x)
+}
+fx(123)
+</code></pre><p>嵌套函数，依赖函数使用尾调用</p>
+<hr>
+<p><strong>es6属性表达式</strong></p>
+<p>key值因为另一个变量而变化</p>
+<pre><code>{
+    let a=&apos;b&apos;;
+    let es5_obj={
+        a:&apos;c&apos;,
+        b:&apos;c&apos;
+    };
+
+    let es6_obj={
+        [a]:&apos;c&apos;
+    }
+
+    console.log(es5_obj,es6_obj);
+}
+</code></pre><hr>
+<p>es对象</p>
+<pre><code>Object.assign()属于浅拷贝
+
+只拷贝自身对象的属性
+
+不拷贝继承的属性和对象中不可枚举的属性
+</code></pre><hr>
+<p>es Symbol用法</p>
+<pre><code>{
+    let a1=Symbol.for(&apos;abc&apos;);
+    let obj={
+        [a1]:&apos;123&apos;,
+        &apos;abc&apos;:345,
+        &apos;c&apos;:456
+    }
+}
+</code></pre><p>但for ..in..和let …of…拿不到Symbol值的</p>
+<p>要用</p>
+<pre><code>Object.getOwnPropertySymbols(obj).forEach(function(item){
+    console.log(obj[item]);
+})
+</code></pre><p>两边都取到</p>
+<pre><code>Reflect.ownKeys(obj).forEach(function(item){
+    console.log(&apos;ownkeys&apos;,item,obj[item]);
+})
+</code></pre><hr>
+<p>ES6Map</p>
+<pre><code>Map是对Object的补充，key值可以是任意类型
+</code></pre><hr>
+<p>ES6Set</p>
+<p>去重效果</p>
+<pre><code>let arr=[1,2,3,1,&apos;2&apos;];
+let list2=new Set(arr);
+
+console.log(&apos;unique&apos;,list2);
+</code></pre><p>但是Set在去重时不会转换数据类型。</p>
+<hr>
+<p>一、</p>
+<pre><code>weakSet和Set支持的数据类型不一样
+
+weakSet的元素只能是对象
+</code></pre><p>二、</p>
+<pre><code>weakSet的对象是弱引用
+
+===》就是在其他地方有没有被引用过，不会跟垃圾回收机制挂钩上
+
+weakSet添加了一个值只是对象的引用，不会整个值拷过来，是不是垃
+圾回收掉，不会去检测
+</code></pre><p>三、</p>
+<pre><code>不能遍历
+</code></pre><hr>
+<p>es6 Map</p>
+<pre><code>{
+    let map = new Map();
+    let arr=[&apos;123&apos;];
+
+    map.set(arr,456);
+
+    console.log(&apos;map&apos;,map,map.get(arr));
+}
+
+{
+    let map = new Map([[&apos;a&apos;,123],[&apos;b&apos;,456]]);
+    console.log(&apos;map args&apos;,map);
+}
+</code></pre><hr>
+<h2 id="数组结构横向对比，增，查，改，删"><a href="#数组结构横向对比，增，查，改，删" class="headerlink" title="数组结构横向对比，增，查，改，删"></a>数组结构横向对比，增，查，改，删</h2><pre><code>{
+    let map=new Map();
+    let array=[];
+    // 增
+    map.set(&apos;t&apos;,1);
+    array.push({t:1});
+
+    console.info(&apos;map-array&apos;,map.array);
+
+    // 查
+    let map_exist=map.has(&apos;t&apos;);
+    let array_ezist=array.find(item=&gt;item.t);
+    console.info(&apos;map-array&apos;,map_exist,array_exist);
+
+    //改
+    map.set(&apos;t&apos;,2);
+    array.forEach(item=&gt;item.t?item.t=2:&apos;&apos;);
+    console.info(&apos;map-array-modify&apos;,map,array);
+
+    //删
+    map.delete(&apos;t&apos;);
+    let index = array.findIndex(item=&gt;item.t);
+    array.splice(index,1);
+}
+</code></pre><hr>
+<p><strong>Set和array的对比</strong></p>
+<pre><code>{
+    let set = new Set();
+    let array=[];
+
+    // 增
+    set.add({t:1});
+    array.push({t:1});
+
+    console.log(&apos;set-array&apos;,set,array);
+
+    // 查
+    let set_exist=set.has({t:1}); 这里的{t:1}与增加时的不一样
+    array同上
+
+    // 改
+    set.forEach(item=&gt;item.t?item.t=2:&apos;&apos;);
+    array.forEach(item=&gt;item.t?item.t=2:&apos;&apos;);
+
+    // 删
+    set.forEach(item=&gt;item.t?set.delete(item):&apos;&apos;);
+    array同上
+}
+</code></pre><hr>
+<h2 id="map-set-object对比"><a href="#map-set-object对比" class="headerlink" title="map,set,object对比"></a>map,set,object对比</h2><pre><code>{
+    let item={t:1};
+    let map = new Map();
+    let set = new Set();
+    let obj = {};
+
+    // 增
+    map.set(&apos;t&apos;,1);
+    set.add(item);
+    obj[&apos;t&apos;]=1;
+
+    console.info(&apos;map-set-obj&apos;,obj,map,set);
+
+    //查
+
+    console.log({
+        map_exist:map.has(&apos;t&apos;),
+        set_exist:set.has(item),
+        obj_exist: &apos;t&apos; in obj
+    })
+
+    // 改
+    map.set(&apos;t&apos;,2);
+    item.t=2;
+    obj[&apos;t&apos;]=2;
+
+    //删除
+    map.delete(&apos;t&apos;);
+    set.delete(item);
+    delete obj[&apos;t&apos;];
+
+}
+</code></pre><hr>
+<p>Proxy可以认为是代理或拦截</p>
+<pre><code>{
+    let obj={
+        time:&apos;2017-03-11&apos;;
+        name:&apos;net&apos;,
+        _r:123
+    };
+
+    let monitor=new Proxy(obj,{
+        // 拦截对象属性的读取
+        get(target,key){
+            return target[key].replace(&apos;2017&apos;,&apos;2018&apos;)
+        }
+        // 拦截对象设置属性
+        set(target,key,value){
+            if(key===&apos;name&apos;){
+                return target[key]=value;
+            } else {
+                return target[key];
+            }
+        }
+        // 拦截key in object操作
+        has(target,key){
+            if(key===&apos;name&apos;){
+                return target[key]
+            } else {
+                return false;
+            }
+        }
+        // 拦截delete
+        deleteProperty(target,key){
+            if(key.indexOf(&apos;_&apos;)&gt;-1){
+                delete target[key];
+                return true;
+            }else {
+                return target[key]
+            }
+        }
+        // 拦截Object.keys,Object.getOwnPropertySymbols,
+        Object.getOwnPropertyNames
+
+        ownKeys(target){
+            return Object.keys(target).filter
+            (item=&gt;item!=&apos;time&apos;)
+        }
+    });
+
+    console.log(&apos;get&apos;,monitor.time); // 2018
+
+    monitor.time=&apos;2018&apos;;
+    monitor.name=&apos;mukewang&apos;;
+    console.log(&apos;set&apos;,monitor.time,mointor);
+    // set 2018-03-11
+       Proxy{time: &quot;2017-03-11&quot;, name: &quot;mukewang&quot;, _r: 123}
+
+    console.log(&apos;has&apos;, &apos;name&apos; in monitor,&apos;time&apos; in 
+    monitor);
+    // has true false
+
+    delete monitor.time;
+    console.log(&apos;delete&apos;,monitor);
+    // delete
+       Proxy{time: &quot;2017-03-11&quot;, name: &quot;mukewang&quot;, _r: 123}
+
+    delete monitor._r;
+    console.log(&apos;delete&apos;,monitor);
+    // delete
+       Proxy{time: &quot;2017-03-11&quot;, name: &quot;mukewang&quot;}
+
+    console.log(&apos;ownKeys&apos;,Object.keys(monitor));
+    // ownKeys[&quot;name&quot;,&quot;_r&quot;]
+
+}
+</code></pre><hr>
+<p>Reflect用途</p>
+<pre><code>obj同上
+Reflect.get(obj,&apos;time&apos;);
+
+Reflect.set(obj,&apos;name&apos;,&apos;mukewang&apos;);
+
+Reflect.has(obj,&apos;name&apos;);
+</code></pre><hr>
+<p>Proxy和Reflect一起的实例用途</p>
+<pre><code>{
+    function validator(target,validator){
+        return new Proxy(target,{
+            _validator:validator,
+            set(target,key,value,proxy){
+                if(target.hasOwnProperty(key)){
+                    let va=this._validator[key];
+                    if(!!va(value)){
+                        return Reflect.set
+                        (target,key,value,proxy)
+                    }else{
+                        throw Error(`不能设置${key}到
+                        ${value}`)
+                    }
+                }else{
+                    throw Error(`${key} 不存在`)
+                }
+            }
+        })
+    }
+
+    const personValidators={
+        name(val){
+            return typeof val===&apos;string&apos;
+        },
+        age(val){
+            return typeof val===&apos;number&apos; &amp;&amp; val&gt;18
+        }
+    }
+
+    class Person{
+        constructor(name,age){
+            this.name=name;
+            this.age=age;
+            return validator(this,personValidators)
+        }
+    }
+
+    const person=new Person(&apos;lilei&apos;,30);
+
+    console.log(person);
+    // Proxy {name: &quot;lilei&quot;, age: 30}
+
+    person.name=48;
+    // 报错 不能设置name到48
+}
+</code></pre><p>// 应用==》校验可以加在personValidators中</p>
+<hr>
+<p>在类的继承中如果用super传递参数super函数放在函数的第一行</p>
+<p>静态方法通过类去调用而不是通过类的实例去调用</p>
+<hr>
+<pre><code>{
+    let ajax=function(callback){
+        相当于执行完ajax执行callback
+        即callback相当于回调
+    };
+}
+
+{
+    // 基本定义
+    let ajax = function(callback) {
+        console.log(&apos;执行&apos;);
+        setTimeout(function() {
+            callback &amp;&amp; callback.call()
+        }, 1000);
+    };
+    ajax(function() {
+        console.log(&apos;timeout1&apos;);
+    })
+}
+</code></pre><hr>
+<p>iterator在数组中的应用</p>
+<pre><code>{
+  let arr=[&apos;hello&apos;,&apos;world&apos;];
+  let map=arr[Symbol.iterator]();
+  console.log(map.next());
+  console.log(map.next());
+  console.log(map.next());
+}
+
+{value: &quot;hello&quot;, done: false}
+{value: &quot;world&quot;, done: false}
+{value: undefined, done: true}
+</code></pre><p>Object没有iterator接口，因为它的数据是我们填充的，不知道里面的数据需要怎么遍历</p>
+<pre><code>{
+    let obj = {
+        start: [1, 3, 2],
+        end: [7, 9, 8],
+        [Symbol.iterator]() {
+            let self = this;
+            let index = 0;
+            let arr = self.start.concat(self.end);
+            let len = arr.length;
+            return {
+                next() {
+                    if (index &lt; len) {
+                        return {
+                            value: arr[index++],
+                            done: false
+                        }
+                    } else {
+                        return {
+                            value: arr[index++],
+                            done: true
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (const key of obj) {
+        console.log(key);
+        // 1 3 4  7 9 8
+    }
+}
+</code></pre><p>注意一、</p>
+<pre><code>不管什么样的数据结构，可能简单或复杂
+自定义部署要按照以上步骤
+
+要返回next()方法
+</code></pre><hr>
+<p>Generator函数和iterator接口的关系</p>
+<p>任意一个对象或接口都是部署在Symbol.iterator属性上的</p>
+<p>generator就是一个遍历器生成函数</p>
+<p>状态机</p>
+<pre><code>{
+    let state = function*() {
+        while (1) {
+            yield &apos;A&apos;;
+            yield &apos;B&apos;;
+            yield &apos;C&apos;;
+        }
+    }
+    let status = state();
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());    
+    // 循环打印
+}
+</code></pre><p>async和await是generator的语法糖</p>
+<pre><code>{
+    let state = async function() {
+        while (1) {
+            await &apos;A&apos;;
+            await &apos;B&apos;;
+            await &apos;C&apos;;
+        }
+    }
+    let status = state();
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+    console.log(status.next());
+}
+</code></pre><p>实例抽奖</p>
+<pre><code>{
+    let draw = function(count) {
+        // 具体抽奖逻辑
+        console.log(`剩余${count}次`)
+    }
+
+    let residue = function*(count) {
+        while (count &gt; 0) {
+            count--;
+            yield draw(count);
+        }
+    }
+
+    let star = residue(5);
+    let btn = document.createElement(&apos;button&apos;);
+    btn.id = &apos;start&apos;;
+    btn.textContent = &apos;抽奖&apos;;
+    document.body.appendChild(btn);
+    document.getElementById(&apos;start&apos;).addEventListener
+    (&apos;click&apos;, function() {
+        star.next();
+    }, false)
+}
+</code></pre><p>// 关于长轮询(服务端的某一个状态不断变化，需要定时取状态，因为HTTP是无状态的连接)</p>
+<p>怎么取到状态一个是长轮询，另一个是websocket但websocket浏览器兼容性不好</p>
+<p>长轮询就是通过定时器不断的访问一个接口</p>
+<pre><code>{
+    // 长轮询
+    let ajax = function*() {
+        yield new Promise(function(resolve, reject) {
+            // 模拟http请求
+            setTimeout(function() {
+                resolve({ code: 0 })
+            }, 200)
+        })
+    }
+
+    let pull = function() {
+        let generator = ajax();
+        let step = generator.next();
+        step.value.then(function(d) {
+            if (d.code != 0) {
+                setTimeout(function() {
+                    console.log(&apos;wait&apos;);
+                    pull()
+                }, 1000);
+            } else {
+                console.log(d);
+            }
+        })
+    }
+
+    pull();
+}
+</code></pre><hr>
+<p>修饰器三点</p>
+<ol>
+<li>修饰器是一个函数</li>
+<li>修改行为</li>
+<li>修改类的行为</li>
+</ol>
+<p>实例-广告插点</p>
+<pre><code>{
+    let log = (type) =&gt; {
+        return function(target, name, descriptor) {
+            let src_method = descriptor.value;
+            descriptor.value = (...arg) =&gt; {
+                src_method.apply(target, arg);
+                console.log(`log ${type}`);
+            }
+        }
+    }
+
+    class AD {
+        @log(&apos;show&apos;)
+        show() {
+            console.log(&apos;ad is show&apos;);
+        }
+        @log(&apos;click&apos;)
+        click() {
+            console.log(&apos;ad is click&apos;);
+        }
+    }
+
+    let ad = new AD();
+    ad.show();
+    ad.click();
+}
+</code></pre><hr>
+<p>箭头函数的this指向是定义时的指向，而不是运行时的指向</p>
+<p>闭包是函数和声明该函数的词法环境的组合。<br><strong>这个环境包含了这个闭包创建时所能访问的所有局部变量。</strong></p>
+<hr>
+<p>hasOwnProperty 是 JavaScript 中处理属性并且不会遍历原型链的方法之一。(另一种方法: Object.keys())</p>
+<p>注意：检查属性是否undefined还不够。该属性可能存在，但其值恰好设置为undefined。</p>
+<hr>
+<p>当你执行：</p>
+<pre><code>var o = new Foo();
+</code></pre><p>JavaScript实际上执行的是：</p>
+<pre><code>var o = new Object();
+o._proto_ = Foo.prototype;
+Foo.call(o);
+</code></pre><p>当你执行：</p>
+<pre><code>o.someProp;
+</code></pre><p>===&gt;</p>
+<pre><code>Object.getPrototypeOf(o).someProp
+Object.getPrototypeOf(Object.getPrototypeOf(o)).someprop
+</code></pre><hr>
+<p>call()方法调用一个函数，其具有一个指定的this值和分别地提供的参数（参数的列表）</p>
+<p>返回值是你调用的方法的返回值，若该方法没有返回值，则返回undefined。</p>
+<hr>
+<p>§401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</p>
+<p>§403 Forbidden - [*] 表示用户得到授权（与 401 错误相对），但是访问是被<br>禁止的。</p>
+<hr>
+<p>使用es6注意事项</p>
+<p>使用严格模式，注意作用域</p>
+<p>使用类与对象，结合模块化构建中大型项目</p>
+<p>使用Promise替换传统的回调函数</p>
+<p>使用箭头函数要注意this的指向</p>
+<p>学会使用Generator完成异步操作应用</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/学习Javascript闭包-Closure/" rel="next" title="学习Javascript闭包(Closure)">
+                <i class="fa fa-chevron-left"></i> 学习Javascript闭包(Closure)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#css3修改滚动条样式"><span class="nav-number">1.</span> <span class="nav-text">css3修改滚动条样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#惰性求值"><span class="nav-number"></span> <span class="nav-text">惰性求值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-slice-call-方法详解"><span class="nav-number">1.</span> <span class="nav-text">Array.prototype.slice.call()方法详解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IIFE"><span class="nav-number"></span> <span class="nav-text">IIFE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组结构横向对比，增，查，改，删"><span class="nav-number">1.</span> <span class="nav-text">数组结构横向对比，增，查，改，删</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map-set-object对比"><span class="nav-number">2.</span> <span class="nav-text">map,set,object对比</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

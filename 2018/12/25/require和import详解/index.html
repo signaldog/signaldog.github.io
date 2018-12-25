@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言JS模块化编程是前端小伙伴必不可少的知识。 1 require特点：  1.运行时加载 2.拷贝到本页面 3.全部引入  1.1 CommonJS Node.js就是用CommonJS思想。在CommonJS中，有一个全局性方法require()，用于加载模块。 1.1.1 用法 var math = require(&amp;apos;math&amp;apos;); math.add(2, 3);  va">
+<meta property="og:type" content="article">
+<meta property="og:title" content="require和import详解">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/require和import详解/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言JS模块化编程是前端小伙伴必不可少的知识。 1 require特点：  1.运行时加载 2.拷贝到本页面 3.全部引入  1.1 CommonJS Node.js就是用CommonJS思想。在CommonJS中，有一个全局性方法require()，用于加载模块。 1.1.1 用法 var math = require(&amp;apos;math&amp;apos;); math.add(2, 3);  va">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T06:37:27.783Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="require和import详解">
+<meta name="twitter:description" content="前言JS模块化编程是前端小伙伴必不可少的知识。 1 require特点：  1.运行时加载 2.拷贝到本页面 3.全部引入  1.1 CommonJS Node.js就是用CommonJS思想。在CommonJS中，有一个全局性方法require()，用于加载模块。 1.1.1 用法 var math = require(&amp;apos;math&amp;apos;); math.add(2, 3);  va">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/require和import详解/"/>
+
+
+
+
+
+  <title>require和import详解 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/require和import详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">require和import详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:37:15+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>JS模块化编程是前端小伙伴必不可少的知识。</p>
+<h2 id="1-require"><a href="#1-require" class="headerlink" title="1 require"></a>1 require</h2><p>特点：</p>
+<ul>
+<li>1.运行时加载</li>
+<li>2.拷贝到本页面</li>
+<li>3.全部引入</li>
+</ul>
+<p><strong>1.1 CommonJS</strong></p>
+<p>Node.js就是用CommonJS思想。在CommonJS中，有一个全局性方法require()，用于加载模块。</p>
+<p>1.1.1 用法</p>
+<pre><code>var math = require(&apos;math&apos;);
+math.add(2, 3);
+
+var math = require(&apos;math&apos;);
+const Math = new math(2, 3)
+Math.add();
+</code></pre><p>1.1.2 模块写法</p>
+<p>模块写法分exports和module.exports。</p>
+<pre><code>exports.add = (x,y) =&gt; x+y;
+
+module.exports = class math {
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    add() {
+        return x+y;
+    }
+};
+</code></pre><h2 id="1-2-AMD"><a href="#1-2-AMD" class="headerlink" title="1.2 AMD"></a>1.2 AMD</h2><p>require.js和cujo.js就是用AMD思想。</p>
+<p>AMD是“Asynchronous Module Definition”的缩写，意思就是“异步模块定义”。它采用异步方式加载模块，模块的加载不影响它后面语句的运行。所以依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。</p>
+<p>第二行math.add(2,3)，在第一行require(‘math’)之后运行，因此必须等math.js加载完成。也就是说，如果加载时间很长，整个应用就会停在哪里等。这对服务器不是一个问题，因为所有的模块都存放在本地硬盘，可以同步加载完成，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于“假死”状态。因此，浏览器端的模块，不能采用“同步加载”（synchronous），只能采用“异步加载”（asynchronous）。这就是AMD规范诞生的背景。</p>
+<p>1.2.1 用法</p>
+<pre><code>// require([module], callback);
+require([&apos;math&apos;], function (math) {
+    &amp;emsp;math.add(2, 3);
+});
+</code></pre><p>1.2.1 模块写法</p>
+<p>define(id?, dependencies?, factory)</p>
+<ul>
+<li>id: 字符串，模块名称(可选)</li>
+<li>dependencies：是我们要载入的依赖模块(可选),使用相对路径。注意是数组格式</li>
+<li>factory: 工厂方法，返回一个模块函数</li>
+</ul>
+<p>一个模块不依赖其他模块写法</p>
+<pre><code>// math.js
+define(function () {
+    var add = function(x,y) {
+        return x+y;
+    };
+    return {
+        add: add
+    };
+});
+</code></pre><p>模块还依赖其他模块</p>
+<pre><code>define([&apos;a&apos;,&apos;b&apos;], function(a,b){
+    function foo(){
+        a.doSomething(); // 依赖前置，提前执行
+        b.doSomething();
+    }
+    return {
+        foo: foo
+    };
+});
+
+当require()函数加载上面这个模块的时候，就会先加载Lib.js文件。
+</code></pre><h2 id="1-3-CMD"><a href="#1-3-CMD" class="headerlink" title="1.3 CMD"></a>1.3 CMD</h2><p>sea.js就是用CMD思想。 CMD是“Common Module Definition”的缩写。类似于requirejs，但是sea.js是依赖就近，延迟执行，requirejs是依赖前置，提前执行。</p>
+<p>1.3.1 用法</p>
+<pre><code>seajs.config({
+    alias: {
+        &apos;jquery&apos;: &apos;http://modules.seajs.org/
+        jquery/1.7.2/jquery.js&apos;
+    }
+});
+
+seajs.use([&apos;./hello&apos;, &apos;jquery&apos;], function(hello, $) {
+    $(&apos;#beautiful-sea&apos;).click(hello.sayHello);
+});
+</code></pre><p>1.3.1 模块写法</p>
+<pre><code>define(function(require, exports, module) {
+    var $ = require(&apos;jquery&apos;);
+
+    exports.sayHello = function() {
+        $(&apos;#hello&apos;).toggle(&apos;show&apos;);
+    };
+    var b = require(&quot;b&quot;);
+    b.doSomething(); // 依赖就近，延迟执行
+});
+</code></pre><h2 id="2-import"><a href="#2-import" class="headerlink" title="2 import"></a>2 import</h2><p>特点：</p>
+<ul>
+<li>1.编译时加载</li>
+<li>2.只引用定义</li>
+<li>3.按需加载</li>
+</ul>
+<p>|||||</p>
+<pre><code>可对比require的特点，发现import完胜require，推荐用import取代require
+</code></pre><p>2.1.1 用法</p>
+<p>import有两种模块导入方式：命名式导入（名称导入）和默认导入（定义式导入），以及import()。</p>
+<pre><code>import defaultMember from &quot;module-name&quot;;
+import * as name from &quot;module-name&quot;;
+import { member } from &quot;module-name&quot;;
+import { member as alias } from &quot;module-name&quot;;
+import { member1, member2 } from &quot;module-name&quot;;
+import { member1, member2 as alias2, [...] } from 
+&quot;module-name&quot;;
+import defaultMember, { member [, [...]] } from 
+&quot;module-name&quot;;
+import defaultMember, * as name from &quot;module-name&quot;;
+import &quot;module-name&quot;;
+</code></pre><ul>
+<li>name - 从将要导入模块中收到的导出值的名称</li>
+<li>member, memberN - 从导出模块，导入指定名称的多个成员</li>
+<li>defaultMember - 从导出模块，导入默认导出成员</li>
+<li>alias,aliasN - 别名，对指定导入成员进行的重命名</li>
+<li>module-name - 要导入的模块。是一个文件名</li>
+<li>as - 重命名导入成员名称（“标识符”）</li>
+<li>from - 从已经存在的模块、脚本文件等导入</li>
+</ul>
+<p><strong>import()</strong></p>
+<p>import()返回一个Promise对象。</p>
+<pre><code>// 报错
+if (x === 2) {
+    import MyModual from &apos;./myModual&apos;;
+}
+</code></pre><p>引擎处理import语句是在编译时，这时不会去分析或执行if语句，所以import语句放在if代码块之中毫无意义，因此会报句法错误，而不是执行时错误。没办法像require那样根据条件动态加载。于是<a href="https://github.com/tc39/proposal-dynamic-import" title="提案" target="_blank" rel="noopener">https://github.com/tc39/proposal-dynamic-import</a>引入import()函数，编译时分析if语句，完成动态加载。</p>
+<pre><code>if(x === 2) {
+    import(&apos;myModual&apos;).then((MyModual) =&gt; {
+        new MyModual();
+    })
+}
+</code></pre><p>2.2.1 模块写法</p>
+<p>export有两种模块导出方式：命名式导出（名称导出）和默认导出（定义式导出），命名式导出每个模块可以多个，而默认导出每个模块仅一个。</p>
+<pre><code>export { name1, name2, ..., nameN };
+export { variable1 as name1, variable2 as name2, ...,
+ nameN };
+export let name1, name2, ..., nameN; // also var
+export let name1 = ..., name2 = ..., ..., nameN; // 
+also var, const
+
+export default expression;
+export default function (...) { ... } // also class,
+ function*
+export default function name1(...) { ... } // also 
+class, function*
+export { name1 as default, ... };
+
+export * from ...;
+export { name1, name2, ..., nameN } from ...;
+export { import1 as name1, import2 as name2, ..., 
+nameN } from ...;
+</code></pre><ul>
+<li>name1…nameN - 导出的“标识符”。导出后，可以通过这个“标识符”在另一个模块使用*import引用</li>
+<li>default - 设置模块的默认导出。设置后import不通过“标识符”而直接引用默认导入</li>
+<li><ul>
+<li>继承模块并导出继承模块所有的方法和属性</li>
+</ul>
+</li>
+<li>as - 重命名导出“标识符”</li>
+<li>from - 从已经存在的模块、脚本文件…导出</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/MVC-MVP和MVVM的图示/" rel="next" title="MVC,MVP和MVVM的图示">
+                <i class="fa fa-chevron-left"></i> MVC,MVP和MVVM的图示
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/vue/" rel="prev" title="vue">
+                vue <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-require"><span class="nav-number">2.</span> <span class="nav-text">1 require</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-AMD"><span class="nav-number">3.</span> <span class="nav-text">1.2 AMD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-CMD"><span class="nav-number">4.</span> <span class="nav-text">1.3 CMD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-import"><span class="nav-number">5.</span> <span class="nav-text">2 import</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安全限制Ajax请求的URL使用的是相对路径。如果你把它改为’http://www.sina.com.cn/&amp;#39;，再运行，肯定报错。在Chrome的控制台里，还可以看到错误信息。 这是因为浏览器的同源策略导致的。默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致。 完全一致的意思是，域名要相同(www.example.com和example.com不同)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全限制">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/安全限制/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安全限制Ajax请求的URL使用的是相对路径。如果你把它改为’http://www.sina.com.cn/&amp;#39;，再运行，肯定报错。在Chrome的控制台里，还可以看到错误信息。 这是因为浏览器的同源策略导致的。默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致。 完全一致的意思是，域名要相同(www.example.com和example.com不同)">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T06:41:26.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安全限制">
+<meta name="twitter:description" content="安全限制Ajax请求的URL使用的是相对路径。如果你把它改为’http://www.sina.com.cn/&amp;#39;，再运行，肯定报错。在Chrome的控制台里，还可以看到错误信息。 这是因为浏览器的同源策略导致的。默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致。 完全一致的意思是，域名要相同(www.example.com和example.com不同)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/安全限制/"/>
+
+
+
+
+
+  <title>安全限制 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/安全限制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安全限制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:41:10+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安全限制"><a href="#安全限制" class="headerlink" title="安全限制"></a>安全限制</h2><p>Ajax请求的URL使用的是相对路径。如果你把它改为’<a href="http://www.sina.com.cn/&#39;，再运行，肯定报错。在Chrome的控制台里，还可以看到错误信息。" target="_blank" rel="noopener">http://www.sina.com.cn/&#39;，再运行，肯定报错。在Chrome的控制台里，还可以看到错误信息。</a></p>
+<p>这是因为浏览器的同源策略导致的。默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致。</p>
+<p>完全一致的意思是，域名要相同(<a href="http://www.example.com和example.com不同)，协议要相同(http和https不同)，端口号要相同(默认是:80端口，它和:8080就不同)。有的浏览器口子松一点，允许端口不同，大多数浏览器都会严格遵守这个限制。" target="_blank" rel="noopener">www.example.com和example.com不同)，协议要相同(http和https不同)，端口号要相同(默认是:80端口，它和:8080就不同)。有的浏览器口子松一点，允许端口不同，大多数浏览器都会严格遵守这个限制。</a></p>
+<p>那是不是用JavaScript无法请求外域（就是其他网站）的URL了呢？方法还是有的，大概有那么几种：</p>
+<p>一是通过Flash插件发送HTTP请求，这种方式可以绕过浏览器的安全限制，但必须跟安装Flash，并且跟Flash交互。不过Flash用起来麻烦，而且现在用得也越来越少了。</p>
+<p>二是通过在同源域名下架设一个代理服务器来转发，JavaScript负责把请求发送到代理服务器：</p>
+<pre><code>&apos;/proxy?url=http://www.sina.com.cn&apos;
+</code></pre><p>代理服务器再把结果返回，这样就遵守了浏览器的同源策略。这种方式的麻烦之处在于需要服务器端额外做开发。</p>
+<p>第三种方式称为JSONP，它有个限制，只能用GET请求，并且要求返回JavaScript。这种方式跨域实际上是利用了浏览器允许跨域引用JavaScript资源：</p>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;script src=&quot;http://example.com/abc.js&quot;&gt;&lt;/script&gt;
+    ...
+&lt;/head&gt;
+&lt;body&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>JSONP通常以函数调用的形式返回，例如，返回JavaScript内容如下：</p>
+<pre><code>foo(&apos;data&apos;);
+</code></pre><p>这样一来，我们如果在页面中先准备好foo()函数，然后给页面动态加一个<script>节点，相当于动态读取外域的JavaScript资源，最后就等着接收回调了。</p>
+<p>以163的股票查询URL为例，对于URL：<a href="http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice，你将得到如下返回：">http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice，你将得到如下返回：</a></p>
+<pre><code>refreshPrice({&quot;0000001&quot;: {&quot;code&quot;: &quot;0000001&quot;, ...});
+</code></pre><p>因此我们需要首先在页面中准备好回调函数：</p>
+<pre><code>function refreshPrice(data) {
+    var p = document.getElementById(&apos;test-jsonp&apos;);
+    p.innerHTML = &apos;当前价格：&apos; + 
+        data[&apos;0000001&apos;].name + &apos;:&apos; +
+        data[&apos;0000001&apos;].price + &apos;;&apos; +
+        data[&apos;1399001&apos;].name + &apos;:&apos; +
+        data[&apos;1399001&apos;].price;
+}
+</code></pre><p>最后用getPrice()函数触发：<br>    function getPrice() {<br>        var js = document.createElement(‘script’),<br>            head = document.getElementByTagName(‘head’)[0];<br>        js.src = ‘<a href="http://api.money.126.net/data/">http://api.money.126.net/data/</a><br>        feed/0000001,139901?callback=refereshPrice’;<br>        head.appendChild(js);<br>    }</p>
+<p>就完成了跨域加载数据。</p>
+<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>如果浏览器支持HTML5，那么就可以一劳永逸地使用新的跨域策略：CORS了。</p>
+<p>CORS全称Cross-Origin Resource Sharing，是HTML5规范定义的如何跨域访问资源。</p>
+<p>了解CORS前，我们先搞明白概念：</p>
+<p>Origin表示本域，也就是浏览器当前页面的域。当JavaScript向外域（如sina.com）发起请求后，浏览器收到响应后，首先检查Access-Control-Allow-Origin是否包含本域，如果是，则此次跨域请求成功，如果不是，则请求失败，JavaScript将无法获取到响应的任何数据。</p>
+<p><img src="https://cdn.liaoxuefeng.com/cdn/files/attachments/00143640805071744d58164a40e42ef92b9973824451595000/l" alt=""></p>
+<p>假设本域是my.com，外域是sina.com，只要响应头Access-Control-Allow-Origin为<a href="http://my.com，或者是*，本次请求就可以成功。">http://my.com，或者是*，本次请求就可以成功。</a></p>
+<p>可见，跨域是否成功，取决于对方服务器是否愿意给你设置一个正确的Access-Control-Allow-Origin，决定权始终在对方手里。</p>
+<p>上面这种跨域请求，称之为“简单请求”。简单请求包括GET、HEAD和POST（POST的Content-Type类型仅限application/x-www-form-urlencoded、 multipart/form-data和text/plain），并且不能出现任何自定义头（例如，X-Custom：12345），通常能满足90%的需求。</p>
+<p>无论你是否需要用JavaScript通过CORS跨域请求资源，你都要了解CORS的原理。最新的浏览器全面支持HTML5。在引用外域资源时，除了JavaScript和CSS外，都要验证CORS。例如，当你引用了第三方CDN上的字体文件时：</p>
+<pre><code>/* CSS */
+@font-face {
+    font-family: &apos;FontAwesome&apos;;
+    src: url(&apos;http://cdn.com/fonts/fontawesome.ttf&apos;)
+    format(&apos;truetype&apos;);
+}
+</code></pre><p>如果该CDN服务商未正确设置Access-Control-Allow-Origin，那么浏览器无法加载字体资源。</p>
+<p>对于PUT、DELETE以及其他类型如application/json的POST请求，在发送AJAX请求之前，浏览器会先发送一个OPTIONS请求（称为preflighted请求）到这个URL上，询问目标服务器是否接受：</p>
+<pre><code>OPTIONS /path/to/resource HTTP/1.1
+Host: bar.com
+Origin: http://my.com
+Access-Control-Request-Method: POST
+</code></pre><p>服务器必须响应并明确指出允许的Method：</p>
+<pre><code>HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://my.com
+Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
+Access-Control-Max-Age: 86400
+</code></pre><p>浏览器确认服务器响应的Access-Control-Allow-Methods头确实包含将要发送的AJAX请求的Method，才会继续发送AJAX，否则，抛出一个错误。</p>
+<p>由于以POST、PUT方式传送JSON格式的数据在REST中很常见，所以要跨域正确处理POST和PUT请求，服务器端必须正确响应OPTIONS请求。</p>
+</script></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/XMLHttpRequest杂记/" rel="next" title="XMLHttpRequest杂记">
+                <i class="fa fa-chevron-left"></i> XMLHttpRequest杂记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/白话js-this指向问题/" rel="prev" title="白话js_this指向问题">
+                白话js_this指向问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安全限制"><span class="nav-number">1.</span> <span class="nav-text">安全限制</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
