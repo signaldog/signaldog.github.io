@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基础知识 原形    原型链 作用域    闭包 异步 单线程  JS API DOM操作 Ajax 事件绑定  开发环境 版本管理 模块化 打包工具  运行环境 页面渲染 性能优化  题目  JS中使用typeof能得到的哪些类型？ 何时使用===何时使用==？ window.onload和DOMContentLoaded的区别？ 用JS创建10个a标签，点击的时候弹出来对应的序号 简述如何实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js基础Interview">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/js基础Interview/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基础知识 原形    原型链 作用域    闭包 异步 单线程  JS API DOM操作 Ajax 事件绑定  开发环境 版本管理 模块化 打包工具  运行环境 页面渲染 性能优化  题目  JS中使用typeof能得到的哪些类型？ 何时使用===何时使用==？ window.onload和DOMContentLoaded的区别？ 用JS创建10个a标签，点击的时候弹出来对应的序号 简述如何实现">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-25T08:15:58.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js基础Interview">
+<meta name="twitter:description" content="基础知识 原形    原型链 作用域    闭包 异步 单线程  JS API DOM操作 Ajax 事件绑定  开发环境 版本管理 模块化 打包工具  运行环境 页面渲染 性能优化  题目  JS中使用typeof能得到的哪些类型？ 何时使用===何时使用==？ window.onload和DOMContentLoaded的区别？ 用JS创建10个a标签，点击的时候弹出来对应的序号 简述如何实现">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/js基础Interview/"/>
+
+
+
+
+
+  <title>js基础Interview | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/js基础Interview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js基础Interview</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T16:15:13+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
+<li>原形    原型链</li>
+<li>作用域    闭包</li>
+<li>异步 单线程</li>
+</ul>
+<h2 id="JS-API"><a href="#JS-API" class="headerlink" title="JS API"></a>JS API</h2><ul>
+<li>DOM操作</li>
+<li>Ajax</li>
+<li>事件绑定</li>
+</ul>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
+<li>版本管理</li>
+<li>模块化</li>
+<li>打包工具</li>
+</ul>
+<h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><ul>
+<li>页面渲染</li>
+<li>性能优化</li>
+</ul>
+<p><strong>题目</strong></p>
+<ul>
+<li>JS中使用typeof能得到的哪些类型？</li>
+<li>何时使用===何时使用==？</li>
+<li>window.onload和DOMContentLoaded的区别？</li>
+<li>用JS创建10个a标签，点击的时候弹出来对应的序号</li>
+<li>简述如何实现一个模块加载器，实现类似require.js的基本功能</li>
+<li>实现数组的随机排序</li>
+</ul>
+<p><strong>引用类型</strong></p>
+<p>对象、数组、函数</p>
+<p><strong>变量计算 - 强制类型转换</strong></p>
+<ul>
+<li>字符串拼接</li>
+<li>==运算符</li>
+<li>if语句</li>
+<li>逻辑运算</li>
+</ul>
+<p><strong>JS中的内置函数</strong> - 数据封装类对象</p>
+<ul>
+<li>Object</li>
+<li>Array</li>
+<li>Boolean</li>
+<li>Number</li>
+<li>String</li>
+<li>Function</li>
+<li>Date</li>
+<li>RegExp</li>
+<li>Error</li>
+</ul>
+<p><strong>JS按存储方式区分变量类型</strong></p>
+<p><strong>如何理解JSON</strong></p>
+<p>JSON只不过是一个JS对象而已如Math</p>
+<h2 id="原型和原型链-构造函数"><a href="#原型和原型链-构造函数" class="headerlink" title="原型和原型链-构造函数"></a>原型和原型链-构造函数</h2><p><strong>题目</strong></p>
+<ul>
+<li>如何准确判断一个变量是数组类型</li>
+<li>写一个原型链继承的例子</li>
+<li>描述new一个对象的过程</li>
+<li>zepto(或其他框架)源码中如何使用原型链</li>
+</ul>
+<p><strong>知识点</strong></p>
+<ul>
+<li>构造函数</li>
+<li>构造函数-扩展</li>
+<li>原形规则和示例</li>
+<li>原型链</li>
+<li>instanceof</li>
+</ul>
+<p><strong>构造函数</strong></p>
+<pre><code>function Foo(name, age){ // Foo 构造函数首字母一般大写
+    this.name = name
+    this.age = age
+    this.class = &apos;class-1&apos;
+    // return this  // 默认有这一行
+}
+var f = new Foo(&apos;zhangsan&apos;, 20)
+// var f1 = new Foo(&apos;lisi&apos;, 22) // 创建多个对象
+</code></pre><p>执行过程：</p>
+<p>this变成空对象 -》 赋值</p>
+<p>扩展</p>
+<ul>
+<li>var a = {} 其实是var a = new Object()的语法糖</li>
+<li>var a = [] 其实是var a = new Array()的语法糖</li>
+<li>function Foo(){…}其实是var Foo = new Function(…)</li>
+<li>使用instanceof判断一个函数是否是一个变量的构造函数</li>
+</ul>
+<p>==》 判断一个变量是否为“数组”：变量instanceof Array</p>
+<h2 id="原形规则和示例"><a href="#原形规则和示例" class="headerlink" title="原形规则和示例"></a>原形规则和示例</h2><p><strong>5条原型规则</strong></p>
+<ul>
+<li>所有的引用类型（数组、对象、函数），都具有对象特性，即可自由扩展属性（除了“null”意外）</li>
+<li>所有的引用类型（数组、对象、函数），都有一个<em>proto</em>属性，属性值是一个普通的对象（<em>proto</em>：隐式原型）</li>
+<li>所有的函数，都有一个prototype属性，属性值也是一个普通的对象（prototype：显式原型）</li>
+<li>所有的引用类型（数组、对象、函数），<em>proto</em>属性值指向它的构造函数的“prototype”属性值</li>
+<li><p>当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的<em>proto</em>（即它的构造函数的prototype）中寻找。</p>
+<p>  var obj = {}; obj.a = 100;<br>  var arr = []; arr.a = 100;<br>  function fn() {}<br>  fn.a = 100;</p>
+<p>  console.log(obj.<em>proto</em>);<br>  console.log(arr.<em>proto</em>);<br>  console.log(fn.<em>proto</em>);</p>
+<p>  console.log(fn.prototype)</p>
+<p>  console.log(obj.<em>proto</em> === Object.prototype)</p>
+</li>
+</ul>
+<p>示例：</p>
+<pre><code>// 构造函数
+function Foo(name, age) {
+    this.name = name
+}
+Foo.prototype.alertName = function () {
+    alert(this.name)
+}
+// 创建示例
+var f = new Foo(&apos;zhangsan&apos;)
+f.printName = function () {
+    console.log(this.name)
+}
+// 测试
+f.printName()
+f.alertName()
+</code></pre><p><strong>扩展</strong></p>
+<p>this</p>
+<pre><code>// 测试
+f.printName()
+f.alertName()
+
+this 就是指向f
+</code></pre><p>循环对象自身的属性</p>
+<pre><code>var item
+for (item in f) {
+    // 高级浏览器已经在for in 中屏蔽了来自原型的属性
+    // 但是这里建议大家还是加上这个判断，保证程序的健壮性
+    if (f.hasOwnProperty(item)) {
+        console.log(item)
+    }
+}
+</code></pre><h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><pre><code>// .......
+//测试
+f.toString()  // 要去 f._proto_._proto_中查找
+</code></pre><h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><p>用于判断引用类型属于哪个构造函数的方法</p>
+<ul>
+<li>f instanceof Foo的判断逻辑是：</li>
+<li>f的<em>proto</em>一层一层往上，能否对应到Foo.prototype</li>
+<li>再试着判断f instanceof Object</li>
+</ul>
+<h2 id="问题与解答"><a href="#问题与解答" class="headerlink" title="问题与解答"></a>问题与解答</h2><p><strong>如何判断一个变量是数组类型</strong></p>
+<pre><code>var arr = []
+arr instanceof Array // true
+typeof arr // object, typeof 是无法判断是否是数组的
+</code></pre><p><strong>写一个原型链继承的例子</strong></p>
+<pre><code>// 动物
+function Animal() {
+    this.eat = function() {
+        console.log(&apos;animal eat&apos;)
+    }
+}
+// 狗
+function Dog() {
+    this.bark = function() {
+        console.log(&apos;dog bark&apos;)
+    }
+}
+Dog.prototype = new Animal()
+// 哈士奇
+var hashiqi = new Dog()
+// 接下的代码演示时，会推荐更加贴近实战的原型继承示例！
+</code></pre><p><strong>描述new一个对象的过程</strong></p>
+<ul>
+<li>创建一个新对象</li>
+<li>this指向这个新对象</li>
+<li>执行代码，即对this赋值</li>
+<li><p>返回this</p>
+<p>  function Elem(id) {<br>  this.elem = document.getElementById(id)<br>  }</p>
+<p>  Elem.prototype.html = function(val) {</p>
+<pre><code>var elem = this.elem
+if (val) {
+    elem.innerHTML = val
+    return this // 链式操作
+} else {
+    return elem.innerHTML
+}
+</code></pre><p>  }</p>
+<p>  Elem.prototype.on = function(type, fn) {</p>
+<pre><code>var elem = this.elem
+elem.addEventListener(type, fn)
+return this
+</code></pre><p>  }</p>
+<p>  var div1 = new Elem(‘div1’)<br>  // console.log(div1.html())<br>  // div1.html(‘</p><p>hello imooc</p>‘)<br>  // div1.on(‘click’, function() {<br>  //     alert(‘clicked’)<br>  // })<p></p>
+<p>  div1.html(‘</p><p>hello imooc</p>‘).on(‘click’, function() {<p></p>
+<pre><code>alert(&apos;clicked&apos;)
+</code></pre><p>  }).html(‘</p><p>javascript</p>‘)<p></p>
+</li>
+</ul>
+<p><strong>zepto（或其他框架）源码中如何使用原型链</strong></p>
+<ul>
+<li>阅读源码是高效提高技能的方式</li>
+<li>但不能“埋头苦钻”有技巧在其中</li>
+<li>慕课网搜索“zepto设计和源码分析”</li>
+</ul>
+<h2 id="作用域和闭包"><a href="#作用域和闭包" class="headerlink" title="作用域和闭包"></a>作用域和闭包</h2><p><strong>题目</strong></p>
+<ul>
+<li>说一下对变量提升的理解</li>
+<li>说明this几种不同的使用场景</li>
+<li>创建10个a标签，点击的时候弹出来对应的序号</li>
+<li>如何理解作用域</li>
+<li>实际开发中闭包的应用</li>
+</ul>
+<p><strong>知识点</strong></p>
+<ul>
+<li>执行上下文</li>
+<li>this</li>
+<li>作用域</li>
+<li>作用域链</li>
+<li>闭包</li>
+</ul>
+<p><strong>执行上下文</strong></p>
+<pre><code>console.log(a)  // undefined
+var a = 100
+
+fn(&apos;zhangsan&apos;) // &apos;zhangsan&apos; 20
+function fn(name) {
+    age = 20
+    console.log(name, age)
+    var age
+}
+</code></pre><ul>
+<li>范围：一段script或者一个函数</li>
+<li>全局：变量定义、函数声明            一段script</li>
+<li>函数：变量定义、函数声明、this、arguments            函数</li>
+</ul>
+<p>PS：注意“函数声明”和“函数表达式”的区别</p>
+<p><strong>this</strong></p>
+<ul>
+<li><p>this要在执行时才能确认值，定义时无法确认</p>
+<p>  var a = {</p>
+<pre><code>name: &apos;A&apos;,
+fn: function() {
+    console.log(this.name)
+}
+</code></pre><p>  }<br>  a.fn()  // this === a<br>  a.fn.call({name: ‘B’}) // this === {name: ‘B’}<br>  var fn1 = a.fn<br>  fn1() // this === window</p>
+</li>
+<li><p>作为构造函数执行</p>
+</li>
+<li>作为对象属性执行</li>
+<li>作为普通函数执行</li>
+<li>call    apply    bind</li>
+</ul>
+<p><strong>作用域</strong></p>
+<pre><code>// 无块级作用域
+if (true) {
+    var name = &apos;zhangsan&apos;
+}
+console.log(name)
+
+// 函数和全局作用域
+var a = 100
+function fn() {
+    var a = 200
+    console.log(&apos;fn&apos;, a)
+}
+console.log(&apos;global&apos;, a)
+fn()
+</code></pre><ul>
+<li>没有块级作用域</li>
+<li>只有函数和全局作用域</li>
+</ul>
+<p><strong>作用域链</strong></p>
+<pre><code>var a = 100
+function fn() {
+    var b = 200
+
+    // 当前作用域没有定义的变量，即“自由变量”
+    console.log(a)
+
+    console.log(b)
+}
+fn()
+
+var a = 100
+function F1() {
+    var b = 200
+    function F2() {
+        var c = 300
+        console.log(a) // a是自由变量
+        console.log(b) // b是自由变量
+        console.log(c)
+    }
+    F2()
+}
+F1()
+</code></pre><p><strong>闭包</strong></p>
+<pre><code>function F1() {
+    var a = 100
+
+    // 返回一个函数（函数作为返回值）
+    return function() { // 函数定义时的*父*作用域
+        console.log(a) // 自由变量，父作用域寻找
+    }
+}
+// f1 得到一个函数
+var f1 = F1()
+var a = 200
+f1()
+</code></pre><p><strong>闭包的使用场景</strong></p>
+<ul>
+<li>函数作为返回值（上一个demo）</li>
+<li>函数作为参数传递（自己思考）</li>
+</ul>
+<p>作为参数</p>
+<pre><code>function F1() {
+    var a = 100
+    return function() {
+        console.log(a) // 自由变量，父作用域寻找
+    }
+}
+var f1 = F1()
+
+function F2(fn) {
+    var a = 200
+    fn()
+}
+F2(f1)
+</code></pre><p><strong>说一下对变量提升的理解</strong></p>
+<ul>
+<li>变量定义</li>
+<li>函数声明（注意和函数表达式的区别）</li>
+</ul>
+<p><strong>说明this几种不同的使用场景</strong></p>
+<ul>
+<li>作为构造函数执行</li>
+<li>作为对象属性执行</li>
+<li>作为普通函数执行</li>
+<li>call    apply    bind</li>
+</ul>
+<p>创建10个a标签 点击的时候弹出来对应的序号</p>
+<pre><code>// 这是一个错误的写法！！！
+var i, a
+for(i =0; i&lt;10; i++) {
+    a = document.createElement(&apos;a&apos;)
+    a.innerHTML = i + &apos;&lt;br&gt;&apos;
+    a.addEventListener(&apos;click&apos;, function(e) {
+        e.preventDefault()
+        alert(i) // 自由变量，要去父作用域获取值
+    })
+    document.body.appendChild(a)
+}
+
+// 这是正确的写法！！！
+var i 
+for(i = 0;i&lt;10;i++) {
+    (function(i) {
+        // 函数作用域
+        var a = document.createElement(&apos;a&apos;)
+        a.innerHTML = i + &apos;&lt;br&gt;&apos;
+        a.addEventListener(&apos;click&apos;, function(e) {
+            e.preventDefault()
+            alert(i)
+        })
+        document.body.appendChild(a)
+    })(i)
+}
+</code></pre><p>自执行函数，就是不用调用，只要定义完成，立即执行的函数</p>
+<p><strong>如何理解作用域</strong></p>
+<ul>
+<li>自由变量</li>
+<li>作用域链，即自由变量的查找</li>
+<li>闭包的两个场景</li>
+</ul>
+<p><strong>实际开发中闭包的应用</strong></p>
+<pre><code>// 闭包实际应用中主要用于封装变量，收敛权限
+function isFirstLoad() {
+    var _list = []
+    return function(id) {
+        if (_list.indexOf(id) &gt;= 0) {
+            return false
+        } else {
+            _list.push(id) 
+            return true
+        }
+    }
+}
+
+//使用
+var firstLoad = isFirstLoad()
+firstLoad(10) // true
+firstLoad(10) // false
+firstLoad(20) // true
+</code></pre><h2 id="异步和单线程"><a href="#异步和单线程" class="headerlink" title="异步和单线程"></a>异步和单线程</h2><p><strong>题目</strong></p>
+<ul>
+<li>同步和异步的区别是什么？分别举一个同步和异步的例子</li>
+<li>一个关于setTimeout的笔试题</li>
+<li>前端使用异步的场景有哪些</li>
+</ul>
+<p><strong>知识点</strong></p>
+<ul>
+<li>什么是异步（对比同步）</li>
+<li>前端使用异步的场景</li>
+<li>异步和单线程</li>
+</ul>
+<p><strong>什么是异步</strong></p>
+<pre><code>console.log(100)
+setTimeout(function() {
+    console.log(200)
+}, 1000)
+console.log(300)
+</code></pre><p>对比同步</p>
+<pre><code>console.log(100)
+alert(200) // 1秒钟之后点击确认
+console.log(300)
+</code></pre><p><strong>何时需要异步</strong></p>
+<ul>
+<li>在可能发生等待的情况</li>
+<li>等待过程中不能像alert一样阻塞程序运行</li>
+<li>因此，所以的“等待的情况”都需要异步</li>
+</ul>
+<p><strong>前端使用异步的场景</strong><br>.</p>
+<ul>
+<li>定时任务：setTimeout，setInterval</li>
+<li>网络请求：ajax请求，动态img标签加载</li>
+<li>事件绑定</li>
+</ul>
+<p>ajax请求代码示例</p>
+<pre><code>console.log(&apos;start&apos;)
+$.get(&apos;./data1.json&apos;, function(data1) {
+    console.log(data1)
+})
+console.log(&apos;end&apos;)
+</code></pre><p>img标签加载示例</p>
+<pre><code>console.log(&apos;start&apos;)
+var img = document.createElement(&apos;img&apos;)
+img.onload = function() {
+    console.log(&apos;loaded&apos;)
+}
+img.src = &apos;/xxx.png&apos;
+console.log(&apos;end&apos;)
+</code></pre><p>事件绑定示例</p>
+<pre><code>console.log(&apos;start&apos;)
+document.getElementById(&apos;btn1&apos;).addEventListener
+(&apos;click&apos;, function(){
+    alert(&apos;clicked&apos;)
+})
+console.log(&apos;end&apos;)
+</code></pre><p><strong>异步和单线程</strong></p>
+<pre><code>console.log(100)
+setTimeout(function() {
+    console.log(200)
+}, 1000)
+console.log(300)
+</code></pre><ul>
+<li>执行第一行，打印100</li>
+<li>执行setTimeout后，传入setTimeout的函数会被暂存起来，不会立即执行（单线程的特点，不能同时干两件事）</li>
+<li>执行最后一行，打印300</li>
+<li>待所有程序执行完，处于空闲状态时，会立马看有没有暂存起来的要执行。</li>
+<li>发现暂存起来的setTimeout中的函数无需等待时间，就立即来过来执行</li>
+</ul>
+<p><strong>同步和异步的区别是什么</strong></p>
+<ul>
+<li>同步会阻塞代码执行，而异步不会</li>
+<li>alert是同步，setTimeout是异步</li>
+</ul>
+<p><strong>一个关于setTimeout的笔试题</strong></p>
+<pre><code>console.log(1)
+setTimeout(function() {
+    console.log(2)
+}, 0)
+console.log(3)
+setTimeout(function() {
+    console.log(4)
+}, 1000)
+console.log(5)
+</code></pre><h2 id="其他知识"><a href="#其他知识" class="headerlink" title="其他知识"></a>其他知识</h2><p><strong>题目</strong></p>
+<ul>
+<li>获取 2017-06-10 格式的日期</li>
+<li>获取随机数，要求是长度一致的字符串格式</li>
+<li>写一个能遍历对象和数组的通用forEach函数</li>
+</ul>
+<p><strong>知识点</strong></p>
+<ul>
+<li>日期</li>
+<li>Math</li>
+<li>数组API</li>
+<li>对象API</li>
+</ul>
+<p><strong>日期</strong></p>
+<pre><code>Date.now()    // 获取当前时间毫秒数
+var dt = new Date() 
+dt.getTime() // 获取毫秒数
+dt.getFullYear() // 年
+dt.getMonth() // 月（0 - 11）
+dt.getDate() // 日（0 - 31）
+dt.getHours() // 小时（0 - 23）
+dt.getMinutes() // 分钟（0 - 59）
+dt.getSeconds() // 秒（0 -59）
+</code></pre><p><strong>Math</strong></p>
+<ul>
+<li>获取随机数Math.random()</li>
+</ul>
+<p><strong>数组API</strong></p>
+<ul>
+<li>forEach 遍历所有元素</li>
+<li>every 判断所有元素是否都符合条件</li>
+<li>some 判断是否有至少一个元素符合条件</li>
+<li>sort 排序</li>
+<li>map 对元素重新组装，生成新数组</li>
+<li>filter 过滤符合条件的元素</li>
+</ul>
+<p>forEach</p>
+<pre><code>var arr = [1,2,3]
+arr.forEach(function(item, index) {
+    // 遍历数组的所有元素
+    console.log(index, item)
+})
+</code></pre><p>every </p>
+<pre><code>var arr = [1,2,3]
+var result = arr.every(function (item, index) {
+    // 用来判断所有的数组元素，都满足一个条件
+    if (item &lt; 4) {
+        return true
+    }
+})
+console.log(result)
+</code></pre><p>some </p>
+<pre><code>var arr = [1,2,3]
+var result = arr.some(function (item, index) {
+    // 用来判断所有的数组元素，只要有一个满足条件即可
+    if (item &lt; 2) {
+        return true
+    }
+})
+console.log(result)
+</code></pre><p>sort</p>
+<pre><code>var arr = [1,4,2,3,5]
+var arr2 = arr.sort(function(a,b) {
+    // 从小到大排序
+    return a - b
+
+    // 从大到小排序
+    // return b - a
+})
+console.log(arr2)
+</code></pre><p>map </p>
+<pre><code>var arr = [1,2,3,4]
+var arr2 = arr.map(function(item, index) {
+    // 将元素重新组装，并返回
+    return &apos;&lt;b&gt;&apos; + item + &apos;&lt;/b&gt;&apos;
+})
+console.log(arr2)
+</code></pre><p>filter</p>
+<pre><code>var arr = [1,2,3]
+var arr2 = arr.filter(function(item, index) {
+    // 通过某一个条件过滤数组
+    if (item &gt;= 2) {
+        return true
+    }
+})
+console.log(arr2)
+</code></pre><p><strong>对象API</strong></p>
+<pre><code>var obj = {
+    x: 100,
+    y: 200,
+    z: 300
+}
+var key
+for(key in obj) {
+    // 注意这里的hasOwnProperty，再讲原型链时候讲过了
+    if (obj.hasOwnProperty(key)){
+        console.log(key, obj[key])
+    }
+}
+</code></pre><p><strong>获取2017-06-10格式的日期</strong></p>
+<pre><code>function formatDate(dt) {
+    if (!dt) {
+        dt = new Date()
+    }
+    var year = dt.getFullYear()
+    var month  = dt.getMonth() + 1
+    var date = dt.getDate()
+    if (month &lt; 10) {
+        // 强制类型转换
+        month = &apos;0&apos; + month
+    }
+    if (date &lt; 10) {
+        // 强制类型转换
+        date = &apos;0&apos; + date
+    }
+    // 强制类型转换
+    return year + &apos;-&apos; + month + &apos;-&apos; + date
+}
+var dt = new Date()
+var formatDate = formatDate(dt)
+console.log(formatDate)
+</code></pre><p><strong>获取随机数，要求是长度一致的字符串格式</strong></p>
+<pre><code>var random = Math.random()
+var random = random + &apos;0000000000&apos; // 后面加上10个零
+var random = random.slice(0, 10)
+console.log(random)
+</code></pre><p>写一个能遍历对象和数组的forEach函数</p>
+<pre><code>function forEach(obj, fn) {
+    var key 
+    if (obj instanceof Array) {
+        // 准确判断是不是数组
+        obj.forEach(function(item, index){
+            fn(index, item)
+        })
+    } else {
+        // 不是数组就是对象
+        for(key in  obj) {
+            fn(key, obj[key])
+        }
+    }
+}
+
+var arr = [1,2,3]
+// 注意，这里参数的顺序换了，为了和对象的遍历格式一致
+forEach(arr, function(index, item) {
+    console.log(index, item)
+})
+
+var obj = {x: 100, y: 200}
+forEach(obj, function(key, value) {
+    console.log(key, value)
+})
+</code></pre><h2 id="JS-Web-API"><a href="#JS-Web-API" class="headerlink" title="JS-Web-API"></a>JS-Web-API</h2><ul>
+<li>W3C标准中关于JS的规定有：</li>
+<li>DOM操作</li>
+<li>BOM操作</li>
+<li>事件绑定</li>
+<li>ajax请求（包括http协议）</li>
+<li><p>存储</p>
+</li>
+<li><p>页面弹框是window.alert(123)，浏览器需要做：</p>
+</li>
+<li>定义一个window全局变量，对象类型</li>
+<li>给它定义一个alert属性，属性值是一个函数</li>
+</ul>
+<hr>
+<ul>
+<li>但是W3C标准没有规定任何JS基础相关的东西</li>
+<li>不管什么变量类型、原型、作用域和异步</li>
+<li>只管定义用于浏览器中JS操作页面的API和全局变量</li>
+</ul>
+<hr>
+<ul>
+<li>全面考虑，JS内置的全局函数和对象有哪些？</li>
+<li>之前讲过的Object Array Boolean String Math JSON等</li>
+<li>刚刚提到的window document</li>
+<li>接下来还有继续讲到的所有未定义的全局变量，如navigator.userAgent</li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li>常说的JS（浏览器执行的JS）包含两部分：</li>
+<li>JS基础知识（ECMA262标准）</li>
+<li>JS-Web-API（W3C标准）</li>
+</ul>
+<p><strong>DOM操作</strong></p>
+<p>Document    Object    Model</p>
+<p><strong>题目</strong></p>
+<ul>
+<li>DOM是哪种基本的数据结构？</li>
+<li>DOM操作的常用API有哪些</li>
+<li>DOM节点的attr和property有何区别</li>
+</ul>
+<p><strong>DOM的本质</strong></p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;note&gt;
+    &lt;to&gt;Tove&lt;/to&gt;
+    &lt;from&gt;Jani&lt;/from&gt;
+    &lt;heading&gt;Reminder&lt;/heading&gt;
+    &lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;
+    &lt;other&gt;
+        &lt;a&gt;&lt;/a&gt;
+        &lt;b&gt;&lt;/b&gt;
+    &lt;/other&gt;
+&lt;/note&gt;
+</code></pre><hr>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;p&gt;this is p&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>DOM节点操作</strong></p>
+<p>DOM可以理解为：</p>
+<p>浏览器吧拿到的html代码，结构化一个浏览器能识别并且js可操作的一个模型而已。</p>
+<ul>
+<li>获取DOM节点</li>
+<li>prototype</li>
+<li>Attribute</li>
+</ul>
+<p><strong>获取DOM节点</strong></p>
+<pre><code>var div1 = document.getElementById(&apos;div1&apos;) // 元素
+var divList = document.getElementsByTagName
+(&apos;div&apos;) // 集合
+console.log(divList.length)
+console.log(divList[0])
+
+var containerList = document.getElementsByClassName
+(&apos;.container&apos;) // 集合
+var pList = document.querySelectorAll(&apos;p&apos;) // 集合
+</code></pre><p><strong>property</strong></p>
+<pre><code>var pList = document.querySelectorAll(&apos;p&apos;)
+var p = pList[0]
+console.log(p.style.width) // 获取样式
+p.style.width = &apos;100px&apos; // 修改样式
+console.log(p.className) // 获取class
+p.className = &apos;p1&apos; // 修改class
+
+// 获取nodeName和nodeType
+console.log(p.nodeName)
+console.log(p.nodeType)
+</code></pre><p><strong>Attribute</strong></p>
+<pre><code>var pList = document.querySelectorAll(&apos;p&apos;)
+var p = pList[0]
+p.getAttribute(&apos;data-name&apos;)
+p.setAttribute(&apos;data-name&apos;, &apos;imooc&apos;)
+p.getAttribute(&apos;style&apos;)
+p.setAttribute(&apos;style&apos;, &apos;font-size:30px;&apos;)
+</code></pre><p><strong>DOM结构操作</strong></p>
+<ul>
+<li>新增节点</li>
+<li>获取父元素</li>
+<li>获取子元素</li>
+<li>删除节点</li>
+</ul>
+<p><strong>新增节点</strong></p>
+<pre><code>var div1 = document.getElementById(&apos;div1&apos;)
+// 添加新节点
+var p1 = document.createElement(&apos;p&apos;)
+p1.innerHTML = &apos;this is p1&apos;
+div1.appendChild(p1) // 添加新创建的元素
+// 移动已有节点
+var p2 = document.getElementById(&apos;p2&apos;)
+div1.appendChild(p2)
+</code></pre><p><strong>获取父元素和子元素</strong></p>
+<pre><code>var div1 = document.getElementById(&apos;div1&apos;)
+var parent = div1.parentElement
+
+var child = div1.childNodes
+div1.removeChild(child[0])
+</code></pre><p><strong>解答</strong></p>
+<ul>
+<li>DOM是哪种基本的数据结构？</li>
+<li>DOM操作的常用API有哪些</li>
+<li>DOM节点的Attribute和property有何区别</li>
+</ul>
+<p><strong>DOM是哪种基本的数据结构</strong></p>
+<ul>
+<li>树</li>
+</ul>
+<p><strong>DOM操作的常用API有哪些</strong></p>
+<ul>
+<li>获取DOM节点，以及节点的property和Attribute</li>
+<li>获取父节点，获取子节点</li>
+<li>新增节点，删除节点</li>
+</ul>
+<p>DOM节点的Attribute和property有何区别</p>
+<ul>
+<li>property只是一个JS对象的属性的修改</li>
+<li>Attribute是对html标签属性的修改</li>
+</ul>
+<p><strong>BOM操作</strong></p>
+<p>Browser    Object    Model</p>
+<p><strong>题目</strong></p>
+<ul>
+<li>如何检测浏览器的类型</li>
+<li>拆解url的各部分</li>
+</ul>
+<p><strong>navigator &amp; screen</strong></p>
+<pre><code>// navigator
+var ua = navigator.userAgent
+var isChrome = ua.indexOf(&apos;Chrome&apos;)
+console.log(isChrome)
+
+// screen
+console.log(screen.width)
+console.log(screen.height)
+</code></pre><p><strong>location &amp; history</strong></p>
+<pre><code>// location 
+console.log(location.href)
+console.log(location.protocol) // &apos;http:&apos; &apos;https:&apos;
+console.log(location.host) // 域名
+console.log(location.pathname) // &apos;/learn/199&apos;
+console.log(location.search)
+console.log(location.hash)
+
+// history
+history.back()
+history.forward()
+</code></pre><p><strong>如何检测浏览器的类型</strong></p>
+<pre><code>var ua = navigator.userAgent
+var isChrome = ua.indexOf(&apos;Chrome&apos;)
+console.log(isChrome)
+</code></pre><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p><strong>题目</strong></p>
+<ul>
+<li>编写一个通用的事件监听函数</li>
+<li>描述事件冒泡流程</li>
+<li>对于一个无限下拉加载图片的页面，如何给每个图片绑定事件</li>
+</ul>
+<p><strong>通用事件绑定</strong></p>
+<pre><code>var btn = document.getElementById(&apos;bnt1&apos;)
+btn.addEventListener(&apos;click&apos;, function(event) {
+    console.log(&apos;clicked&apos;)
+})
+function bindEvent(elem, type, fn){
+    elem.addEventListener(type, fn)
+}
+
+var a = document.getElementById(&apos;link1&apos;)
+bindEvent(a, &apos;click&apos;, function(e) {
+    e.preventDefault() // 阻止默认行为
+    alert(&apos;clicked&apos;)
+})
+</code></pre><p><strong>关于IE低版本的兼容性</strong></p>
+<ul>
+<li>IE低版本使用attachEvent绑定事件，和W3C标准不一样</li>
+<li>IE低版本使用量已非常少，很多网站都早已不支持</li>
+<li>建议对IE低版本的兼容性：了解即可，无需深究</li>
+<li>如果遇到对IE低版本要求苛刻的面试，果断放弃</li>
+</ul>
+<p><strong>事件冒泡</strong></p>
+<pre><code>&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;
+        &lt;p id=&quot;p1&quot;&gt;激活&lt;/p&gt;
+        &lt;p id=&quot;p2&quot;&gt;取消&lt;/p&gt;
+        &lt;p id=&quot;p3&quot;&gt;取消&lt;/p&gt;
+        &lt;p id=&quot;p4&quot;&gt;取消&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;div2&quot;&gt;
+        &lt;p id=&quot;p5&quot;&gt;取消&lt;/p&gt;
+        &lt;p id=&quot;p6&quot;&gt;取消&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre><hr>
+<pre><code>var p1 = document.getElementById(&apos;p1&apos;)
+var body = document.body
+function bindEvent(elem, type, fn){
+    elem.addEventListener(type, fn)
+}
+
+bindEvent(p1, &apos;click&apos;, function(e) {
+    e.stopPropatation() // 阻止默认行为
+    alert(&apos;激活&apos;)
+})
+bindEvent(body, &apos;click&apos;, function(e) {
+    alert(&apos;取消&apos;)
+})
+</code></pre><p><strong>代理</strong></p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+   &lt;a href=&quot;#&quot;&gt;a1&lt;/a&gt;
+   &lt;a href=&quot;#&quot;&gt;a2&lt;/a&gt;
+   &lt;a href=&quot;#&quot;&gt;a3&lt;/a&gt;
+   &lt;a href=&quot;#&quot;&gt;a4&lt;/a&gt;
+   &lt;!-- 会随时新增更多a标签 --&gt;
+&lt;/div&gt;
+</code></pre><hr>
+<pre><code>var div1 =document.getElementById(&apos;div1&apos;)
+div1.addEventListener(&apos;click&apos;, function(e) {
+    var target = e.target
+    if(target.nodeName === &apos;A&apos;) {
+        alert(target.innerHTML)
+    }
+})
+</code></pre><p><strong>完善通用绑定事件的函数</strong></p>
+<pre><code>function bindEvent(elem, type, selector, fn) {
+    if (fn == null) {
+        fn = selector
+        selector = null
+    }
+    elem.addEventListener(type, function(e) {
+        var target
+        if(selector) {
+            target = e.target
+            if(target.matchs(selector)) {
+                fn.call(target, e)
+            }
+        } else {
+            fn(e)
+        }
+    })
+}
+</code></pre><hr>
+<pre><code>// 使用代理
+var div1 = document.getElementById(&apos;div1&apos;)
+bindEvent(div1, &apos;click&apos;, &apos;a&apos;, function(e) {
+    console.log(this.innerHTML)
+})
+
+// 不使用代理
+var a = document.getElementById(&apos;a1&apos;)
+bindEvent(div1, &apos;click&apos;, function(e) {
+    console.log(a.innerHTML)
+})
+</code></pre><p><strong>代理的好处</strong></p>
+<ul>
+<li>代码简洁</li>
+<li>减少浏览器内存占用</li>
+</ul>
+<p><strong>简述事件冒泡流程</strong></p>
+<ul>
+<li>DOM树形结构</li>
+<li>事件冒泡</li>
+<li>阻止冒泡</li>
+<li>冒泡的应用</li>
+</ul>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p><strong>题目</strong></p>
+<ul>
+<li>手动编写一个ajax，不依赖第三方库</li>
+<li>跨域的几种实现方式</li>
+</ul>
+<p>imooc.com    m.imooc.com     coding.imooc.com</p>
+<p><strong>知识点</strong></p>
+<ul>
+<li>XMLHttpRequest</li>
+<li>状态码说明</li>
+<li>跨域</li>
+</ul>
+<p><strong>XMLHttpRequest</strong></p>
+<pre><code>var xhr = new XMLHttpRequest()
+xhr.open(&apos;GET&apos;, &apos;/api&apos;, false)
+xhr.onreadystatechange = function() {
+    // 这里的函数异步执行，可参考之前JS基础中的异步模块
+    if(xhr.readyState == 4) {
+        if(xhr.status == 200) {
+            alert(xhr.responseText)
+        }
+    }
+}
+xhr.send(null)
+</code></pre><p><strong>IE兼容性问题</strong></p>
+<ul>
+<li>IE低版本使用ActiveXObject，和W3C标准不一样</li>
+<li>IE低版本使用量以非常少，很多网站都早已不支持</li>
+<li>建议对IE低版本的兼容性：了解即可，无需深究</li>
+</ul>
+<p><strong>状态码说明</strong></p>
+<p><strong>readyState</strong></p>
+<ul>
+<li>0 -（未初始化）还没有调用send()方法</li>
+<li>1 -（载入）已调用send()方法，正在发送请求</li>
+<li>2 -（载入完成）send()方法执行完成，已经接收到全部响应内容</li>
+<li>3 -（交互）正在解析响应内容</li>
+<li>4 -（完成）响应内容解析完成，可以在客户端调用了</li>
+</ul>
+<p><strong>status</strong></p>
+<ul>
+<li>2xx - 表示成功处理请求。如200</li>
+<li>3xx - 需要重定向，浏览器直接跳转</li>
+<li>4xx - 客户端请求错误，如404</li>
+<li>5xx - 服务器端错误</li>
+</ul>
+<p><strong>跨域</strong></p>
+<ul>
+<li>什么是跨域</li>
+<li>JSONP</li>
+<li>服务器端设置http header</li>
+</ul>
+<p><strong>什么是跨域</strong></p>
+<ul>
+<li>浏览器有同源策略，不允许ajax访问其他域接口</li>
+<li>你的网站</li>
+<li>别的网站</li>
+<li>跨域条件：协议、域名、端口，有一个不同就算跨域</li>
+</ul>
+<p><strong>可以跨域的三个标签</strong></p>
+<ul>
+<li>但是有三个标签允许跨域加载资源</li>
+<li>img src=xxx</li>
+<li>link href=xxxx</li>
+<li>script src=xxx</li>
+</ul>
+<p><strong>三个标签的场景</strong></p>
+<ul>
+<li>img用于打点统计，统计网站可能是其他域</li>
+<li>link、script可以使用CDN,CDN的也是其他域</li>
+<li>script可以用于JSONP。</li>
+</ul>
+<p><strong>跨域注意事项</strong></p>
+<ul>
+<li>所有的跨域请求都必须经过信息提供方允许</li>
+<li>如果未经允许即可获取，那是浏览器同源策略出现漏洞</li>
+</ul>
+<p><strong>JSONP实现原理</strong></p>
+<ul>
+<li>加载<a href="http://coding.m.imooc.com/classindex.html" target="_blank" rel="noopener">http://coding.m.imooc.com/classindex.html</a></li>
+<li>不一定服务器端真正有一个classindex.html文件</li>
+<li>服务器可以根据请求，动态生成一个文件，返回</li>
+<li>同理于script src=”<a href="http://coding.m.imooc.com/api.js&quot;" target="_blank" rel="noopener">http://coding.m.imooc.com/api.js&quot;</a></li>
+</ul>
+<hr>
+<pre><code>window.callback = function (data) {
+    // 这是我们跨域得到信息
+    console.log(data)
+}
+&lt;/script&gt;
+&lt;script src=&quot;http://coding.m.imooc.com/api.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 以上将返回 callback({x:100, y:200}) --&gt;
+</code></pre><p><strong>服务器端设置http header</strong></p>
+<ul>
+<li>另外一个解决跨域的简洁方法，需要服务器端来做</li>
+<li>但是作为交互方，我们必须知道这个方法</li>
+<li>是将来解决跨域问题的一个趋势</li>
+</ul>
+<hr>
+<pre><code>// 注意：不同后端语言的写法可能不一样
+
+// 第二个参数填写允许跨域的域名城，不建议直接写“*”
+response.setHeader(&quot;Access-Control-Allow-Origin&quot;, 
+&quot;http://a.com, http://b.com&quot;);
+response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;X-
+Requested-With&quot;);
+response.setHeader(&quot;Access-Control-Allow-Methods&quot;,
+ &quot;PUT,POST,GET,DELETE,OPTIONS&quot;);
+
+// 接收跨域的cookie
+response.setHeader(&quot;Access-Control-Allow-Credentials&quot;,
+ &quot;true&quot;);
+</code></pre><h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p><strong>题目</strong></p>
+<ul>
+<li>请描述一下cookie，sessionStorage和localStorage的区别？</li>
+</ul>
+<p><strong>cookie</strong></p>
+<ul>
+<li>本身用于客户端和服务器端通信</li>
+<li>但是它有本地存储的功能，于是就被“借用”</li>
+<li>使用document.cookie=…获取和修改即可</li>
+</ul>
+<p><strong>cookie用于存储的缺点</strong></p>
+<ul>
+<li>存储量太小，只有4KB</li>
+<li>所有http请求都带着，会影响获取资源的效率</li>
+<li>API简单，需要封装才能用 document.cookie = …</li>
+</ul>
+<p><strong>locationStorage和sessionStorage</strong></p>
+<ul>
+<li>HTML5专门为存储而设计，最大容量5M</li>
+<li>API简答易用：</li>
+<li>localStorage.setItem(key,value); localStorage.getItem(key);</li>
+</ul>
+<p>坑</p>
+<ul>
+<li>iOS safari隐藏模式下</li>
+<li>localStorage.getItem会报错</li>
+<li>建议统一使用try-catch封装</li>
+</ul>
+<p><strong>cookie sessionStorage localStorage的区别</strong></p>
+<ul>
+<li>容量</li>
+<li>是否会携带到ajax中</li>
+<li>API易用性</li>
+</ul>
+<h2 id="运行环境-1"><a href="#运行环境-1" class="headerlink" title="运行环境"></a>运行环境</h2><p><strong>关于开发环境</strong></p>
+<ul>
+<li>面试官想通过开发环境了解面试者的经验</li>
+<li>开发环境，最能体现工作产出的效率</li>
+<li><p>会以聊天的形式为主，而不是出具体的问题</p>
+</li>
+<li><p>IDE</p>
+</li>
+<li>git</li>
+<li>JS模块化</li>
+<li>打包工具</li>
+<li>上线回滚的流程</li>
+</ul>
+<p><strong>常用Git命令</strong></p>
+<ul>
+<li>git add .</li>
+<li>git checkout xxx</li>
+<li>git commit -m “xxx”</li>
+<li>git push origin master</li>
+<li>git pull origin master</li>
+<li>分支</li>
+<li>git branch</li>
+<li>git checkout -b xxx/ git checkout xxx</li>
+<li>git merge xxx</li>
+</ul>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><ul>
+<li>这本身就是一个面试的问题</li>
+</ul>
+<p><strong>知识点</strong></p>
+<ul>
+<li>不使用模块化的情况</li>
+<li>使用模块化</li>
+<li>AMD</li>
+<li>CommonJS</li>
+</ul>
+<p><strong>不使用模块化</strong></p>
+<ul>
+<li>util.js getFormatDate函数</li>
+<li>a-util.js aGetFormatDate函数 使用getFormatDate</li>
+<li>a.js aGetFormatDate</li>
+</ul>
+<p>代码</p>
+<pre><code>// util.js
+function getFormatDate(date, type) {
+    // type === 1 返回 2017-06-15
+    // type === 2 返回 2017年6月15日 格式
+    // ---
+}
+
+// a-util.js
+function aGetFormatDate(date) {
+    // 要求返回 2017年6月15日 格式
+    return getFormatDate(date, 2)
+}
+
+// a.js
+var dt = new Date()
+console.log(aGetFormatDate(dt))
+</code></pre><p>使用</p>
+<pre><code>&lt;script src=&quot;util.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;a-util.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;a.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 1. 这些代码中的函数必须是全局变量，才能暴露给使用方。全局
+变量污染 --&gt;
+&lt;!-- 2. a.js知道要引用 a-util.js，但是他知道还需要依赖
+util.js吗？ --&gt;
+</code></pre><p><strong>使用模块化</strong></p>
+<pre><code>// util.js
+export {
+    getFormatDate: function (date, type) {
+        // type === 1 返回 2017-06-15
+        // type === 2 返回 2017年6月15日 格式
+    }
+}
+
+// a-util.js
+var getFormatDate = require(&apos;util.js&apos;)
+export {
+    aGetFormatDate: function (date) {
+        // 要求返回 2017年6月15日 格式
+        return getFormatDate(date, 2)
+    }
+}
+
+// a.js
+var aGetFormatDate = require(&apos;a-util.js&apos;)
+var dt = new Date()
+console.log(aGetFormatDate(dt))
+
+// 直接`&lt;script src=&quot;a.js&quot;&gt;&lt;/script&gt;`,其他的根据依赖关系自动引用
+// 那两个函数，没必要做成全局变量，不会带来污染和覆盖
+</code></pre><p><strong>AMD</strong></p>
+<ul>
+<li>require.js requirejs.org/</li>
+<li>全局define函数</li>
+<li>全局require函数</li>
+<li>依赖JS会自动、异步加载</li>
+</ul>
+<p><strong>使用require.js</strong></p>
+<pre><code>// util.js
+define(function() {
+    return {
+        getFormatDate: function(date, type) {
+            if (type === 1) {
+                return &apos;2017-06-15&apos;
+            }
+            if (type === 2) {
+                return &apos;2017年6月15日&apos;
+            }
+        }
+    }
+})
+
+// a-util.js
+define([&apos;./util.js&apos;], function(util) {
+    return {
+        aGetFormatDate: function(date) {
+            return util.getFormatDate(date, 2)
+        }
+    }
+})
+
+// a.js
+define([&apos;./a-util.js&apos;], function(aUtil){
+    return {
+        printDate: function (date) {
+            console.log(aUtil.aGetFormatDate(date))
+        }
+    }
+})
+
+// main.js
+require([&apos;./a.js&apos;], function(a) {
+    var date = new Date()
+    a.printDate(date)
+})
+</code></pre><p>引用main.js</p>
+<pre><code>&lt;script src=&quot;/require.min.js&quot; data-main=&quot;./main.js&quot;&gt;&lt;/
+script&gt;
+</code></pre><p><strong>CommonJS</strong></p>
+<ul>
+<li>nodejs模块化规范，现在被大量用前端，原因：</li>
+<li>前端开发依赖的插件和库，都可以用npm中获取</li>
+<li>构建工具的高度自动化，使得使用npm的成本非常低</li>
+<li>CommonJS不会异步加载JS，而是同步一次性加载出来</li>
+</ul>
+<p><strong>使用CommonJS</strong></p>
+<pre><code>// util.js 
+module.exports = {
+    getFormatDate: function (date, type) {
+        if(type === 1) {
+            return &apos;2017-06-15&apos;
+        }
+        if (type === 2) {
+            return &apos;2017年6月15日&apos;
+        }
+    }
+}
+
+// a-util.js
+var util = require(&apos;util.js&apos;)
+module.exports = {
+    aGetFormatDate: function (date) {
+        return util.getFormatDate(date, 2)
+    }
+}
+</code></pre><p>使用</p>
+<ul>
+<li>需要构建工具支持</li>
+<li>一般和npm一起使用</li>
+</ul>
+<p><strong>AMD和CommonJS的使用场景</strong></p>
+<ul>
+<li>需要异步加载JS，使用AMD</li>
+<li>使用了npm之后建议使用CommonJS</li>
+</ul>
+<h2 id="上线和回滚"><a href="#上线和回滚" class="headerlink" title="上线和回滚"></a>上线和回滚</h2><p><strong>知识点</strong></p>
+<ul>
+<li>上线和回滚的基本流程</li>
+<li><p>linux基本命令</p>
+<p><strong>上线回滚流程介绍</strong></p>
+</li>
+<li><p>是非常重要的开发环节</p>
+</li>
+<li>各个公司的具体流程不同</li>
+<li>由专门的工具后者系统完成，我们无需关心细节</li>
+<li>如果你没有参与过，面试时也要说出要点</li>
+<li>只讲要点，具体实现无法讲解</li>
+</ul>
+<p><strong>上线流程要点</strong></p>
+<ul>
+<li>将测试完成的代码提交到git版本库的master分支</li>
+<li>将当前服务器的代码全部打包并记录版本号，备份</li>
+<li>将master分支的代码提交覆盖到线上服务器，生成新版本号</li>
+</ul>
+<p><strong>回滚流程要点</strong></p>
+<ul>
+<li>将当前服务器的代码打包并记录版本号，备份</li>
+<li>将备份的上一个版本号解压，覆盖到线上服务器，并生成新的版本号</li>
+</ul>
+<p><strong>linux基本命令</strong></p>
+<ul>
+<li>服务器使用linux居多，server版，只有命令行</li>
+<li>测试环境要匹配线上环境，因此也是linux</li>
+<li>经常需要登录测试机来自己配置、获取数据</li>
+</ul>
+<p>mkdir ls ll  cd pwd cp(拷贝) mv(移动) </p>
+<p>rm(删除) vi cat、head、tail(看) grep(搜索)</p>
+<h2 id="运行环境-2"><a href="#运行环境-2" class="headerlink" title="运行环境"></a>运行环境</h2><ul>
+<li>浏览器就可以通过访问链接来得到页面的内容</li>
+<li>通过绘制和渲染，显示出页面的最终的样子</li>
+<li>整个过程中，我们需要考虑什么问题？</li>
+</ul>
+<p><strong>知识点</strong></p>
+<ul>
+<li>页面加载过程</li>
+<li>性能优化</li>
+<li>安全性</li>
+</ul>
+<p><strong>题目</strong></p>
+<ul>
+<li>从输入url得到html的详细过程</li>
+<li>window.onload和DOMContentLoaded的区别</li>
+</ul>
+<p><strong>知识点</strong></p>
+<ul>
+<li>加载资源的形式</li>
+<li>加载一个资源的过程</li>
+<li>浏览器渲染页面的过程</li>
+</ul>
+<p><strong>加载资源的形式</strong></p>
+<ul>
+<li>输入url(或跳转页面)加载html</li>
+<li><a href="http://coding.m.imooc.com" target="_blank" rel="noopener">http://coding.m.imooc.com</a></li>
+<li>加载html中的静态资源</li>
+<li>script src=”/static/js/jquery.js”</li>
+</ul>
+<p><strong>加载一个资源的过程</strong></p>
+<ul>
+<li>浏览器根据DNS服务器得到域名的IP地址</li>
+<li>向这个IP的机器发送http请求</li>
+<li>服务器收到、处理并返回http请求</li>
+<li>浏览器得到返回内容</li>
+</ul>
+<p><strong>浏览器渲染页面的过程</strong></p>
+<ul>
+<li>根据HTML结构生成DOM Tree</li>
+<li>根据CSS生成CSSOM</li>
+<li>将DOM和CSSOM整合形成RenderTree</li>
+<li>根据RenderTree开始渲染和展示</li>
+<li>遇到script时，会执行并阻塞渲染(因为js有权利改变DOM结构)</li>
+</ul>
+<p><strong>window.onload和DOMContentLoaded</strong></p>
+<pre><code>window.addEventListener(&apos;load&apos;, function() {
+    // 页面的全部资源加载完才会执行，包括图片、视频等
+})
+document.addEventListener(&apos;DOMContentLoaded&apos;, function(){
+    // DOM渲染完即可执行，此时图片、视频还可能没有加载完
+})
+</code></pre><h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p><strong>原则</strong></p>
+<ul>
+<li>多使用内存、缓存或者其他方法</li>
+<li>减少CPU计算、较少网络</li>
+</ul>
+<p><strong>从哪里入手</strong></p>
+<ul>
+<li>加载页面和静态资源</li>
+<li>页面渲染</li>
+</ul>
+<p><strong>加载资源优化</strong></p>
+<ul>
+<li>静态资源的压缩合并</li>
+<li>静态资源缓存</li>
+<li>使用CDN让资源加载更快</li>
+<li>使用SSR后端渲染，数据直接输出到HTML中</li>
+</ul>
+<p><strong>渲染优化</strong></p>
+<ul>
+<li>CSS放前面，JS放后面</li>
+<li>懒加载（图片懒加载、下拉加载更多）</li>
+<li>减少DOM查询，对DOM查询做缓存</li>
+<li>减少DOM操作，多个操作尽量合并在一起执行</li>
+<li>事件节流</li>
+<li>尽早执行操作（如DOMContentLoaded）</li>
+</ul>
+<p><strong>资源合并</strong></p>
+<pre><code>&lt;script src=&quot;a.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;b.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;c.js&quot;&gt;&lt;/script&gt;
+</code></pre><hr>
+<pre><code>&lt;script src=&quot;abc.js&quot;&gt;&lt;/script&gt;
+</code></pre><p><strong>缓存</strong></p>
+<ul>
+<li>通过连接名称控制缓存</li>
+<li>script src=”abc_1.js”</li>
+<li>只有内容改变的时候，链接名称才会改变</li>
+<li>script src=”abc_2.js”</li>
+</ul>
+<p><strong>CDN</strong></p>
+<p><strong>使用SSR后端渲染</strong></p>
+<ul>
+<li>现在Vue React 提出了这样的概念</li>
+<li>其实jsp php asp 都属于后端渲染</li>
+</ul>
+<p><strong>懒加载</strong></p>
+<pre><code>&lt;img id=&quot;img1&quot; src=&quot;preview.png&quot; data-
+realsrc=&quot;abc.png&quot;&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var img1 = document.getElementById(&apos;img1&apos;)
+    img1.src = img1.getAttribute(&apos;data-realsrc&apos;)
+&lt;/script&gt;
+</code></pre><p><strong>缓存DOM查询</strong></p>
+<pre><code>// 未缓存DOM查询
+var i 
+for(i = 0; i &lt; document.getElementsByTagName
+(&apos;p&apos;).length; i++) {
+    // todo
+}
+
+// 缓存了DOM查询
+var pList = document.getElementsByTagName(&apos;p&apos;)
+var i 
+for(i = 0; i &lt; pList.length; i++) {
+    // todo
+}
+</code></pre><p><strong>合并DOM插入</strong></p>
+<pre><code>var listNode = document.getElementById(&apos;list&apos;)
+
+// 要插入10个li标签
+var frag = document.createDocumentFragment();
+var x, li;
+for(x = 0; x &lt; 10; x++) {
+    li = document.createElement(&apos;li&apos;);
+    li.innerHTML = &quot;List item &quot; + x;
+    frag.appendChild(li);
+}
+
+listNode.appendChild(frag);
+</code></pre><p><strong>事件节流</strong></p>
+<pre><code>var textarea = document.getElementById(&apos;text&apos;)
+var timeoutId
+textarea.addEventListener(&apos;keyup&apos;, function() {
+    if(timeoutId) {
+        clearTimeout(timeoutId)
+    }
+    timeoutId = setTimeout(function() {
+        // 触发 change事件
+    }, 100)
+})
+</code></pre><p><strong>尽早操作</strong></p>
+<pre><code>window.addEventListener(&apos;load&apos;, function() {
+    // 页面的全部资源加载完才会执行，包括图片、视频等
+})
+document.addEventListener(&apos;DOMContentLoaded&apos;, function
+() {
+    // DOM 渲染完即可执行，此时图片、视频还可能没有加载完
+})
+</code></pre><h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><ul>
+<li>综合性的问题：场景的前端安全问题有哪些</li>
+</ul>
+<p><strong>知识点</strong></p>
+<ul>
+<li>XSS跨站请求攻击</li>
+<li>XSRF跨站请求伪造</li>
+</ul>
+<p><strong>XSS</strong></p>
+<ul>
+<li>在新浪博客写一篇文章，同时偷偷插入一段script</li>
+<li>攻击代码中，获取cookie，发送自己的服务器</li>
+<li>发布博客，有人查看博客内容</li>
+<li>会把查看者的cookie发送到攻击者的服务器</li>
+</ul>
+<p>预防 </p>
+<ul>
+<li>前端替换关键字，例如替换 &lt; 为 &lt; &gt; 为 &gt;</li>
+<li>后端替换</li>
+</ul>
+<p><strong>XSRF</strong></p>
+<ul>
+<li>你已登录一个购物网站，正在浏览商品</li>
+<li>该网站付费接口是xxx.com/pay?id=100但是没有任何验证</li>
+<li>然后你收到一封邮件，隐藏着img src = xxx.com?id=100</li>
+<li>你查看邮件的时候，就已经悄悄的付费购买了 </li>
+</ul>
+<p>解决</p>
+<ul>
+<li>增加验证验证流程，如输入指纹、密码、短信验证码</li>
+</ul>
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><p><strong>简历</strong></p>
+<ul>
+<li>简洁明了，重点突出项目经历和解决方案</li>
+<li>把个人博客放在简历中，并且定期维护更新博客</li>
+<li>把个人的开源项目放在简历中，并维护开源项目</li>
+<li>简历千万不要造假，要保持能力和经历上的真实性</li>
+</ul>
+<p><strong>面试过程中</strong></p>
+<ul>
+<li>如何看待加班？加班就像借钱，救急不救穷</li>
+<li>千万不可挑战面试官，不要反考面试官</li>
+<li>学会给面试官惊喜，但不要太多</li>
+<li>遇到不会回答的问题，说出你知道的也可以</li>
+<li>谈谈你的缺点 — 说一下你最近正在学什么就可以了(你不会什么)</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/杂记/" rel="next" title="杂记">
+                <i class="fa fa-chevron-left"></i> 杂记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhangXiaofei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-API"><span class="nav-number">2.</span> <span class="nav-text">JS API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境"><span class="nav-number">3.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行环境"><span class="nav-number">4.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型和原型链-构造函数"><span class="nav-number">5.</span> <span class="nav-text">原型和原型链-构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原形规则和示例"><span class="nav-number">6.</span> <span class="nav-text">原形规则和示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">7.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof"><span class="nav-number">8.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解答"><span class="nav-number">9.</span> <span class="nav-text">问题与解答</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域和闭包"><span class="nav-number">10.</span> <span class="nav-text">作用域和闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步和单线程"><span class="nav-number">11.</span> <span class="nav-text">异步和单线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他知识"><span class="nav-number">12.</span> <span class="nav-text">其他知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-Web-API"><span class="nav-number">13.</span> <span class="nav-text">JS-Web-API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-number">14.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax"><span class="nav-number">15.</span> <span class="nav-text">Ajax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储"><span class="nav-number">16.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行环境-1"><span class="nav-number">17.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块化"><span class="nav-number">18.</span> <span class="nav-text">模块化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上线和回滚"><span class="nav-number">19.</span> <span class="nav-text">上线和回滚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行环境-2"><span class="nav-number">20.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-number">21.</span> <span class="nav-text">性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">22.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧"><span class="nav-number">23.</span> <span class="nav-text">技巧</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangXiaofei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

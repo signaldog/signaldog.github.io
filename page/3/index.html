@@ -229,6 +229,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/JS-pop-push-unshift-shift的作用与区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangXiaofei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/25/JS-pop-push-unshift-shift的作用与区别/" itemprop="url">JS_pop_push_unshift_shift的作用与区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:34:39+08:00">
+                2018-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>白话JS中数组方法pop push unshift shift的作用与区别，通过本文，你大概能知道这四种数组方法的基本使用与大致区别。</p>
+<p>首先，这四种方法会直接修改数组，请先记住这一点。</p>
+<p>我们先把pop push unshift shift分为两组，push与unshift一组，理解为往数组中推入元素。pop和shift一组，理解为推出数组中已有元素。</p>
+<p><strong>push：</strong>在数组的尾部加入一个元素，并返回原有length+1的长度。</p>
+<pre><code>var arr = [1,2,3];
+console.log(arr.push(4)); //4
+console.log(arr); //[1,2,3,4]
+</code></pre><p><strong>unshift：</strong>在数组的头部加入一个元素，并返回原有length+1的长度。</p>
+<pre><code>var arr = [1,2,3];
+console.log(arr.unshift(4)); //4
+console.log(arr); //[4,1,2,3]
+</code></pre><p><strong>pop：</strong>删除数组尾部第一个元素，并返回这个元素。</p>
+<pre><code>var arr = [1,2,3];
+console.log(arr.pop()); //3
+console.log(arr); //[1,2]
+</code></pre><p><strong>shift：</strong>删除数组头部的第一个元素，并返回这个元素。</p>
+<pre><code>var arr = [1,2,3];
+console.log(arr.shift()); //1
+console.log(arr); //[2,3]
+</code></pre><p><strong>总结：</strong></p>
+<p> 1.这四种方法都会直接修改原数组</p>
+<p> 2.push和unshift分别为尾部和头部添加元素，pop和shift分别为尾部和头部删除元素。</p>
+<p> 3.push和unshift返回的是修改后的数组length，pop和shift返回的是被删除的元素。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/JavaScript执行机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2830,917 +2972,6 @@ console.log(&apos;50天后的今天是：&apos;+temp.getFullYear()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/HTML5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangXiaofei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/25/HTML5/" itemprop="url">HTML5</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-25T14:25:19+08:00">
-                2018-12-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="HTML5本地存储"><a href="#HTML5本地存储" class="headerlink" title="HTML5本地存储"></a>HTML5本地存储</h2><ul>
-<li><p>Storage</p>
-<ul>
-<li>sessionStorage<ul>
-<li>session临时会话，从页面打开到页面关闭的时间段</li>
-<li>窗口的临时存储，页面关闭，本地存储消失</li>
-</ul>
-</li>
-<li>localStorage<ul>
-<li>永久存储（可以手动删除数据）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Storage的特点</p>
-<ul>
-<li>存储量限制（5M）</li>
-<li>客户端完成，不会请求服务器处  理</li>
-<li>sessionStorage数据是不共享、localStorage共享</li>
-</ul>
-</li>
-<li><p>Storage API</p>
-<ul>
-<li>setItem()：<ul>
-<li>设置数据，key\value类型，类型都是字符串</li>
-<li>可以用获取属性的形式操作</li>
-</ul>
-</li>
-<li>getItem()：<ul>
-<li>获取数据，通过key来获取到响应的value</li>
-</ul>
-</li>
-<li>removeItem()：<ul>
-<li>删除数据，通过key来删除相应的value</li>
-</ul>
-</li>
-<li>clear()：<ul>
-<li>删除全部存储的值</li>
-</ul>
-</li>
-<li>例子：保存注册信息</li>
-</ul>
-</li>
-<li><p>Storage API</p>
-<ul>
-<li>存储事件：<ul>
-<li>当数据有修改或删除的情况下，就会触发storage事件</li>
-<li>在对数据进行改变的窗口对象上是不会触发的</li>
-<li>Key:修改或删除的key值，如果调用clear(),key为null</li>
-<li>newValue：新设置的值，如果调用removeStorage(),key为null</li>
-<li>oldValue：调用改变前的value值</li>
-<li>storageArea：当前的storage对象</li>
-<li>url：触发该脚本变化的文档的url</li>
-<li>注：session同窗口才可以，例子：iframe操作</li>
-</ul>
-</li>
-<li>例子：同步购物车</li>
-</ul>
-</li>
-</ul>
-<h2 id="HTML5语义化标签的兼容"><a href="#HTML5语义化标签的兼容" class="headerlink" title="HTML5语义化标签的兼容"></a>HTML5语义化标签的兼容</h2><p>兼容IE创建标签</p>
-<pre><code>&lt;script&gt;
-    document.createElement(&quot;header&quot;);
-    document.createElement(&quot;footer&quot;);
-    document.createElement(&quot;article&quot;);
-&lt;/script&gt;
-</code></pre><p>加上    </p>
-<pre><code>display: block;
-</code></pre><p>或者引入插件</p>
-<pre><code>&lt;script src=&quot;html5shiv.js&quot;&gt;&lt;/script&gt;
-</code></pre><h2 id="HTML5表单验证反馈"><a href="#HTML5表单验证反馈" class="headerlink" title="HTML5表单验证反馈"></a>HTML5表单验证反馈</h2><ul>
-<li>表单验证<ul>
-<li>validity对象，通过下面的valid可以查看验证是否通过，如果八种验证都通过返回true，一种验证失败返回false<ul>
-<li>oText.addEventListener(“invalid”, fn1, false);</li>
-<li>ev.preventDefault()</li>
-<li>valueMissing：输入值为空时</li>
-<li>typeMismatch：控件值与预期类型不匹配</li>
-<li>patternMismatch：输入值不满足pattern正则</li>
-<li>tooLong：超过maxLength最大限制</li>
-<li>rangeUnderflow：验证的range最小值</li>
-<li>rangeOverflow：验证的range最大值</li>
-<li>stepMismatch：验证range的当前值是否符合min、max及step的规则</li>
-<li>customError不符合自定义验证</li>
-<li>setCustomValidity();自定义验证</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="HTML5新的选择器"><a href="#HTML5新的选择器" class="headerlink" title="HTML5新的选择器"></a>HTML5新的选择器</h2><ul>
-<li>querySelector</li>
-<li>querySelectorAll</li>
-<li>getElementsByClassName</li>
-</ul>
-<p><strong>- 获取class列表属性</strong></p>
-<ul>
-<li>classList<ul>
-<li>length：class的长度</li>
-<li>add()：添加class方法</li>
-<li>remove()：删除class方法</li>
-<li>toggle()：切换class方法</li>
-</ul>
-</li>
-</ul>
-<p><strong>- JSON的新方法</strong></p>
-<ul>
-<li>parse()：把字符串转成json<ul>
-<li>字符串中的属性要严格的加上引号</li>
-</ul>
-</li>
-<li>stringify()：把json转化成字符串<ul>
-<li>会自动的把双引号加上</li>
-</ul>
-</li>
-<li>新方法与eval的区别</li>
-<li>新方法的应用<ul>
-<li>深度克隆新对象</li>
-</ul>
-</li>
-<li>如何与其他浏览器做到兼容<ul>
-<li><a href="http://www.json.org/去下载json2.js" target="_blank" rel="noopener">http://www.json.org/去下载json2.js</a></li>
-</ul>
-</li>
-</ul>
-<p>eval：可以解析任何字符串变成JS</p>
-<p>parse：只能解析JSON形式的字符串变成JS（安全性要高一些）</p>
-<h2 id="自定义数据与JS加载"><a href="#自定义数据与JS加载" class="headerlink" title="自定义数据与JS加载"></a>自定义数据与JS加载</h2><ul>
-<li><p>data自定义数据</p>
-<ul>
-<li>dataset<ul>
-<li>data-name：dataset.name</li>
-<li>data-name-first：dataset.nameFirst</li>
-</ul>
-</li>
-<li>Data数据在jquery mobile中有着重要作用</li>
-</ul>
-</li>
-<li><p>延迟加载JS</p>
-<ul>
-<li>JS的加载会影响后面的内容加载<ul>
-<li>很多浏览器都采用了并行加载JS，但还是会影响其他内容</li>
-</ul>
-</li>
-<li>Html5的defer和async<ul>
-<li>defer：延迟加载，会按顺序执行，在onload执行前被触发</li>
-<li>async：异步加载，加载完就触发，有顺序问题</li>
-</ul>
-</li>
-<li>Labjs库</li>
-</ul>
-</li>
-</ul>
-<h2 id="历史管理"><a href="#历史管理" class="headerlink" title="历史管理"></a>历史管理</h2><ul>
-<li>历史管理<ul>
-<li>onhashchange：改变hash值来管理</li>
-<li>history：<ul>
-<li>服务器下运行</li>
-<li>pushState：三个参数：数据 标题(都没实现) 地址(可选)</li>
-<li>popstate事件：读取数据 event.state</li>
-<li>注意：网址是虚假的，需在服务器指定对应页面，不然刷新找不到页面</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>触发历史管理：</p>
-<ol>
-<li>通过跳转页面</li>
-<li>hash</li>
-<li>pushState</li>
-</ol>
-<h2 id="拖放"><a href="#拖放" class="headerlink" title="拖放"></a>拖放</h2><ul>
-<li><p>draggable：</p>
-<ul>
-<li>设置为true，元素就可以拖拽了</li>
-</ul>
-</li>
-<li><p>拖放事件</p>
-<ul>
-<li>拖拽元素事件：事件对象为被拖拽元素<ul>
-<li>dragstart，拖拽前触发</li>
-<li>drag,拖拽前、拖拽结束之前，连续触发</li>
-<li>dragend，拖拽结束触发</li>
-</ul>
-</li>
-<li><p>目标元素事件：事件对象为目标元素</p>
-<ul>
-<li>dragenter，进入目标元素触发，相当于mouseover</li>
-<li>dragover，进入目标、离开目标之间，连续触发</li>
-<li>dragleave，离开目标元素触发，相当于mouseout</li>
-<li>drop，在目标元素上释放鼠标触发</li>
-</ul>
-</li>
-<li><p>事件的执行顺序：drop不触发的时候</p>
-<ul>
-<li>dragstart &gt; drag &gt; dragenter &gt; dragover &gt; dragleave &gt;dragend</li>
-</ul>
-</li>
-<li>事件的执行顺序：drop触发的时候(dragover的时候阻止默认事件)<ul>
-<li>dragstart &gt; drag &gt; dragenter &gt; dragover &gt; drop &gt; dragend</li>
-</ul>
-</li>
-<li><p>不能释放的光标和能释放的光标不一样</p>
-</li>
-<li><p>解决火狐下的问题</p>
-<ul>
-<li>必须设置dataTransfer对象的setData方法才可以拖拽除图片外的其他标签</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>dataTransfer对象</p>
-<ul>
-<li>setData()：设置数据key和value(必须是字符串)</li>
-<li><p>getData()：获取数据，根据key值，获取对应的value</p>
-</li>
-<li><p>effectAllowed</p>
-<ul>
-<li>effectAllowed：设置光标样式(none,copy,copyLink,copyMove,link,linkMove,move,all和uninitialized)</li>
-</ul>
-</li>
-<li>setDragImage<ul>
-<li>三个参数：指定的元素，坐标X，坐标Y</li>
-</ul>
-</li>
-<li>files<ul>
-<li>获取外部拖拽的文件，返回一个fileList列表</li>
-<li>filesList下有个type属性，返回文件的类型</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>FileReader(读取文件信息)</p>
-<ul>
-<li>readAsDataURL<ul>
-<li>参数为要读取的文件对象，将文件读取为DataUrl</li>
-</ul>
-</li>
-<li>onload<ul>
-<li>当读取文件成功完成的时候触发此事件</li>
-<li>this.result，来获取读取的文件数据，如果是图片，将返回base64格式的图片数据</li>
-</ul>
-</li>
-<li>实例<ul>
-<li>拖拽删除列表</li>
-<li>拖拽购物车</li>
-<li>上传图片预览功能</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h2><p> 标签</p>
-<pre><code>&lt;canvas&gt;
-不支持canvas的浏览器可以看到的内容
-&lt;/canvas
-</code></pre><ul>
-<li><p>绘制环境</p>
-<ul>
-<li>getContext(‘2d’)：目前支持2d的场景</li>
-</ul>
-</li>
-<li><p>绘制方块</p>
-<ul>
-<li>fillRect(L,T,W,H)：默认颜色是黑色</li>
-<li>strokeRect(L,T,W,H)：带边框的方块<ul>
-<li>默认一像素黑色边框，显示出来的不一样原因</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>设置绘图</p>
-<ul>
-<li>fillStyle：填充颜色(绘制canvas是有顺序的)</li>
-<li>lineWidth：线宽度，是一个数值</li>
-<li>strokeStyle：边线颜色</li>
-</ul>
-</li>
-<li><p>边界绘制</p>
-<ul>
-<li>lineJoin：边界连接点样式<ul>
-<li>miter(默认)、round(圆角)、bevel(斜角)</li>
-</ul>
-</li>
-<li>lineCap：端点样式<ul>
-<li>butt(默认)、round(圆角)、square(高度多出为宽一半的值)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>绘制路径</p>
-<ul>
-<li>beginPath：开始绘制路径</li>
-<li>closePath：结束绘制路径</li>
-<li>moveTo：移动到绘制的新目标点</li>
-<li>lineTo：新的目标点</li>
-</ul>
-</li>
-<li><p>绘制路径_2</p>
-<ul>
-<li>stroke：画线，默认黑色</li>
-<li>fill：填充，默认黑色</li>
-<li>rect：矩形区域</li>
-<li>clearRect：删除一个画布的矩形区域</li>
-<li>save：保存路径</li>
-<li>restore：恢复路径</li>
-<li>小例子1：鼠标画线</li>
-<li>小例子2：方块移动</li>
-</ul>
-</li>
-<li><p>绘制圆</p>
-<ul>
-<li>arc(x,y,起始弧度,结束弧度,旋转方向)<ul>
-<li>x,y：起始位置</li>
-<li>弧度与角度的关系：弧度 = 角度*Math.PI/180</li>
-<li>旋转方向：顺时针(默认：false)、逆时针(true)</li>
-<li>例子：用arc去画个钟表</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>绘制其他曲线</p>
-<ul>
-<li>arcTo(x1,y1,x2,y2,r)<ul>
-<li>第一组坐标、第二组坐标、半径</li>
-</ul>
-</li>
-<li>guadraticCurveTo(x,dy,x1,y1)<ul>
-<li>贝塞尔曲线：第一组控制点、第二组结束坐标</li>
-</ul>
-</li>
-<li>bezierCurveTo(dx1,dy1,dx2,dy2,x1,y1)<ul>
-<li>贝塞尔曲线：第一组控制点、第二组控制点、第三组结束坐标</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>变换</p>
-<ul>
-<li>translate<ul>
-<li>偏移：从起始点为基准点，移动当前坐标位置</li>
-</ul>
-</li>
-<li>rotate<ul>
-<li>旋转：参数为弧度</li>
-<li>例子：旋转的小方块</li>
-</ul>
-</li>
-<li>scale<ul>
-<li>缩放例子：旋转加缩放的小方块</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>插入图片</p>
-<ul>
-<li>等图片加载完，再执行canvas操作<ul>
-<li>图片预加载：在onload中调用方法</li>
-</ul>
-</li>
-<li>drawImage(oImg,x,y,w,h)<ul>
-<li>oImg：当前图片x,y：坐标、w,h：宽高</li>
-<li>例子：微博的图片旋转效果</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>设置背景</p>
-<ul>
-<li>createPattern(oImg,平铺方式)<ul>
-<li>2参为：repeat、repeat-x、repeat-y、no-repeat</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>渐变</p>
-<ul>
-<li>createLinearGradient(x1,y1,x2,y2)<ul>
-<li>线性渐变；</li>
-<li>第一组参数：起始点坐标、第二组参数：结束点坐标</li>
-<li>addColorStop(位置，颜色)添加渐变点</li>
-</ul>
-</li>
-<li>createEadialGradient(x1,y1,r1,x2,y2,r2)<ul>
-<li>放射性渐变；</li>
-<li>参数：第一个圆的坐标，第二个圆的坐标和半径</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>文本</p>
-<ul>
-<li>strokeText(文字，x，y)<ul>
-<li>文本边框</li>
-</ul>
-</li>
-<li>fillText(文字,x,y)<ul>
-<li>文字填充</li>
-</ul>
-</li>
-<li>font<ul>
-<li>文字大小：’60pximpact’</li>
-</ul>
-</li>
-<li>textAlign<ul>
-<li>默认是start跟left一样的效果end right center</li>
-</ul>
-</li>
-<li>textBaseline<ul>
-<li>文字上下的位置的方式默认：alphabetic</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>文本_2</p>
-<ul>
-<li>measureText()<ul>
-<li>measureText(str).width：只有宽度，没有高度</li>
-<li>例子：文字居中</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>阴影</p>
-<ul>
-<li>shadowOffsetX、shadowOffsetY<ul>
-<li>X轴偏移、Y轴偏移</li>
-</ul>
-</li>
-<li>shadowBlur<ul>
-<li>高斯模糊值</li>
-</ul>
-</li>
-<li>shadowColor<ul>
-<li>阴影颜色</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>像素</p>
-<ul>
-<li>getImageData(x,y,w,h)<ul>
-<li>获取图像数据</li>
-</ul>
-</li>
-<li>putImageData(获取图像,x,y)<ul>
-<li>设置新的图像数据</li>
-</ul>
-</li>
-<li>属性<ul>
-<li>width：一行的像素个数</li>
-<li>Height：一列的像素个数</li>
-<li>data：一个数组，包含每个像素的rgba四个值，注意每个值都在0~255之间的整数</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>像素_2</p>
-<ul>
-<li>createImageData(w,h)<ul>
-<li>生成新的像素矩阵，初始值是全透明的黑色，即(0,0,0,0)</li>
-<li>像素显字</li>
-</ul>
-</li>
-<li>获取和设置指定坐标<ul>
-<li>封装：getXY、setXY</li>
-</ul>
-</li>
-<li>图片的像素操作<ul>
-<li>必须是同源下</li>
-<li>例子：反色、倒影、渐变等</li>
-<li>例子：马赛克效果</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>合成<ul>
-<li>全局阿尔法值<ul>
-<li>globalAlpha</li>
-</ul>
-</li>
-<li>覆盖合成<ul>
-<li>源：新的图形</li>
-<li>目标：已经绘制过的图形</li>
-<li>globalCompositeOperation属性<ul>
-<li>source-over  destination-over source-atop</li>
-<li>destination-stop source-in destination-in</li>
-<li>source-out destnation-out lighter</li>
-<li>copy xor</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>将画布导出为图像<ul>
-<li>toDataURL<ul>
-<li>火狐右键可以直接导出成图片</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>事件操作<ul>
-<li>isPointInPath<ul>
-<li>是否在点击范围内</li>
-<li>jCanvaScript(canvas中的jquery):<ul>
-<li><a href="http://jcscript.com/" target="_blank" rel="noopener">http://jcscript.com/</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="跨文档消息通信"><a href="#跨文档消息通信" class="headerlink" title="跨文档消息通信"></a>跨文档消息通信</h2><p><strong>准备工作和同域下的窗口通信</strong></p>
-<ul>
-<li>postMessage对象<ul>
-<li>接收消息的窗口对象.postMessage</li>
-<li>一参：发送的数据，二参：接收的域</li>
-<li>交互方式<ul>
-<li>iframe：父页面：contentWindow、子页面：window.top</li>
-<li>窗口页：父页面：window.open、子页面：window.opener</li>
-</ul>
-</li>
-<li>接收事件<ul>
-<li>message</li>
-<li>ev.origin：发送数据来源的域</li>
-<li>ev.data：发送的数据</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>说明：postMessage：通过这个方法给另外一个窗口发送信息</p>
-<p>说明2：iframe子页面操作父页面</p>
-<pre><code>// parent =&gt; window 如果当前页面是顶级，没有被其他页面所包
-含，那么parent就是当前页面的window对象，那么如果被包含了，则
-parent就是包含当前页面的父级页面的window对象
-
-window：当前窗口
-parent：父级窗口
-top：顶级窗口
-</code></pre><p><strong>ajax跨域的问题和处理</strong></p>
-<ul>
-<li>XMLHttpRequest Level 2<ul>
-<li>XMLHttpRequest改进版<ul>
-<li>请求页面与数据页面必须属性不同的域</li>
-<li>服务器要设置响应头信息</li>
-<li>Origin值展现</li>
-<li>IE：XDomainRequest</li>
-<li>新的事件：onload等</li>
-<li><a href="http://www.w3.org/TR/XMLHttpRequest2" target="_blank" rel="noopener">http://www.w3.org/TR/XMLHttpRequest2</a></li>
-<li><a href="http://msdn.microsoft.com/en-us/library/cc288060(VS.85).aspx" target="_blank" rel="noopener">http://msdn.microsoft.com/en-us/library/cc288060(VS.85).aspx</a></li>
-</ul>
-</li>
-<li>进度事件<ul>
-<li>upload.onprogress：上传</li>
-<li>FormData对象</li>
-<li>ev.total(已发送的总量)、ev.loaded(待发送的总量)</li>
-<li>onprogress：下载</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>说明：在标准浏览器下，XMLHttpRequet对象已经是升级版本，支持了更多的特性，可以跨域了，但是，如果想实现跨域请求，还需要后端的相关配合才可以 </p>
-<p><strong>ajax无刷新上传</strong></p>
-<p>说明：我们是要通过ajax把oMyFile.files[0]数据发送给后端</p>
-<p><strong>nodejs的安装搭建和一个简单http服务器的实现</strong></p>
-<p><strong>websocket</strong></p>
-<ul>
-<li><p>互联网协议</p>
-<ul>
-<li><a href="http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html</a></li>
-<li>TCP/IP协议<ul>
-<li>定义了电子设备如何连入因特网，以及数据在它们之间传输的标准(如何传输)</li>
-<li>传输数据(协议)类型：Email，www，FTP等</li>
-<li>HTTP协议<ul>
-<li>浏览器和万维网服务器之间相互通信的规则</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>HTTP协议特点</p>
-<ul>
-<li>功能很强大</li>
-<li>采用请求、响应模式，单项通信</li>
-<li>短连接，响应完成连接就断开</li>
-</ul>
-</li>
-<li><p>实时web交互</p>
-<ul>
-<li>股票、聊天室、网游等应用</li>
-<li>如果实现实时应用？服务器推送</li>
-</ul>
-</li>
-<li><p>什么是web socket？</p>
-<ul>
-<li>基于TCP的双向的、全双工的数据连接<ul>
-<li>双向的：客户端、服务器端</li>
-<li>全双工：数据的发送与接收，两者同步进行</li>
-</ul>
-</li>
-<li>建立socket应用？<ul>
-<li>服务器必须支持web socket.</li>
-<li>Nodejs的简介<ul>
-<li>Ryan Dahl基于GoogleV8引擎创建的一套用来编写高性能网络服务器的JavaScript工具包</li>
-</ul>
-</li>
-<li>Nodejs：用js去写服务器应用</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>nodejs-websocket服务器的创建和应用</strong></p>
-<ul>
-<li>Node.js<ul>
-<li>安装node.js</li>
-<li>转到项目目录</li>
-<li>运行node scriptname.js</li>
-<li>http服务器的创建</li>
-<li>安装websocket模块npm install socket.io</li>
-<li>websocket服务的创建</li>
-</ul>
-</li>
-</ul>
-<p><strong>HTML5之离线存储</strong></p>
-<p><strong>applicationCache</strong></p>
-<ul>
-<li><p>离线应用是什么？</p>
-<ul>
-<li>乘坐飞机、手机信号弱、去演讲的时候，可能没有网络，这个时候就可以采用离线应用。</li>
-<li>离线存储如何工作的？</li>
-</ul>
-</li>
-<li><p>离线存储的好处？</p>
-<ul>
-<li>没网的时候，可以正常访问</li>
-<li>快速响应页面，不必用多个HTTP占用资源带宽</li>
-<li>缓存的可以是任何文件</li>
-</ul>
-</li>
-<li><p>搭建离线应用程序</p>
-<ol>
-<li>服务器设置头信息：<ul>
-<li>AddType text/cache-manifest.manifest</li>
-</ul>
-</li>
-<li><p>html标签加：</p>
-<ul>
-<li>manifest=”xxxxx.manifest”</li>
-</ul>
-</li>
-<li><p>写manifest文件：离线的清单列表</p>
-<ul>
-<li>先写：CACHE MANIFEST</li>
-<li>FALLBACK:第一个网络地址没获取到，就走第二个缓存的</li>
-<li>NWTWORK：无论缓存中存在与否，均从网络获取</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="HTML5之workers"><a href="#HTML5之workers" class="headerlink" title="HTML5之workers"></a>HTML5之workers</h2><p><strong>Web Workers</strong></p>
-<ul>
-<li><p>什么是worker？</p>
-<ul>
-<li>JS的单线程(放入UI队列的个数，利用定时器解决)</li>
-<li>可以让web应用程序具备后台处理能力，对多线程的支持非常好。</li>
-</ul>
-</li>
-<li><p>Worker API</p>
-<ul>
-<li>new Worker(‘后台处理的JS地址’)</li>
-<li>利用postMessage传输数据</li>
-<li>importScript(‘导入其他JS文件’)</li>
-</ul>
-</li>
-<li><p>Worker运行环境</p>
-<ul>
-<li>navigator：appName、appVersion、userAgent、platform</li>
-<li>location：所有属性都是只读的</li>
-<li>self：指向全局worker对象</li>
-<li>所有的ECMA对象，Object、Array、Date等</li>
-<li>XMLHttpRequest构造器</li>
-<li>setTimeout和setInterval方法</li>
-<li>close()方法，立即停止worker方法</li>
-<li>importScripts方法</li>
-</ul>
-</li>
-</ul>
-<h2 id="HTML5之一些小功能"><a href="#HTML5之一些小功能" class="headerlink" title="HTML5之一些小功能"></a>HTML5之一些小功能</h2><p><strong>HTML5其他功能</strong></p>
-<ul>
-<li><p>内容编辑</p>
-<ul>
-<li>contenteditable=”true”</li>
-</ul>
-</li>
-<li><p>语言输入</p>
-<ul>
-<li><input type="text" x-webkit-speech="">
-</li>
-</ul>
-</li>
-<li><p>桌面提醒</p>
-<ul>
-<li>window.webkitNotifications.requestPermission();</li>
-<li>statue=window.webkitNotifications.checkPermission();</li>
-<li>var notification = window.webkitNotifications.createNotification(“[imgurl]”,”Title”,”Body”);</li>
-<li>notification.show();</li>
-</ul>
-</li>
-</ul>
-<h2 id="html5播放器"><a href="#html5播放器" class="headerlink" title="html5播放器"></a>html5播放器</h2><p><strong>音频和视频</strong></p>
-<ul>
-<li><p>标签</p>
-<ul>
-<li>audio、video</li>
-<li>source</li>
-</ul>
-</li>
-<li><p>视频容器</p>
-<ul>
-<li>容器文件，类似于压缩了一组文件<ul>
-<li>音频轨道</li>
-<li>视频轨道</li>
-<li>元数据：封面，标题，字幕等</li>
-<li>格式：.avi、.flv、.mp4、.mkv、.ogv等</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>媒体元素</p>
-<ul>
-<li>controls：显示或隐藏用户控制界面</li>
-<li>autoplay：媒体是否自动播放</li>
-<li>loop：媒体是否循环播放</li>
-<li>currentTime：开始到播放现在所用的时间</li>
-<li>duration：媒体总时间(只读)</li>
-<li>volume：0.0-1.0得到音量相对值</li>
-<li>muted：是否静音</li>
-<li>autobuffer：开始的时候是否缓冲加载，autoplay的时候，忽略此属性</li>
-</ul>
-</li>
-<li><p>编解码器</p>
-<ul>
-<li>原始的视频容器非常大，添加需编码，播放需解码</li>
-<li>音频编解码器<ul>
-<li>AAC、MPEG-3、OggVorbis</li>
-</ul>
-</li>
-<li>视频编解码器<ul>
-<li>H.264、VP8、OggTheora</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>媒体元素_2</p>
-<ul>
-<li>paused：媒体是否暂停(只读)</li>
-<li>ended：媒体是否播放完毕(只读)</li>
-<li>error：媒体发生错误的时候，返回错误代码(只读)</li>
-<li><p>currentSrc：以字符串的形式返回媒体地址(只读)</p>
-</li>
-<li><p>play()：媒体播放</p>
-</li>
-<li>pause()：媒体暂停</li>
-<li>load()：重新加载媒体</li>
-</ul>
-</li>
-<li><p>媒体元素_3</p>
-<ul>
-<li>loadstart progress suspend emptied stalled play pause loadedmetadata loadeddata waiting playing canplay canpalythrough seeking eeked timeupdate ended ratechange durationchange volumechange</li>
-</ul>
-</li>
-<li><p>Video额外特性</p>
-<ul>
-<li>poster：视频播放前的预览图片</li>
-<li>width、height：设置视频的尺寸</li>
-<li><p>videoWidth、 videoHeight：视频的实际尺寸(只读)</p>
-</li>
-<li><p>例子：带声音的导航</p>
-</li>
-<li>例子：视频与canvas结合</li>
-<li>例子：自制播放器</li>
-<li><a href="http://www.alloyteam.com/wp-content/uploads/2012/03/playdemo/index.html" target="_blank" rel="noopener">http://www.alloyteam.com/wp-content/uploads/2012/03/playdemo/index.html</a></li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3791,7 +3022,7 @@ top：顶级窗口
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
